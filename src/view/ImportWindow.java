@@ -19,11 +19,15 @@
  *
  *
 **/
-
+package view;
 
 import java.awt.Frame;
 import java.io.*;
 import javax.swing.*;
+
+import model.Language;
+import model.Options;
+
 import java.util.*;
 
 public class ImportWindow extends Frame {

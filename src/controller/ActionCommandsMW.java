@@ -19,7 +19,14 @@
  *
  *
 **/
+package controller;
 
+import model.Language;
+import view.AboutWindow;
+import view.ExportWindow;
+import view.ImportWindow;
+import view.MainWindow;
+import view.OptionsWindow;
 
 public class ActionCommandsMW {
 MainWindow mw;

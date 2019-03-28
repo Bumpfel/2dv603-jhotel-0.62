@@ -19,7 +19,11 @@
  *
  *
  *  */
+package view;
+
 import java.util.*;
+
+import model.Album;
 
 import java.awt.Frame;
 

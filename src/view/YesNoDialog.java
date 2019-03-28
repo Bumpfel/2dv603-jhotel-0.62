@@ -19,9 +19,12 @@
  *
  *
 **/
-
+package view;
 
 import java.awt.Frame;
+
+import controller.Reservation;
+import model.Language;
 
 public class YesNoDialog extends Frame {
 

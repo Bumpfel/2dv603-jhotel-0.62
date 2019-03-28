@@ -19,10 +19,14 @@
  *
  *
 **/
-
+package view;
 
 import java.awt.Frame;
 import javax.swing.*;
+
+import model.Guest;
+import model.Language;
+
 import java.io.*;
 import java.util.*;
 import java.awt.event.*;

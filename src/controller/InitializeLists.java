@@ -19,13 +19,18 @@
  *
  *
 **/
+package controller;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.util.ArrayList;
+import java.util.Calendar;
 
-import java.awt.Frame;
-import javax.swing.*;
-import java.io.*;
-import java.util.*;
-import java.awt.event.*;
+import javax.swing.DefaultListModel;
+
+import model.Language;
+import view.CheckinWindow;
 
 public class InitializeLists extends Thread {
 

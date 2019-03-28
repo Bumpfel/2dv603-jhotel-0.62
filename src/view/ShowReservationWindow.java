@@ -19,10 +19,13 @@
  *
  *
 **/
-
+package view;
 
 import java.awt.Frame;
 import java.util.*;
+
+import controller.Reservation;
+import model.Language;
 
 public class ShowReservationWindow extends Frame {
 

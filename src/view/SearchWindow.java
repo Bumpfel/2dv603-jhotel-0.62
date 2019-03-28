@@ -19,14 +19,21 @@
  *
  *
 **/
-
+package view;
 
 import java.awt.Frame;
 import java.awt.GraphicsConfiguration;
 import java.awt.HeadlessException;
-import java.awt.event.*;
-import java.util.*;
-import javax.swing.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.util.ArrayList;
+
+import javax.swing.DefaultListModel;
+
+import model.Guest;
+import model.Language;
+import model.Options;
 
 public class SearchWindow extends Frame {
 

@@ -19,9 +19,12 @@
  *
  *
 **/
-
+package view;
 
 import java.awt.Frame;
+
+import model.Guest;
+import model.Language;
 
 public class AdditionalDataWindow extends Frame {
 

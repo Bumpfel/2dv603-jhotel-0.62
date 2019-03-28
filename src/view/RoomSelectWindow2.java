@@ -19,11 +19,15 @@
  *
  *
 **/
-
+package view;
 
 import java.awt.Frame;
 import java.io.*;
 import java.util.*;
+
+import controller.Reservation;
+import model.Language;
+import model.Options;
 
 public class RoomSelectWindow2 extends Frame implements Runnable {
 

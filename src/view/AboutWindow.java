@@ -19,9 +19,11 @@
  *
  *
 **/
-
+package view;
 
 import java.awt.Frame;
+
+import model.Language;
 
 public class AboutWindow extends Frame {
 	

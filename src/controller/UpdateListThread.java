@@ -19,7 +19,10 @@
  *
  *
 **/
+package controller;
 
+import model.Language;
+import view.ReservationManagement;
 
 public class UpdateListThread extends Thread{
 	private ReservationManagement rm;

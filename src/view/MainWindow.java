@@ -19,12 +19,18 @@
  *
  *
 **/
-
+package view;
 
 import java.awt.Frame;
 import java.awt.GraphicsConfiguration;
 import java.awt.HeadlessException;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import controller.ActionCommandsMW;
+import model.Guest;
+import model.Language;
+import model.MainMenu;
 
 public class MainWindow extends Frame implements ActionListener {
 

@@ -19,13 +19,17 @@
  *
  *
 **/
-
+package view;
 
 import java.awt.Frame;
 import java.awt.HeadlessException;
 import java.awt.event.*;
 import java.util.*;
 import javax.swing.*;
+
+import model.Guest;
+import model.Language;
+import model.Options;
 
 public class AlbumSearchWindow extends Frame {
 

@@ -19,13 +19,18 @@
  *
  *
 **/
-
+package view;
 
 import java.awt.Frame;
 import javax.swing.*;
 import java.awt.event.*;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreePath;
+
+import controller.Reservation;
+import model.Language;
+import model.Options;
+
 import java.io.*;
 import java.util.*;
 
