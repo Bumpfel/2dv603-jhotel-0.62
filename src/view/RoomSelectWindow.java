@@ -19,7 +19,7 @@
  *
  *
 **/
-package model;
+package view;
 
 import java.awt.Frame;
 import java.io.FileInputStream;
@@ -28,6 +28,8 @@ import java.io.ObjectInputStream;
 import java.util.ArrayList;
 
 import controller.Reservation;
+import model.Language;
+import model.Options;
 import view.ReservationManagement;
 
 public class RoomSelectWindow extends Frame implements Runnable {

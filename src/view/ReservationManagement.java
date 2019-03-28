@@ -34,7 +34,6 @@ import controller.Reservation;
 import controller.UpdateListThread;
 import model.Language;
 import model.Options;
-import model.RoomSelectWindow;
 
 public class ReservationManagement extends Frame implements Runnable {
 
