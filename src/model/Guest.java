@@ -529,14 +529,14 @@ public class Guest {
 		guests[0] = "test1 0";
 		guests[1] = "test1 1";
 		guests[2] = "test1 2";
-		newguest[0] = "tßst3";
-		newguest[1] = "tßst3";
-		newguest[2] = "tßst3";
+		newguest[0] = "tï¿½st3";
+		newguest[1] = "tï¿½st3";
+		newguest[2] = "tï¿½st3";
 		
 		//guest.addNew(newguest);
 		guest.addGuest(newguest, guests);
 		//guest.deleteExisting(newguest);
-		System.out.println(guest.findGuest("tßst3"));
+		System.out.println(guest.findGuest("tï¿½st3"));
 		
 		
 

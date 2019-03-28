@@ -220,11 +220,11 @@ public class Reservation extends Thread {
 			ObjectInputStream quad = new ObjectInputStream(qd);
 			ObjectInputStream apartment = new ObjectInputStream(app);
 			
-			al1 = (ArrayList) single.readObject(); 			// Alle Einzelzimmer über alle Stockwerke als String[]
-			al2 = (ArrayList) dbl.readObject();				// Alle Doppelzimmer über alle Stockwerke als String[]
-			al3 = (ArrayList) triple.readObject();			// Alle Drei-Bett Zimmer über alle Stockwerke als String[]
-			al4 = (ArrayList) quad.readObject();			// Alle Vier-Bett Zimmer über alle Stockwerke als String[]
-			al5 = (ArrayList) apartment.readObject();	// Alle Apartments über alle Stockwerke als String[]
+			al1 = (ArrayList) single.readObject(); 			// Alle Einzelzimmer ï¿½ber alle Stockwerke als String[]
+			al2 = (ArrayList) dbl.readObject();				// Alle Doppelzimmer ï¿½ber alle Stockwerke als String[]
+			al3 = (ArrayList) triple.readObject();			// Alle Drei-Bett Zimmer ï¿½ber alle Stockwerke als String[]
+			al4 = (ArrayList) quad.readObject();			// Alle Vier-Bett Zimmer ï¿½ber alle Stockwerke als String[]
+			al5 = (ArrayList) apartment.readObject();	// Alle Apartments ï¿½ber alle Stockwerke als String[]
 			
 			single.close();
 			dbl.close();
@@ -232,7 +232,7 @@ public class Reservation extends Thread {
 			quad.close();
 			apartment.close();
 			
-			// Einzelzimmer über alle Stockwerke
+			// Einzelzimmer ï¿½ber alle Stockwerke
 			f1 = (String[]) al1.get(0);			
 			for (int i=0; i<f1.length; ++i) {
 				availableRooms[j] = f1[i];
@@ -282,7 +282,7 @@ public class Reservation extends Thread {
 				reservations.add(new String[100000]);
 			}
 			
-			// Doppelzimmer über alle Stockwerke
+			// Doppelzimmer ï¿½ber alle Stockwerke
 			f1 = (String[]) al2.get(0);			
 			for (int i=0; i<f1.length; ++i) {
 				availableRooms[j] = f1[i];
@@ -332,7 +332,7 @@ public class Reservation extends Thread {
 				reservations.add(new String[100000]);
 			}
 
-			// Drei-Bett Zimmer über alle Stockwerke
+			// Drei-Bett Zimmer ï¿½ber alle Stockwerke
 			f1 = (String[]) al3.get(0);			
 			for (int i=0; i<f1.length; ++i) {
 				availableRooms[j] = f1[i];
@@ -382,7 +382,7 @@ public class Reservation extends Thread {
 				reservations.add(new String[100000]);
 			}
 
-			// Vier-Bett Zimmer über alle Stockwerke
+			// Vier-Bett Zimmer ï¿½ber alle Stockwerke
 			f1 = (String[]) al4.get(0);			
 			for (int i=0; i<f1.length; ++i) {
 				availableRooms[j] = f1[i];
@@ -432,7 +432,7 @@ public class Reservation extends Thread {
 				reservations.add(new String[100000]);
 			}
 
-			// Apartments über alle Stockwerke
+			// Apartments ï¿½ber alle Stockwerke
 			f1 = (String[]) al5.get(0);			
 			for (int i=0; i<f1.length; ++i) {
 				availableRooms[j] = f1[i];

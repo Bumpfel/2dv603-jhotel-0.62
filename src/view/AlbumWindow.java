@@ -210,7 +210,7 @@ public class AlbumWindow extends Frame {
 		if(jLabel6 == null) {
 			jLabel6 = new javax.swing.JLabel();
 			jLabel6.setBounds(220, 237, 244, 21);
-			jLabel6.setText("Staatsangehörigkeit");
+			jLabel6.setText("Staatsangehï¿½rigkeit");
 		}
 		return jLabel6;
 	}
