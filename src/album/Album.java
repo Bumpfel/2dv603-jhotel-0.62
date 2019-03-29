@@ -30,12 +30,10 @@ import java.util.ArrayList;
 
 public class Album {
 	
-	// private AlbumWindow aw;
 	private ArrayList album = new ArrayList();
 	private long entries = 0;
 	
-	public Album() { //AlbumWindow aw) {
-		// this.aw = aw;
+	public Album() {
 	}
 
 	public void init() {
@@ -63,9 +61,6 @@ public class Album {
 
 	public void saveAlbum(ArrayList newEntries) {
 		
-		// aw.setThreadRunning();
-		
-		
 		for (int i=0; i<newEntries.size(); ++i) {
 			album.add(newEntries.get(i));
 		}
@@ -80,8 +75,6 @@ public class Album {
 		catch (IOException io) {
 			System.out.println(io);
 		}
-		
-		// aw.dispose();
 		
 	}
 }

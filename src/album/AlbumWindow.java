@@ -119,12 +119,11 @@ public class AlbumWindow extends Frame {
 				dispose();
 			}
 		});
-		Album album = new Album();//thisWindow);
+		Album album = new Album();
 
 		setThreadRunning();
 		album.init();
-		int entries = album.getEntries();
-		setThreadEnded(entries);
+		setThreadEnded(album.getEntries());
 
 		this.album = album;		
 	}
