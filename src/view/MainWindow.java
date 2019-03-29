@@ -915,8 +915,6 @@ public class MainWindow extends Frame implements ActionListener {
 		ActionCommandsMW action = new ActionCommandsMW(thisWindow, command);		
 	}
 	
-	
-	
 	public static void main(String[] args) {
 		Language lang = new Language();
 		language = lang.getLanguage();
