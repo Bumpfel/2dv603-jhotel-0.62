@@ -608,6 +608,7 @@ public class AlbumWindow extends Frame {
 			jButton2.addActionListener(new java.awt.event.ActionListener() { 
 				public void actionPerformed(java.awt.event.ActionEvent e) {    
 					AlbumSearchWindow asw = new AlbumSearchWindow(thisWindow);
+					setGuest(asw.getChosenGuest());
 					asw.setVisible(true);
 				}
 			});

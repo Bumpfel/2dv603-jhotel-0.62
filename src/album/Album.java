@@ -65,7 +65,7 @@ public class Album {
 			album.add(newEntries.get(i));
 		}
 		try {
-			FileOutputStream fos = new FileOutputStream("db/album.jh");
+			FileOutputStream fos = new FileOutputStream("./db/album.jh");
 			ObjectOutputStream oos = new ObjectOutputStream(fos);
 			
 			oos.writeObject(album);
