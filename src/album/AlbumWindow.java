@@ -545,6 +545,7 @@ public class AlbumWindow extends Frame {
 			jButton1.addActionListener(new java.awt.event.ActionListener() { 
 				public void actionPerformed(java.awt.event.ActionEvent e) {    
 					album.saveAlbum(newEntries);
+					dispose();
 				}
 			});
 		}
@@ -608,7 +609,6 @@ public class AlbumWindow extends Frame {
 			jButton2.addActionListener(new java.awt.event.ActionListener() { 
 				public void actionPerformed(java.awt.event.ActionEvent e) {    
 					AlbumSearchWindow asw = new AlbumSearchWindow(thisWindow);
-					setGuest(asw.getChosenGuest());
 					asw.setVisible(true);
 				}
 			});
