@@ -1,0 +1,84 @@
+			JHotel Readme
+		    Version 0.62, June 2004
+		    
+    Copyright (C) 2004, JSoft-Munich, Hansastr. 112, 81373 Munich, Germany
+
+    
+
+JHotel is a software for small and medium-sized hotels. It has everything that
+these kind of hotels require:
+
+- Guest management
+- Reservation management
+- Checkin management
+- Statistics
+
+JHotel is available under the GNU General Public License which is provided
+with JHotel and can be found in the COPYING file. JHotel can be downloaded
+for free from Sourceforge: http://sourceforge.net/projects/jhotel
+
+JHotel is written in Java and will run everywhere, where there's a JavaVM 
+available.
+
+
+
+Installation
+============
+In order to install JHotel, simply download either the .zip or the .gz or
+the .bz2 file and extract it.
+Of course you can also download the source (.src.zip, .src.gz or .src.bz2)
+and compile JHotel yourself using javac (or any other Java compiler).
+
+
+
+Running JHotel
+==============
+Given that JHotel is Java software, there are no executable files. In order
+to run it, you need to install a JavaVM, see http://java.sun.com for
+details and downloads.
+
+
+
+Microsoft Windows:
+------------------
+
+- Either open the command prompt, cd to the directory where JHotel is installed
+  and type: java -jar JHotel.jar
+  The filename may vary depending on the version of JHotel.
+- Or simply double-click the .jar file
+
+
+Linux/Unix:
+-----------
+
+Open a terminal, cd to the directory where JHotel is installed and type:
+			    
+		java -jar JHotel.jar
+
+The filename may vary depending on the version of JHotel.
+You can also run the file jhotel which is a bash script and does exactly
+the above.
+
+
+Mac OS 9/X:
+-----------
+
+Make sure you have the Apple JavaVM installed and simply double-click the .jar
+file. In Mac OS X you can also go the Unix way.
+
+
+
+Bugs
+====
+If you find any bugs, feel free to contact me:
+
+Address:	Martin Jungowski
+    		Hansastr. 112
+		81373 Munich
+		GERMANY
+
+Phone:		0049-89-45237400
+E-Mail:		Martin.Jungowski@in.tum.de
+
+
+Copyright (C) 2004, JSoft-Munich, Martin Jungowski
