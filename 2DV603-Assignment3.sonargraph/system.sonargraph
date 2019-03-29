@@ -1,9 +1,9 @@
 <?xml version="1.0" ?>
-<ns2:softwareSystem xmlns:ns2="http://www.hello2morrow.com/sonargraph/core" id="44019ce7202578289e8f45560d77e500" version="9.10.0.544">
+<ns2:softwareSystem xmlns:ns2="http://www.hello2morrow.com/sonargraph/core" id="44019ce7202578289e8f45560d77e500" version="9.10.0.545">
 	<description></description>
 	<module xmlns:ns4="http://www.hello2morrow.com/sonargraph/languageprovider/java" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:xsdJavaModule" name="Main" id="dd261133c40e818129b897feea80c16d" language="Java">
 		<description></description>
-		<rootPath name="./bin"></rootPath>
 		<rootPath xsi:type="ns4:xsdSourceRootPath" name="./src"></rootPath>
+		<rootPath name="./out/production/2dv603-jhotel-0.62"></rootPath>
 	</module>
 </ns2:softwareSystem>

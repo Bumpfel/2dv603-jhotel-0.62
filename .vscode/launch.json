@@ -18,7 +18,7 @@
             "type": "java",
             "name": "CodeLens (Launch) - JHotel_Translator",
             "request": "launch",
-            "mainClass": "view.JHotel_Translator",
+            "mainClass": "JHotel_Translator",
             "projectName": "2dv603-jhotel-0.62_e6534d94"
         }
     ]
