@@ -262,7 +262,7 @@ public class AlbumSearchWindow extends Frame {
 	 * @return javax.swing.JList
 	 */
 	
-	public void loadGuest(int index) {
+	private void loadGuest(int index) {
 		Guest guest = new Guest();
 		String[] gst = new String[entries];
 		String[] entry = new String[entries];

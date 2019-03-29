@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - AlbumWindow",
+            "request": "launch",
+            "mainClass": "album.AlbumWindow",
+            "projectName": "2dv603-jhotel-0.62"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - MainWindow",
             "request": "launch",
             "mainClass": "view.MainWindow",
@@ -12,20 +19,6 @@
             "name": "CodeLens (Launch) - JHotel_Translator",
             "request": "launch",
             "mainClass": "view.JHotel_Translator",
-            "projectName": "2dv603-jhotel-0.62_e6534d94"
-        },
-        {
-            "type": "java",
-            "name": "CodeLens (Launch) - AlbumWindow",
-            "request": "launch",
-            "mainClass": "view.AlbumWindow",
-            "projectName": "2dv603-jhotel-0.62_e6534d94"
-        },
-        {
-            "type": "java",
-            "name": "CodeLens (Launch) - AlbumWindow",
-            "request": "launch",
-            "mainClass": "AlbumWindow",
             "projectName": "2dv603-jhotel-0.62_e6534d94"
         }
     ]

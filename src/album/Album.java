@@ -38,7 +38,7 @@ public class Album {
 
 	public void init() {
 		try {
-			FileInputStream fis = new FileInputStream("./db/album.jh");
+			FileInputStream fis = new FileInputStream("db/album.jh");
 			ObjectInputStream ois = new ObjectInputStream(fis);
 			
 			album = (ArrayList) ois.readObject();
@@ -65,7 +65,7 @@ public class Album {
 			album.add(newEntries.get(i));
 		}
 		try {
-			FileOutputStream fos = new FileOutputStream("./db/album.jh");
+			FileOutputStream fos = new FileOutputStream("db/album.jh");
 			ObjectOutputStream oos = new ObjectOutputStream(fos);
 			
 			oos.writeObject(album);

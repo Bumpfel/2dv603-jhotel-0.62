@@ -635,7 +635,6 @@ public class AlbumWindow extends Frame {
 	}
 	
 	public void setGuest(String[] guest) {
-		
 		jTextField2.setText(guest[1] + ", " + guest[2]);
 		jTextField4.setText(guest[4]);
 		jTextField6.setText(guest[5]);
