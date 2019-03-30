@@ -21,11 +21,14 @@
 **/
 package backend;
 
+import java.util.ArrayList;
+
 import frontend.ReservationManagement;
 
-public class UpdateListThread extends Thread{
+public class UpdateListThread extends Thread implements Observable {
 	private ReservationManagement rm;
 	private String[] language;
+	private ArrayList<Observer> subscribers = new ArrayList<>();
 	
 	public UpdateListThread(ReservationManagement rm) {
 		Language lang = new Language();
@@ -34,8 +37,22 @@ public class UpdateListThread extends Thread{
 	}
 
 	public void run() {
-		rm.setThreadRunning(language[66]);
-		rm.run();
-		rm.setThreadEnded();
+		notifySubscribers();
+		// rm.setThreadRunning(language[66]);  
+		// rm.run();
+		// rm.setThreadEnded();
 	}
+
+	@Override
+	public void addSubscriber(Observer o) {
+		subscribers.add(o);
+	}
+
+	private void notifySubscribers() {
+		System.out.println(subscribers.size());
+		for(Observer o : subscribers) {
+			o.update(null, null, Action.UPDATE_LIST);
+		}
+	}
+
 }

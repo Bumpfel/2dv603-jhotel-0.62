@@ -989,7 +989,7 @@ public class MainWindow extends Frame implements ActionListener, Observer {
 	}
 
 	@Override
-	public void update(Observable observable, Object args, Action action) {
+	public void update(Observer o, Object args, Action action) {
 		if(action == Action.RESET)
 			addDataWindowReset((String[]) args);
 		else if(action == Action.CLEAR)

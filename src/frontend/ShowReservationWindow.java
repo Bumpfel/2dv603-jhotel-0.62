@@ -600,7 +600,7 @@ public class ShowReservationWindow extends Frame implements Observer {
 	}
 
 	@Override
-	public void update(Observable observable, Object args, Action action) {
+	public void update(Observer o, Object args, Action action) {
 		setSelectedRoom((String) args);
 	}
 

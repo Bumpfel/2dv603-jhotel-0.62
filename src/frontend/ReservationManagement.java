@@ -490,7 +490,8 @@ public class ReservationManagement extends Frame implements Runnable, Observer {
 			jButton.setText(language[62]);
 			jButton.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					ResGuestList rgl = new ResGuestList(thisWindow);
+					ResGuestList rgl = new ResGuestList();
+					rgl.addSubscriber(thisWindow);
 					rgl.setVisible(true);
 					rgl.getGuestDB();
 				}
@@ -771,7 +772,6 @@ public class ReservationManagement extends Frame implements Runnable, Observer {
 
 		tm.setColumnIdentifiers(columnid);
 		jTable.setModel(tm);
-
 	}
 
 	public void updateTable(ArrayList al) {
@@ -1004,11 +1004,11 @@ public class ReservationManagement extends Frame implements Runnable, Observer {
 	}
 
 	/**
-	 * This method initializes jButton5
+	 * This method initializes jButton5 "Show"
 	 * 
 	 * @return javax.swing.JButton
 	 */
-	private javax.swing.JButton getJButton5() {
+	private synchronized javax.swing.JButton getJButton5() {
 		if (jButton5 == null) {
 			jButton5 = new javax.swing.JButton();
 			jButton5.setBounds(655, 227, 103, 18);
@@ -1016,7 +1016,8 @@ public class ReservationManagement extends Frame implements Runnable, Observer {
 			jButton5.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					UpdateListThread ult = new UpdateListThread(thisWindow);
-					ult.start();
+					ult.addSubscriber(thisWindow);
+					ult.run();
 				}
 			});
 		}
@@ -1093,8 +1094,21 @@ public class ReservationManagement extends Frame implements Runnable, Observer {
 	}
 
 	@Override
-	public void update(Observable observable, Object args, Action action) {
-
+	public void update(Observer o, Object args, Action action) {
+		if(action == Action.GET_GUEST_DB)
+			setOldGuest((String[]) args);
+		else if(action == Action.LOAD_GUEST)
+			setGuest((String[]) args);
+		else if(action == Action.NEW_RES_GUEST) {
+			NewResGuest nrg = new NewResGuest(rm);
+			nrg.setVisible(true);
+			nrg.addSubscriber(o);
+		}
+		else if(action == Action.UPDATE_LIST) {
+			setThreadRunning(language[66]);
+			run();
+			setThreadEnded();
+		}
 	}
 
 }  //  @jve:visual-info  decl-index=0 visual-constraint="10,10"

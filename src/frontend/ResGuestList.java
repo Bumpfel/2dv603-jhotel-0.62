@@ -35,9 +35,9 @@ import backend.Language;
 import backend.Observable;
 import backend.Observer;
 
-public class ResGuestList extends Frame implements Observer {
+public class ResGuestList extends Frame implements Observer, Observable {
 
-	private ReservationManagement rm;
+	// private ReservationManagement rm;
 	private ResGuestList thisWindow;
 	private javax.swing.JScrollPane jScrollPane = null;
 	private javax.swing.JList jList = null;
@@ -51,11 +51,13 @@ public class ResGuestList extends Frame implements Observer {
 	private javax.swing.JTextField jTextField = null;
 	private javax.swing.JButton jButton3 = null;
 
+	private ArrayList<Observer> subscribers = new ArrayList<>();
+
 	/**
 	 * This is the default constructor
 	 */
-	public ResGuestList(ReservationManagement rm) {
-		this.rm = rm;
+	public ResGuestList() { //ReservationManagement rm) {
+		// this.rm = rm;
 		this.thisWindow = this;
 		Language lang = new Language();
 		language = lang.getLanguage();
@@ -102,7 +104,8 @@ public class ResGuestList extends Frame implements Observer {
 		for (int i = 0; i < db.size(); ++i) {
 			currentGuest = (String[]) db.get(i);
 			tmp = (currentGuest[0] + " - " + currentGuest[1] + ", " + currentGuest[2] + " ");
-			rm.setOldGuest(currentGuest);
+			notifySubscribers(currentGuest, Action.GET_GUEST_DB);
+			// rm.setOldGuest(currentGuest);
 			sr.add(count, currentGuest);
 			++count;
 			dlm.addElement((Object) tmp);
@@ -156,7 +159,8 @@ public class ResGuestList extends Frame implements Observer {
 
 		entry = guest.getGuest((String[]) sr.get(index));
 
-		rm.setGuest(entry);
+		notifySubscribers(entry, Action.LOAD_GUEST);
+		// rm.setGuest(entry);
 		dispose();
 
 		jList.setModel(new DefaultListModel());
@@ -278,9 +282,10 @@ public class ResGuestList extends Frame implements Observer {
 			jButton3.setText(language[0]);
 			jButton3.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					NewResGuest nrg = new NewResGuest(rm);
-					nrg.setVisible(true);
-					nrg.addSubscriber(thisWindow);
+					notifySubscribers(null, Action.NEW_RES_GUEST);
+					// NewResGuest nrg = new NewResGuest(rm);
+					// nrg.setVisible(true);
+					// nrg.addSubscriber(thisWindow);
 					setVisible(false);
 				}
 			});
@@ -289,10 +294,21 @@ public class ResGuestList extends Frame implements Observer {
 	}
 
 	@Override
-	public void update(Observable observable, Object args, Action action) {
+	public void update(Observer o, Object args, Action action) {
 		if(action == Action.DISPOSE)
 			dispose();
 		else if(action == Action.SET_VISIBLE)
 			setVisible(true);
+	}
+
+	@Override
+	public void addSubscriber(Observer o) {
+		subscribers.add(o);
+	}
+
+	private void notifySubscribers(String[] args, Action action) {
+		for(Observer o : subscribers) {
+			o.update(this, args, action);
+		}
 	}
 }  //  @jve:visual-info  decl-index=0 visual-constraint="10,10"

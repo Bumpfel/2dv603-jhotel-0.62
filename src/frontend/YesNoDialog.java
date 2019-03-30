@@ -180,7 +180,7 @@ public class YesNoDialog extends Frame implements Observable {
 
 	private void notifySubscribers(Action action) {
 		for(Observer o : subscribers) {
-			o.update(this, guest, action);
+			o.update(null, guest, action);
 		}
 	}
 }  //  @jve:visual-info  decl-index=0 visual-constraint="10,10"

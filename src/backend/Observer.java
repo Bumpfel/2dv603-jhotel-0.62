@@ -1,5 +1,5 @@
 package backend;
 
 public interface Observer {
-    public void update(Observable observable, Object args, Action action);
+    public void update(Observer obs, Object args, Action action);
 }
