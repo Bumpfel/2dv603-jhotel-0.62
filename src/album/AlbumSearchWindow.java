@@ -42,7 +42,6 @@ public class AlbumSearchWindow extends Frame {
 	private javax.swing.JLabel jLabel2 = null;
 	private javax.swing.JButton jButton1 = null;
 	private javax.swing.JButton jButton3 = null;
-	private Frame window;
 	private javax.swing.JScrollPane jScrollPane = null;
 	private javax.swing.JList jList = null;
 	ArrayList data = new ArrayList();
@@ -52,12 +51,11 @@ public class AlbumSearchWindow extends Frame {
 	String dbname;
 	int entries;
 	
-	public AlbumSearchWindow(Frame aWindow) throws HeadlessException {
+	public AlbumSearchWindow() throws HeadlessException {
 		Language lang = new Language();
 		language = lang.getLanguage();
 		Options options = new Options();
 		dbname = options.getFileName();
-		window = aWindow;
 
 		initialize();
 	}
@@ -80,7 +78,6 @@ public class AlbumSearchWindow extends Frame {
 				jList.setModel(new DefaultListModel());
 				clearFields();
 				setVisible(false);
-				window.setEnabled(true);
         	}
         });
 			
@@ -227,7 +224,6 @@ public class AlbumSearchWindow extends Frame {
 					jList.setModel(new DefaultListModel());
 					clearFields();
 					setVisible(false);
-					window.setEnabled(true);
 				}
 			});
 		}
@@ -271,6 +267,7 @@ public class AlbumSearchWindow extends Frame {
 		
 		entry = guest.getGuest((String[]) sr.get(index));
 		
+		// aw.setGuest(entry);
 		clearFields();
 		setVisible(false);
 
@@ -297,4 +294,5 @@ public class AlbumSearchWindow extends Frame {
 		}
 		return jList;
 	}
+
 }  //  @jve:visual-info  decl-index=0 visual-constraint="10,10"

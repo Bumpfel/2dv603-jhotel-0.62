@@ -28,7 +28,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
-public class Album {
+public class Album extends Thread {
 	
 	private ArrayList album = new ArrayList();
 	private long entries = 0;
@@ -36,7 +36,7 @@ public class Album {
 	public Album() {
 	}
 
-	public void init() {
+	public void start() {
 		try {
 			FileInputStream fis = new FileInputStream("db/album.jh");
 			ObjectInputStream ois = new ObjectInputStream(fis);
@@ -52,7 +52,6 @@ public class Album {
 		catch (ClassNotFoundException cnf) {
 			System.out.println(cnf);
 		}
-		
 	}
 	
 	public int getEntries() {
@@ -65,7 +64,7 @@ public class Album {
 			album.add(newEntries.get(i));
 		}
 		try {
-			FileOutputStream fos = new FileOutputStream("./db/album.jh");
+			FileOutputStream fos = new FileOutputStream("db/album.jh");
 			ObjectOutputStream oos = new ObjectOutputStream(fos);
 			
 			oos.writeObject(album);

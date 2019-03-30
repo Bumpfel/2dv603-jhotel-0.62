@@ -22,11 +22,14 @@
 package frontend;
 
 import java.awt.Frame;
+import java.util.ArrayList;
 
 import backend.Language;
+import backend.Observable;
+import backend.Observer;
 import backend.Reservation;
 
-public class YesNoDialog extends Frame {
+public class YesNoDialog extends Frame implements Observable {
 
 	private javax.swing.JButton jButton = null;
 	private javax.swing.JButton jButton1 = null;
@@ -39,7 +42,12 @@ public class YesNoDialog extends Frame {
 	private javax.swing.JTextArea jTextArea = null;
 	String text;
 	String[] language;
-	
+	private ArrayList<Observer> subscribers = new ArrayList<>();
+	private YesNoDialog thisWindow;
+
+
+	public enum Answer { YES, NO };
+
 	/**
 	 * This is the default constructor
 	 */
@@ -50,6 +58,7 @@ public class YesNoDialog extends Frame {
 		this.guest = guest;
 		this.action = action;
 		this.text = text;
+		thisWindow = this;
 		
 		initialize();
 	}
@@ -104,7 +113,7 @@ public class YesNoDialog extends Frame {
 			jButton.setBounds(158, 118, 116, 26);
 			jButton.setText(language[15]);
 			jButton.addActionListener(new java.awt.event.ActionListener() { 
-				public void actionPerformed(java.awt.event.ActionEvent e) {    
+				public void actionPerformed(java.awt.event.ActionEvent e) {
 					if (action.equals("deleteEntry")) {
 						mw.deleteEntry(guest);
 					}
@@ -112,7 +121,8 @@ public class YesNoDialog extends Frame {
 						mw.clearFields();
 					}
 					else if (action.equals("undoAddEntry")) {
-						mw.addDataWindowReset(guest);
+						notifySubscribers(Answer.YES);
+						// mw.addDataWindowReset(guest);
 					}
 					else if (action.equals("deleteRes")) {
 						srw.dispose();
@@ -130,6 +140,7 @@ public class YesNoDialog extends Frame {
 		}
 		return jButton;
 	}
+
 	/**
 	 * This method initializes jButton1
 	 * 
@@ -144,6 +155,7 @@ public class YesNoDialog extends Frame {
 				public void actionPerformed(java.awt.event.ActionEvent e) {    
 					//mw.setGuest(guest);
 					if (action.equals("undoEntry")) {
+						notifySubscribers(Answer.NO);
 						mw.setGuest(guest);
 					}
 					
@@ -178,5 +190,15 @@ public class YesNoDialog extends Frame {
 			jTextArea.setWrapStyleWord(true);
 		}
 		return jTextArea;
+	}
+
+	public void addSubscriber(Observer o) {
+		subscribers.add(o);
+	}
+
+	private void notifySubscribers(Answer answer) {
+		for(Observer o : subscribers) {
+			o.update(this, answer);
+		}
 	}
 }  //  @jve:visual-info  decl-index=0 visual-constraint="10,10"

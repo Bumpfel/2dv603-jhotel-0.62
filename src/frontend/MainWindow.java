@@ -31,8 +31,10 @@ import backend.ActionCommandsMW;
 import backend.Guest;
 import backend.Language;
 import backend.MainMenu;
+import backend.Observable;
+import backend.Observer;
 
-public class MainWindow extends Frame implements ActionListener {
+public class MainWindow extends Frame implements ActionListener, Observer {
 
 	private javax.swing.JLabel jLabel = null;
 	private javax.swing.JButton jButton = null;
@@ -65,11 +67,10 @@ public class MainWindow extends Frame implements ActionListener {
 	public boolean first = true;
 	public boolean smoker = false;
 	public String[] oldGuest = new String[entries];
-	
+
 	private static String[] language;
 	String file;
-	
-	
+
 	private javax.swing.JTextArea jTextArea1 = null;
 	private javax.swing.JRadioButton jRadioButton = null;
 	private javax.swing.JRadioButton jRadioButton1 = null;
@@ -80,6 +81,7 @@ public class MainWindow extends Frame implements ActionListener {
 
 	private javax.swing.JButton jButton9 = null;
 	private javax.swing.JButton jButton10 = null;
+
 	/**
 	 * @throws java.awt.HeadlessException
 	 */
@@ -87,8 +89,8 @@ public class MainWindow extends Frame implements ActionListener {
 		super();
 		Language lang = new Language();
 		language = lang.getLanguage();
-			initialize();
-	// TODO Auto-generated constructor stub
+		initialize();
+		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -157,12 +159,12 @@ public class MainWindow extends Frame implements ActionListener {
 		this.setSize(807, 583);
 		this.setTitle("JHotel 0.62");
 		this.setVisible(true);
-		this.addWindowListener(new java.awt.event.WindowAdapter() { 
-			public void windowClosing(java.awt.event.WindowEvent e) {    
+		this.addWindowListener(new java.awt.event.WindowAdapter() {
+			public void windowClosing(java.awt.event.WindowEvent e) {
 				System.exit(0);
 			}
 		});
-			
+
 	}
 
 	/**
@@ -171,7 +173,7 @@ public class MainWindow extends Frame implements ActionListener {
 	 * @return javax.swing.JLabel
 	 */
 	private javax.swing.JLabel getJLabel() {
-		if(jLabel == null) {
+		if (jLabel == null) {
 			jLabel = new javax.swing.JLabel();
 			jLabel.setBounds(312, 69, 192, 48);
 			jLabel.setText("JHotel 0.6");
@@ -180,137 +182,136 @@ public class MainWindow extends Frame implements ActionListener {
 		}
 		return jLabel;
 	}
+
 	/**
 	 * This method initializes jButton
 	 * 
 	 * @return javax.swing.JButton
 	 */
-	
+
 	public void newGuest() {
 		boolean modified = true;
 		setGuest(0);
 		first = false;
-					
-		//setGuestStatus(true);
+
+		// setGuestStatus(true);
 		jTextArea1.setVisible(false);
-					
-					
+
 		String[] tst = new String[entries];
 		tst = getTempGuest();
-					
-		loop1:
-		for (int i=0; i<entries; ++i) {
+
+		loop1: for (int i = 0; i < entries; ++i) {
 			if (tst[i].equals(currentGuest[i])) {
 				modified = false;
-			}
-			else {
+			} else {
 				modified = true;
 				break loop1;
 			}
 		}
-		
+
 		if (modified) {
 			YesNoDialog zn = new YesNoDialog(thisWindow, tst, language[52], "undoEntry");
 			zn.setVisible(true);
-		}
-		else {
-			clearFields();  
+		} else {
+			clearFields();
 			addDataWindow.clearFields();
 			setGuestStatus(true);
 		}
 	}
-	
+
 	private javax.swing.JButton getJButton() {
-		if(jButton == null) {
+		if (jButton == null) {
 			jButton = new javax.swing.JButton();
 			jButton.setBounds(37, 125, 198, 33);
 			jButton.setText(language[50]);
-			jButton.addActionListener(new java.awt.event.ActionListener() { 
-				public void actionPerformed(java.awt.event.ActionEvent e) { 
+			jButton.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent e) {
 					newGuest();
 				}
 			});
 		}
 		return jButton;
 	}
-	
+
 	public void setGuest(int value) {
-		if (value==0) {
-			for (int i=0; i<(entries-1); ++i) {
+		if (value == 0) {
+			for (int i = 0; i < (entries - 1); ++i) {
 				currentGuest[i] = ("");
 			}
-			currentGuest[entries-1] = ("N/A");
+			currentGuest[entries - 1] = ("N/A");
 		}
 	}
-	
+
 	/**
 	 * This method initializes jButton1
 	 * 
 	 * @return javax.swing.JButton
 	 */
-	
+
 	public void searchGuest() {
 		searchWindow.setVisible(true);
 		searchWindow.setEnabled(true);
 		searchWindow.setSearchField(true);
 		searchWindow.clearFields();
-		//thisWindow.setVisible(false);
+		// thisWindow.setVisible(false);
 	}
-	
+
 	private javax.swing.JButton getJButton1() {
-		if(jButton1 == null) {
+		if (jButton1 == null) {
 			jButton1 = new javax.swing.JButton();
 			jButton1.setBounds(380, 143, 182, 19);
 			jButton1.setText(language[1]);
 			jButton1.setVisible(false);
 			jButton1.setFont(new java.awt.Font("Dialog", java.awt.Font.PLAIN, 10));
-			jButton1.addActionListener(new java.awt.event.ActionListener() { 
-				public void actionPerformed(java.awt.event.ActionEvent e) {    
+			jButton1.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent e) {
 					searchGuest();
 				}
 			});
 		}
 		return jButton1;
 	}
+
 	/**
 	 * This method initializes jButton2
 	 * 
 	 * @return javax.swing.JButton
 	 */
 	private javax.swing.JButton getJButton2() {
-		if(jButton2 == null) {
+		if (jButton2 == null) {
 			jButton2 = new javax.swing.JButton();
 			jButton2.setBounds(37, 232, 198, 33);
 			jButton2.setText(language[43]);
 			jButton2.setEnabled(true);
-			jButton2.addActionListener(new java.awt.event.ActionListener() { 
-				public void actionPerformed(java.awt.event.ActionEvent e) {    
-					//setGuestStatus(false);
-					//jButton6.setVisible(false);
+			jButton2.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent e) {
+					// setGuestStatus(false);
+					// jButton6.setVisible(false);
 					ReservationManagement rm = new ReservationManagement(thisWindow);
 					rm.setVisible(true);
 					new Thread(rm).start();
 					rm.setEnabled(true);
-					
+
 					setVisible(false);
 				}
 			});
 		}
 		return jButton2;
 	}
+
 	/**
 	 * This method initializes jButton3
 	 * 
 	 * @return javax.swing.JButton
 	 */
 	private javax.swing.JButton getJButton3() {
-		if(jButton3 == null) {
+		if (jButton3 == null) {
 			jButton3 = new javax.swing.JButton();
 			jButton3.setBounds(37, 272, 198, 33);
 			jButton3.setText(language[89]);
 			jButton3.setEnabled(true);
-			jButton3.addActionListener(new java.awt.event.ActionListener() { 
-				public void actionPerformed(java.awt.event.ActionEvent e) {    
+			jButton3.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent e) {
 					CheckinWindow cw = new CheckinWindow(thisWindow);
 					cw.setVisible(true);
 				}
@@ -318,15 +319,14 @@ public class MainWindow extends Frame implements ActionListener {
 		}
 		return jButton3;
 	}
-	
-	
+
 	/**
 	 * This method initializes jLabel1
 	 * 
 	 * @return javax.swing.JLabel
 	 */
 	private javax.swing.JLabel getJLabel1() {
-		if(jLabel1 == null) {
+		if (jLabel1 == null) {
 			jLabel1 = new javax.swing.JLabel();
 			jLabel1.setBounds(381, 230, 139, 21);
 			jLabel1.setText(language[29]);
@@ -334,13 +334,14 @@ public class MainWindow extends Frame implements ActionListener {
 		}
 		return jLabel1;
 	}
+
 	/**
 	 * This method initializes jLabel2
 	 * 
 	 * @return javax.swing.JLabel
 	 */
 	private javax.swing.JLabel getJLabel2() {
-		if(jLabel2 == null) {
+		if (jLabel2 == null) {
 			jLabel2 = new javax.swing.JLabel();
 			jLabel2.setBounds(381, 279, 139, 21);
 			jLabel2.setText(language[28]);
@@ -348,13 +349,14 @@ public class MainWindow extends Frame implements ActionListener {
 		}
 		return jLabel2;
 	}
+
 	/**
 	 * This method initializes jLabel4
 	 * 
 	 * @return javax.swing.JLabel
 	 */
 	private javax.swing.JLabel getJLabel4() {
-		if(jLabel4 == null) {
+		if (jLabel4 == null) {
 			jLabel4 = new javax.swing.JLabel();
 			jLabel4.setBounds(382, 431, 139, 21);
 			jLabel4.setText(language[45]);
@@ -362,13 +364,14 @@ public class MainWindow extends Frame implements ActionListener {
 		}
 		return jLabel4;
 	}
+
 	/**
 	 * This method initializes jLabel5
 	 * 
 	 * @return javax.swing.JLabel
 	 */
 	private javax.swing.JLabel getJLabel5() {
-		if(jLabel5 == null) {
+		if (jLabel5 == null) {
 			jLabel5 = new javax.swing.JLabel();
 			jLabel5.setBounds(382, 457, 139, 21);
 			jLabel5.setText(language[31]);
@@ -376,19 +379,20 @@ public class MainWindow extends Frame implements ActionListener {
 		}
 		return jLabel5;
 	}
+
 	/**
-	 * This method initializes jButton4
+	 * This method initializes jButton4 "Additional data"
 	 * 
 	 * @return javax.swing.JButton
 	 */
 	private javax.swing.JButton getJButton4() {
-		if(jButton4 == null) {
+		if (jButton4 == null) {
 			jButton4 = new javax.swing.JButton();
 			jButton4.setBounds(381, 486, 179, 31);
 			jButton4.setText(language[32]);
 			jButton4.setVisible(true);
-			jButton4.addActionListener(new java.awt.event.ActionListener() { 
-				public void actionPerformed(java.awt.event.ActionEvent e) {    
+			jButton4.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent e) {
 					String[] tmpGuest = new String[entries];
 					tmpGuest = getTempGuest();
 					addDataWindow.setTempGuest(tmpGuest);
@@ -398,13 +402,14 @@ public class MainWindow extends Frame implements ActionListener {
 		}
 		return jButton4;
 	}
+
 	/**
 	 * This method initializes jTextField
 	 * 
 	 * @return javax.swing.JTextField
 	 */
 	private javax.swing.JTextField getJTextField() {
-		if(jTextField == null) {
+		if (jTextField == null) {
 			jTextField = new javax.swing.JTextField();
 			jTextField.setNextFocusableComponent(getJTextField1());
 			jTextField.setBounds(381, 250, 392, 21);
@@ -412,13 +417,14 @@ public class MainWindow extends Frame implements ActionListener {
 		}
 		return jTextField;
 	}
+
 	/**
 	 * This method initializes jTextField1
 	 * 
 	 * @return javax.swing.JTextField
 	 */
 	private javax.swing.JTextField getJTextField1() {
-		if(jTextField1 == null) {
+		if (jTextField1 == null) {
 			jTextField1 = new javax.swing.JTextField();
 			jTextField1.setNextFocusableComponent(getJTextArea());
 			jTextField1.setBounds(381, 299, 392, 21);
@@ -426,26 +432,28 @@ public class MainWindow extends Frame implements ActionListener {
 		}
 		return jTextField1;
 	}
+
 	/**
 	 * This method initializes jTextArea
 	 * 
 	 * @return javax.swing.JTextArea
 	 */
 	private javax.swing.JTextArea getJTextArea() {
-		if(jTextArea == null) {
+		if (jTextArea == null) {
 			jTextArea = new javax.swing.JTextArea();
 			jTextArea.setBounds(382, 359, 392, 64);
 			jTextArea.setVisible(false);
 		}
 		return jTextArea;
 	}
+
 	/**
 	 * This method initializes jTextField2
 	 * 
 	 * @return javax.swing.JTextField
 	 */
 	private javax.swing.JTextField getJTextField2() {
-		if(jTextField2 == null) {
+		if (jTextField2 == null) {
 			jTextField2 = new javax.swing.JTextField();
 			jTextField2.setNextFocusableComponent(getJTextField3());
 			jTextField2.setBounds(526, 431, 248, 21);
@@ -453,13 +461,14 @@ public class MainWindow extends Frame implements ActionListener {
 		}
 		return jTextField2;
 	}
+
 	/**
 	 * This method initializes jTextField3
 	 * 
 	 * @return javax.swing.JTextField
 	 */
 	private javax.swing.JTextField getJTextField3() {
-		if(jTextField3 == null) {
+		if (jTextField3 == null) {
 			jTextField3 = new javax.swing.JTextField();
 			jTextField3.setNextFocusableComponent(getJButton5());
 			jTextField3.setBounds(526, 457, 248, 21);
@@ -467,12 +476,13 @@ public class MainWindow extends Frame implements ActionListener {
 		}
 		return jTextField3;
 	}
+
 	/**
 	 * This method initializes jButton5
 	 * 
 	 * @return javax.swing.JButton
 	 */
-	
+
 	public void saveGuest() {
 		Guest guest = new Guest();
 		String[] tst = new String[guest.getEntries()];
@@ -480,95 +490,89 @@ public class MainWindow extends Frame implements ActionListener {
 
 		guest.addGuest(tst, currentGuest);
 
-					
 		clearFields();
 	}
-	
+
 	private javax.swing.JButton getJButton5() {
-		if(jButton5 == null) {
+		if (jButton5 == null) {
 			jButton5 = new javax.swing.JButton();
 			jButton5.setBounds(669, 533, 106, 31);
 			jButton5.setText(language[2]);
 			jButton5.setVisible(true);
-			jButton5.addActionListener(new java.awt.event.ActionListener() { 
-				public void actionPerformed(java.awt.event.ActionEvent e) {    
+			jButton5.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent e) {
 					saveGuest();
 				}
 			});
 		}
 		return jButton5;
 	}
+
 	/**
 	 * This method initializes jButton6
 	 * 
 	 * @return javax.swing.JButton
 	 */
 	private javax.swing.JButton getJButton6() {
-		if(jButton6 == null) {
+		if (jButton6 == null) {
 			jButton6 = new javax.swing.JButton();
 			jButton6.setBounds(389, 533, 124, 31);
 			jButton6.setText(language[33]);
 			jButton6.setVisible(true);
-			jButton6.addActionListener(new java.awt.event.ActionListener() { 
-				public void actionPerformed(java.awt.event.ActionEvent e) {    
+			jButton6.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent e) {
 					String[] tst = new String[entries];
 					tst = getTempGuest();
-					
+
 					YesNoDialog yn = new YesNoDialog(thisWindow, tst, language[53], "deleteEntry");
 					yn.setVisible(true);
-					
-					
-					
-			
-					
+
 				}
 			});
 		}
 		return jButton6;
 	}
+
 	/**
-	 * This method initializes jButton7
+	 * This method initializes jButton7 "Clear fields"
 	 * 
 	 * @return javax.swing.JButton
 	 */
 	private javax.swing.JButton getJButton7() {
-		if(jButton7 == null) {
+		if (jButton7 == null) {
 			jButton7 = new javax.swing.JButton();
 			jButton7.setBounds(520, 533, 143, 31);
 			jButton7.setText(language[34]);
 			jButton7.setVisible(true);
-			jButton7.addActionListener(new java.awt.event.ActionListener() { 
-				public void actionPerformed(java.awt.event.ActionEvent e) { 
+			jButton7.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent e) {
 					String[] tst = new String[entries];
-					tst = getTempGuest(); 
+					tst = getTempGuest();
 					boolean modified = true;
-					
-					loop1:
-					for (int i=0; i<entries; ++i) {
+
+					loop1: for (int i = 0; i < entries; ++i) {
 						if (tst[i].equals(currentGuest[i])) {
 							modified = false;
-						}
-						else {
+						} else {
 							modified = true;
 							break loop1;
 						}
 					}
-					
+
 					if (modified) {
 						YesNoDialog zn = new YesNoDialog(thisWindow, tst, language[52], "undoEntry");
 						zn.setVisible(true);
-					}
-					else {
-						clearFields(); 
+					} else {
+						clearFields();
 						addDataWindow.clearFields();
 					}
-					
+
 				}
 			});
 		}
 		return jButton7;
 	}
-	
+
 	public void setGuestStatus(boolean status) {
 		jLabel1.setVisible(status);
 		jLabel2.setVisible(status);
@@ -596,12 +600,10 @@ public class MainWindow extends Frame implements ActionListener {
 		jRadioButton.setVisible(status);
 		jRadioButton1.setVisible(status);
 	}
-	
+
 	public void setDeleted(boolean status) {
 		jButton6.setVisible(status);
 	}
-	
-
 
 	public void setGuest(String[] guest) {
 		jTextField.setText(guest[1]);
@@ -628,15 +630,14 @@ public class MainWindow extends Frame implements ActionListener {
 		addDataWindow.setRoom(guest[17]);
 		addDataWindow.setSmoker(guest[18]);
 	}
-	
-	
+
 	/**
 	 * This method initializes jLabel6
 	 * 
 	 * @return javax.swing.JLabel
 	 */
 	private javax.swing.JLabel getJLabel6() {
-		if(jLabel6 == null) {
+		if (jLabel6 == null) {
 			jLabel6 = new javax.swing.JLabel();
 			jLabel6.setBounds(474, 253, 222, 29);
 			jLabel6.setText(language[46]);
@@ -644,13 +645,14 @@ public class MainWindow extends Frame implements ActionListener {
 		}
 		return jLabel6;
 	}
+
 	/**
 	 * This method initializes jLabel7
 	 * 
 	 * @return javax.swing.JLabel
 	 */
 	private javax.swing.JLabel getJLabel7() {
-		if(jLabel7 == null) {
+		if (jLabel7 == null) {
 			jLabel7 = new javax.swing.JLabel();
 			jLabel7.setBounds(381, 181, 139, 21);
 			jLabel7.setText(language[27]);
@@ -658,13 +660,14 @@ public class MainWindow extends Frame implements ActionListener {
 		}
 		return jLabel7;
 	}
+
 	/**
 	 * This method initializes jTextField4
 	 * 
 	 * @return javax.swing.JTextField
 	 */
 	private javax.swing.JTextField getJTextField4() {
-		if(jTextField4 == null) {
+		if (jTextField4 == null) {
 			jTextField4 = new javax.swing.JTextField();
 			jTextField4.setNextFocusableComponent(getJTextField());
 			jTextField4.setBounds(381, 201, 392, 21);
@@ -672,7 +675,7 @@ public class MainWindow extends Frame implements ActionListener {
 		}
 		return jTextField4;
 	}
-	
+
 	public void clearFields() {
 		jTextField.setText("");
 		jTextField1.setText("");
@@ -694,40 +697,42 @@ public class MainWindow extends Frame implements ActionListener {
 		addDataWindow.setEmail(true, "");
 		addDataWindow.setRoom("");
 		addDataWindow.setSmoker("N/A");
-	}	
-	
-	public void addDataWindowReset(String[] guest) {
-		addDataWindow.reset(guest);
 	}
-	
+
+	public void addDataWindowReset(String[] guest) {
+		addDataWindow.reset();
+		setGuest(guest);
+	}
+
 	/**
 	 * This method initializes jTextArea1
 	 * 
 	 * @return javax.swing.JTextArea
 	 */
 	private javax.swing.JTextArea getJTextArea1() {
-		if(jTextArea1 == null) {
+		if (jTextArea1 == null) {
 			jTextArea1 = new javax.swing.JTextArea();
 			jTextArea1.setBounds(382, 359, 392, 64);
 			jTextArea1.setVisible(true);
 		}
 		return jTextArea1;
 	}
+
 	/**
 	 * This method initializes jRadioButton
 	 * 
 	 * @return javax.swing.JRadioButton
 	 */
 	private javax.swing.JRadioButton getJRadioButton() {
-		if(jRadioButton == null) {
+		if (jRadioButton == null) {
 			jRadioButton = new javax.swing.JRadioButton();
 			jRadioButton.setBounds(552, 339, 101, 19);
 			jRadioButton.setText(language[17]);
 			jRadioButton.setVisible(true);
 			jRadioButton.setSelected(true);
 			jRadioButton.setBackground(java.awt.SystemColor.window);
-			jRadioButton.addChangeListener(new javax.swing.event.ChangeListener() { 
-				public void stateChanged(javax.swing.event.ChangeEvent e) {    
+			jRadioButton.addChangeListener(new javax.swing.event.ChangeListener() {
+				public void stateChanged(javax.swing.event.ChangeEvent e) {
 					jTextArea.setVisible(true);
 					jTextArea1.setVisible(false);
 					jRadioButton1.setSelected(false);
@@ -736,20 +741,21 @@ public class MainWindow extends Frame implements ActionListener {
 		}
 		return jRadioButton;
 	}
+
 	/**
 	 * This method initializes jRadioButton1
 	 * 
 	 * @return javax.swing.JRadioButton
 	 */
 	private javax.swing.JRadioButton getJRadioButton1() {
-		if(jRadioButton1 == null) {
+		if (jRadioButton1 == null) {
 			jRadioButton1 = new javax.swing.JRadioButton();
 			jRadioButton1.setBounds(655, 338, 104, 20);
 			jRadioButton1.setText(language[18]);
 			jRadioButton1.setVisible(true);
 			jRadioButton1.setBackground(java.awt.SystemColor.window);
-			jRadioButton1.addChangeListener(new javax.swing.event.ChangeListener() { 
-				public void stateChanged(javax.swing.event.ChangeEvent e) {    
+			jRadioButton1.addChangeListener(new javax.swing.event.ChangeListener() {
+				public void stateChanged(javax.swing.event.ChangeEvent e) {
 					jTextArea1.setVisible(true);
 					jTextArea.setVisible(false);
 					jRadioButton.setSelected(false);
@@ -758,13 +764,14 @@ public class MainWindow extends Frame implements ActionListener {
 		}
 		return jRadioButton1;
 	}
+
 	/**
 	 * This method initializes jLabel3
 	 * 
 	 * @return javax.swing.JLabel
 	 */
 	private javax.swing.JLabel getJLabel3() {
-		if(jLabel3 == null) {
+		if (jLabel3 == null) {
 			jLabel3 = new javax.swing.JLabel();
 			jLabel3.setBounds(382, 339, 139, 21);
 			jLabel3.setText(language[30]);
@@ -772,7 +779,7 @@ public class MainWindow extends Frame implements ActionListener {
 		}
 		return jLabel3;
 	}
-	
+
 	public String[] getTempGuest() {
 		String[] tst = new String[entries];
 		tst[0] = jTextField4.getText();
@@ -796,44 +803,44 @@ public class MainWindow extends Frame implements ActionListener {
 		tst[18] = addDataWindow.getSmoker();
 		return tst;
 	}
-	
+
 	public void deleteEntry(String[] guest) {
 
 		g.deleteExisting(guest);
-	
+
 		clearFields();
 		setDeleted(false);
 	}
-	
+
 	public void setCurrentGuest() {
 		currentGuest = getTempGuest();
 	}
-	
-	
+
 	/**
 	 * This method initializes jLabel8
 	 * 
 	 * @return javax.swing.JLabel
 	 */
 	private javax.swing.JLabel getJLabel8() {
-		if(jLabel8 == null) {
+		if (jLabel8 == null) {
 			jLabel8 = new javax.swing.JLabel();
 			jLabel8.setBounds(380, 120, 103, 21);
 			jLabel8.setText(language[26]);
 		}
 		return jLabel8;
 	}
+
 	/**
 	 * This method initializes jTextField5
 	 * 
 	 * @return javax.swing.JTextField
 	 */
 	private javax.swing.JTextField getJTextField5() {
-		if(jTextField5 == null) {
+		if (jTextField5 == null) {
 			jTextField5 = new javax.swing.JTextField();
 			jTextField5.setBounds(482, 120, 269, 21);
-			jTextField5.addActionListener(new java.awt.event.ActionListener() { 
-				public void actionPerformed(java.awt.event.ActionEvent e) {    
+			jTextField5.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent e) {
 					findEntry(jTextField5.getText());
 					jTextField5.setText("");
 				}
@@ -841,18 +848,19 @@ public class MainWindow extends Frame implements ActionListener {
 		}
 		return jTextField5;
 	}
+
 	/**
 	 * This method initializes jButton8
 	 * 
 	 * @return javax.swing.JButton
 	 */
 	private javax.swing.JButton getJButton8() {
-		if(jButton8 == null) {
+		if (jButton8 == null) {
 			jButton8 = new javax.swing.JButton();
 			jButton8.setBounds(753, 120, 19, 21);
 			jButton8.setText("...");
-			jButton8.addActionListener(new java.awt.event.ActionListener() { 
-				public void actionPerformed(java.awt.event.ActionEvent e) {    
+			jButton8.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent e) {
 					findEntry(jTextField5.getText());
 					jTextField5.setText("");
 				}
@@ -860,19 +868,17 @@ public class MainWindow extends Frame implements ActionListener {
 		}
 		return jButton8;
 	}
-	
+
 	public void findEntry(String guest) {
 		boolean isGuest = false;
 		String[] entry = new String[entries];
-					
+
 		isGuest = g.findGuest(guest);
-					
+
 		if (isGuest) {
-					
 
 			entry = g.getGuest(guest);
 
-					
 			setGuestStatus(true);
 			setVisible(true);
 			setEnabled(true);
@@ -881,69 +887,65 @@ public class MainWindow extends Frame implements ActionListener {
 			setDeleted(true);
 		}
 	}
-	
+
 	public String getCompany() {
 		return jTextField4.getText();
 	}
+
 	public String getName() {
 		return jTextField.getText();
 	}
+
 	public String getFirstName() {
 		return jTextField1.getText();
 	}
-	public String getAddress (boolean business) {
+
+	public String getAddress(boolean business) {
 		if (business == false) {
 			return jTextArea.getText();
-		}
-		else {
+		} else {
 			return jTextArea1.getText();
 		}
 	}
+
 	public String getBirthday() {
 		return jTextField2.getText();
 	}
+
 	public String getCitizenship() {
 		return jTextField3.getText();
 	}
-	
+
 	public void exportDB() {
 		ExportWindow ew = new ExportWindow();
 	}
-	
+
 	public void actionPerformed(ActionEvent event) {
 		String command = event.getActionCommand();
-		ActionCommandsMW action = new ActionCommandsMW(thisWindow, command);		
+		ActionCommandsMW action = new ActionCommandsMW(thisWindow, command);
 	}
-	
+
 	public static void main(String[] args) {
 		Language lang = new Language();
 		language = lang.getLanguage();
-		
-		
+
 		entries = g.getEntries();
 		MainWindow window = new MainWindow();
 		thisWindow = window;
 		SearchWindow sw = new SearchWindow(thisWindow);
 		searchWindow = sw;
-		
+
 		sw.setVisible(false);
 		thisWindow.setGuestStatus(false);
 		thisWindow.jLabel6.setVisible(false);
 		thisWindow.jButton6.setVisible(false);
 		thisWindow.setMenuBar(new MainMenu(thisWindow));
-		
 
-		
-		
-		
 		AdditionalDataWindow adw = new AdditionalDataWindow(g, thisWindow, entries);
 		addDataWindow = adw;
 		adw.setVisible(false);
-		
-		
-		
+
 	}
-	
 
 	/**
 	 * This method initializes jButton9
@@ -951,14 +953,14 @@ public class MainWindow extends Frame implements ActionListener {
 	 * @return javax.swing.JButton
 	 */
 	private javax.swing.JButton getJButton9() {
-		if(jButton9 == null) {
+		if (jButton9 == null) {
 			jButton9 = new javax.swing.JButton();
 			jButton9.setBounds(589, 143, 182, 19);
 			jButton9.setText(language[49]);
 			jButton9.setVisible(false);
 			jButton9.setFont(new java.awt.Font("Dialog", java.awt.Font.PLAIN, 10));
-			jButton9.addActionListener(new java.awt.event.ActionListener() { 
-				public void actionPerformed(java.awt.event.ActionEvent e) {    
+			jButton9.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent e) {
 					GuestList gl = new GuestList(thisWindow);
 					gl.setVisible(true);
 					gl.getGuestDB();
@@ -967,18 +969,24 @@ public class MainWindow extends Frame implements ActionListener {
 		}
 		return jButton9;
 	}
+
 	/**
 	 * This method initializes jButton10
 	 * 
 	 * @return javax.swing.JButton
 	 */
 	private javax.swing.JButton getJButton10() {
-		if(jButton10 == null) {
+		if (jButton10 == null) {
 			jButton10 = new javax.swing.JButton();
 			jButton10.setBounds(37, 335, 198, 33);
 			jButton10.setVisible(false);
 			jButton10.setText("Fremdenbuch");
 		}
 		return jButton10;
+	}
+
+	@Override
+	public void update(Observable observable, Object args) {
+
 	}
 }  //  @jve:visual-info  decl-index=0 visual-constraint="22,10"

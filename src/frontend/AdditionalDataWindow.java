@@ -22,11 +22,15 @@
 package frontend;
 
 import java.awt.Frame;
+import java.util.ArrayList;
 
 import backend.Guest;
 import backend.Language;
+import backend.Observable;
+import backend.Observer;
+import frontend.YesNoDialog.Answer;
 
-public class AdditionalDataWindow extends Frame {
+public class AdditionalDataWindow extends Frame implements Observer {
 
 	private javax.swing.JLabel jLabel = null;
 	private javax.swing.JTextField jTextField = null;
@@ -59,26 +63,23 @@ public class AdditionalDataWindow extends Frame {
 	public String[] currentGuest;
 	private javax.swing.JButton jButton1 = null;
 	private javax.swing.JButton jButton2 = null;
-	public static AdditionalDataWindow thisWindow;
+	private AdditionalDataWindow thisWindow;
 	String[] language;
-	
-	
+
 	/**
 	 * This is the default constructor
 	 */
 	public AdditionalDataWindow(Guest guest, MainWindow mw, int entries) {
 		Language lang = new Language();
 		language = lang.getLanguage();
-		
-		
+
+		this.thisWindow = this;
 		this.guest = guest;
 		this.entries = entries;
 		this.mw = mw;
 		initialize();
-		
-
-
 	}
+
 	/**
 	 * This method initializes this
 	 * 
@@ -95,7 +96,7 @@ public class AdditionalDataWindow extends Frame {
 		this.add(getJLabel4(), null);
 		this.add(getJLabel5(), null);
 		this.add(getJLabel6(), null);
-		//this.add(getJButton(), null);
+		// this.add(getJButton(), null);
 		this.add(getJTextField1(), null);
 		this.add(getJTextField2(), null);
 		this.add(getJTextField3(), null);
@@ -114,226 +115,233 @@ public class AdditionalDataWindow extends Frame {
 		this.add(getJButton2(), null);
 		this.setSize(382, 472);
 		this.setTitle(language[32]);
-		this.addWindowListener(new java.awt.event.WindowAdapter() { 
-			public void windowClosing(java.awt.event.WindowEvent e) {    
+		this.addWindowListener(new java.awt.event.WindowAdapter() {
+			public void windowClosing(java.awt.event.WindowEvent e) {
 				dispose();
 			}
 		});
 	}
+
 	/**
 	 * This method initializes jLabel
 	 * 
 	 * @return javax.swing.JLabel
 	 */
 	private javax.swing.JLabel getJLabel() {
-		if(jLabel == null) {
+		if (jLabel == null) {
 			jLabel = new javax.swing.JLabel();
 			jLabel.setBounds(24, 44, 104, 20);
 			jLabel.setText(language[7]);
 		}
 		return jLabel;
 	}
+
 	/**
 	 * This method initializes jTextField
 	 * 
 	 * @return javax.swing.JTextField
 	 */
 	private javax.swing.JTextField getJTextField() {
-		if(jTextField == null) {
+		if (jTextField == null) {
 			jTextField = new javax.swing.JTextField();
 			jTextField.setBounds(24, 63, 338, 19);
 		}
 		return jTextField;
 	}
+
 	/**
 	 * This method initializes jLabel1
 	 * 
 	 * @return javax.swing.JLabel
 	 */
 	private javax.swing.JLabel getJLabel1() {
-		if(jLabel1 == null) {
+		if (jLabel1 == null) {
 			jLabel1 = new javax.swing.JLabel();
 			jLabel1.setBounds(24, 89, 104, 20);
 			jLabel1.setText(language[8]);
 		}
 		return jLabel1;
 	}
+
 	/**
 	 * This method initializes jTextArea
 	 * 
 	 * @return javax.swing.JTextArea
 	 */
 	private javax.swing.JTextArea getJTextArea() {
-		if(jTextArea == null) {
+		if (jTextArea == null) {
 			jTextArea = new javax.swing.JTextArea();
 			jTextArea.setBounds(24, 108, 338, 61);
 		}
 		return jTextArea;
 	}
+
 	/**
 	 * This method initializes jLabel2
 	 * 
 	 * @return javax.swing.JLabel
 	 */
 	private javax.swing.JLabel getJLabel2() {
-		if(jLabel2 == null) {
+		if (jLabel2 == null) {
 			jLabel2 = new javax.swing.JLabel();
 			jLabel2.setBounds(24, 226, 104, 20);
 			jLabel2.setText(language[9]);
 		}
 		return jLabel2;
 	}
+
 	/**
 	 * This method initializes jLabel3
 	 * 
 	 * @return javax.swing.JLabel
 	 */
 	private javax.swing.JLabel getJLabel3() {
-		if(jLabel3 == null) {
+		if (jLabel3 == null) {
 			jLabel3 = new javax.swing.JLabel();
 			jLabel3.setBounds(24, 250, 104, 20);
 			jLabel3.setText(language[10]);
 		}
 		return jLabel3;
 	}
+
 	/**
 	 * This method initializes jLabel4
 	 * 
 	 * @return javax.swing.JLabel
 	 */
 	private javax.swing.JLabel getJLabel4() {
-		if(jLabel4 == null) {
+		if (jLabel4 == null) {
 			jLabel4 = new javax.swing.JLabel();
 			jLabel4.setBounds(24, 275, 104, 20);
 			jLabel4.setText(language[11]);
 		}
 		return jLabel4;
 	}
+
 	/**
 	 * This method initializes jLabel5
 	 * 
 	 * @return javax.swing.JLabel
 	 */
 	private javax.swing.JLabel getJLabel5() {
-		if(jLabel5 == null) {
+		if (jLabel5 == null) {
 			jLabel5 = new javax.swing.JLabel();
 			jLabel5.setBounds(24, 301, 104, 20);
 			jLabel5.setText(language[12]);
 		}
 		return jLabel5;
 	}
+
 	/**
 	 * This method initializes jLabel6
 	 * 
 	 * @return javax.swing.JLabel
 	 */
 	private javax.swing.JLabel getJLabel6() {
-		if(jLabel6 == null) {
+		if (jLabel6 == null) {
 			jLabel6 = new javax.swing.JLabel();
 			jLabel6.setBounds(24, 353, 145, 20);
 			jLabel6.setText(language[13]);
 		}
 		return jLabel6;
 	}
+
 	/**
 	 * This method initializes jButton
 	 * 
 	 * @return javax.swing.JButton
 	 */
-	/*private javax.swing.JButton getJButton() {
-		if(jButton == null) {
-			jButton = new javax.swing.JButton();
-			jButton.setBounds(341, 44, 20, 20);
-			jButton.setText("...");
-			jButton.addActionListener(new java.awt.event.ActionListener() { 
-				public void actionPerformed(java.awt.event.ActionEvent e) {    
-					try {
-						guest.findGuest(jTextField.getText()); 
-					}
-					catch (EOFException eo1) {
-						// nada
-					}
-					
-				}
-			});
-
-		}
-		return jButton;
-	}*/
+	/*
+	 * private javax.swing.JButton getJButton() { if(jButton == null) { jButton =
+	 * new javax.swing.JButton(); jButton.setBounds(341, 44, 20, 20);
+	 * jButton.setText("..."); jButton.addActionListener(new
+	 * java.awt.event.ActionListener() { public void
+	 * actionPerformed(java.awt.event.ActionEvent e) { try {
+	 * guest.findGuest(jTextField.getText()); } catch (EOFException eo1) { // nada }
+	 * 
+	 * } });
+	 * 
+	 * } return jButton; }
+	 */
 	/**
 	 * This method initializes jTextField1
 	 * 
 	 * @return javax.swing.JTextField
 	 */
 	private javax.swing.JTextField getJTextField1() {
-		if(jTextField1 == null) {
+		if (jTextField1 == null) {
 			jTextField1 = new javax.swing.JTextField();
 			jTextField1.setBounds(135, 226, 227, 21);
 		}
 		return jTextField1;
 	}
+
 	/**
 	 * This method initializes jTextField2
 	 * 
 	 * @return javax.swing.JTextField
 	 */
 	private javax.swing.JTextField getJTextField2() {
-		if(jTextField2 == null) {
+		if (jTextField2 == null) {
 			jTextField2 = new javax.swing.JTextField();
 			jTextField2.setBounds(135, 250, 227, 21);
 		}
 		return jTextField2;
 	}
+
 	/**
 	 * This method initializes jTextField3
 	 * 
 	 * @return javax.swing.JTextField
 	 */
 	private javax.swing.JTextField getJTextField3() {
-		if(jTextField3 == null) {
+		if (jTextField3 == null) {
 			jTextField3 = new javax.swing.JTextField();
 			jTextField3.setBounds(135, 275, 227, 21);
 		}
 		return jTextField3;
 	}
+
 	/**
 	 * This method initializes jTextField4
 	 * 
 	 * @return javax.swing.JTextField
 	 */
 	private javax.swing.JTextField getJTextField4() {
-		if(jTextField4 == null) {
+		if (jTextField4 == null) {
 			jTextField4 = new javax.swing.JTextField();
 			jTextField4.setBounds(135, 301, 227, 21);
 		}
 		return jTextField4;
 	}
+
 	/**
 	 * This method initializes jTextField5
 	 * 
 	 * @return javax.swing.JTextField
 	 */
 	private javax.swing.JTextField getJTextField5() {
-		if(jTextField5 == null) {
+		if (jTextField5 == null) {
 			jTextField5 = new javax.swing.JTextField();
 			jTextField5.setBounds(176, 353, 186, 21);
 		}
 		return jTextField5;
 	}
+
 	/**
 	 * This method initializes jRadioButton
 	 * 
 	 * @return javax.swing.JRadioButton
 	 */
 	private javax.swing.JRadioButton getJRadioButton() {
-		if(jRadioButton == null) {
+		if (jRadioButton == null) {
 			jRadioButton = new javax.swing.JRadioButton();
 			jRadioButton.setBounds(135, 198, 83, 21);
 			jRadioButton.setText(language[17]);
 			jRadioButton.setSelected(true);
 			jRadioButton.setBackground(java.awt.SystemColor.window);
-			jRadioButton.addChangeListener(new javax.swing.event.ChangeListener() { 
-				public void stateChanged(javax.swing.event.ChangeEvent e) {    
+			jRadioButton.addChangeListener(new javax.swing.event.ChangeListener() {
+				public void stateChanged(javax.swing.event.ChangeEvent e) {
 					setBusiness(false);
 					jRadioButton1.setSelected(false);
 				}
@@ -341,7 +349,7 @@ public class AdditionalDataWindow extends Frame {
 		}
 		return jRadioButton;
 	}
-	
+
 	public void setBusiness(boolean state) {
 		jTextField6.setVisible(state);
 		jTextField7.setVisible(state);
@@ -352,21 +360,21 @@ public class AdditionalDataWindow extends Frame {
 		jTextField2.setVisible(!state);
 		jTextField1.setVisible(!state);
 	}
-	
+
 	/**
 	 * This method initializes jRadioButton1
 	 * 
 	 * @return javax.swing.JRadioButton
 	 */
 	private javax.swing.JRadioButton getJRadioButton1() {
-		if(jRadioButton1 == null) {
+		if (jRadioButton1 == null) {
 			jRadioButton1 = new javax.swing.JRadioButton();
 			jRadioButton1.setBounds(234, 198, 128, 21);
 			jRadioButton1.setText(language[18]);
 			jRadioButton1.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
 			jRadioButton1.setBackground(java.awt.SystemColor.window);
-			jRadioButton1.addChangeListener(new javax.swing.event.ChangeListener() { 
-				public void stateChanged(javax.swing.event.ChangeEvent e) {    
+			jRadioButton1.addChangeListener(new javax.swing.event.ChangeListener() {
+				public void stateChanged(javax.swing.event.ChangeEvent e) {
 					setBusiness(true);
 					jRadioButton.setSelected(false);
 				}
@@ -374,168 +382,179 @@ public class AdditionalDataWindow extends Frame {
 		}
 		return jRadioButton1;
 	}
+
 	/**
 	 * This method initializes jTextField6
 	 * 
 	 * @return javax.swing.JTextField
 	 */
 	private javax.swing.JTextField getJTextField6() {
-		if(jTextField6 == null) {
+		if (jTextField6 == null) {
 			jTextField6 = new javax.swing.JTextField();
 			jTextField6.setBounds(135, 226, 227, 21);
 			jTextField6.setVisible(false);
 		}
 		return jTextField6;
 	}
+
 	/**
 	 * This method initializes jTextField7
 	 * 
 	 * @return javax.swing.JTextField
 	 */
 	private javax.swing.JTextField getJTextField7() {
-		if(jTextField7 == null) {
+		if (jTextField7 == null) {
 			jTextField7 = new javax.swing.JTextField();
 			jTextField7.setBounds(135, 250, 227, 21);
 			jTextField7.setVisible(false);
 		}
 		return jTextField7;
 	}
+
 	/**
 	 * This method initializes jTextField8
 	 * 
 	 * @return javax.swing.JTextField
 	 */
 	private javax.swing.JTextField getJTextField8() {
-		if(jTextField8 == null) {
+		if (jTextField8 == null) {
 			jTextField8 = new javax.swing.JTextField();
 			jTextField8.setBounds(135, 275, 227, 21);
 			jTextField8.setVisible(false);
 		}
 		return jTextField8;
 	}
+
 	/**
 	 * This method initializes jTextField9
 	 * 
 	 * @return javax.swing.JTextField
 	 */
 	private javax.swing.JTextField getJTextField9() {
-		if(jTextField9 == null) {
+		if (jTextField9 == null) {
 			jTextField9 = new javax.swing.JTextField();
 			jTextField9.setBounds(135, 301, 227, 21);
 			jTextField9.setVisible(false);
 		}
 		return jTextField9;
 	}
-	
+
 	public String getWife() {
 		return jTextField.getText();
 	}
+
 	public void setWife(String val) {
 		jTextField.setText(val);
 	}
+
 	public String getChildren() {
 		return jTextArea.getText();
 	}
+
 	public void setChildren(String val) {
 		jTextArea.setText(val);
 	}
+
 	public String getPhone(boolean business) {
 		if (business == false) {
 			return jTextField1.getText();
-		}
-		else {
+		} else {
 			return jTextField6.getText();
 		}
 	}
+
 	public void setPhone(boolean business, String val) {
 		if (business == false) {
 			jTextField1.setText(val);
-		}
-		else {
+		} else {
 			jTextField6.setText(val);
 		}
 	}
+
 	public String getMobile(boolean business) {
 		if (business == false) {
 			return jTextField2.getText();
-		}
-		else {
+		} else {
 			return jTextField7.getText();
 		}
 	}
+
 	public void setMobile(boolean business, String val) {
 		if (business == false) {
 			jTextField2.setText(val);
-		}
-		else {
+		} else {
 			jTextField7.setText(val);
 		}
 	}
+
 	public String getFax(boolean business) {
 		if (business == false) {
 			return jTextField3.getText();
-		}
-		else {
+		} else {
 			return jTextField8.getText();
 		}
 	}
+
 	public void setFax(boolean business, String val) {
 		if (business == false) {
 			jTextField3.setText(val);
-		}
-		else {
+		} else {
 			jTextField8.setText(val);
 		}
 	}
+
 	public String getEmail(boolean business) {
 		if (business == false) {
 			return jTextField4.getText();
-		}
-		else {
+		} else {
 			return jTextField9.getText();
 		}
 	}
+
 	public void setEmail(boolean business, String val) {
 		if (business == false) {
 			jTextField4.setText(val);
-		}
-		else {
+		} else {
 			jTextField9.setText(val);
 		}
 	}
+
 	public String getRoom() {
 		return jTextField5.getText();
 	}
+
 	public void setRoom(String val) {
-		jTextField5.setText(val); 
+		jTextField5.setText(val);
 	}
+
 	public String getSmoker() {
 		String yes = "yes";
 		String no = "N/A";
-		
-		if (smoker==true) {
+
+		if (smoker == true) {
 			return (yes);
 		}
-		/*else if (smoker==false) {
-			return (no);
-		}*/
+		/*
+		 * else if (smoker==false) { return (no); }
+		 */
 		else {
-			
+
 			return (no);
 		}
 	}
+
 	public void setSmoker(String val) {
 		if (val.equalsIgnoreCase("yes")) {
 			jRadioButton3.setSelected(false);
 			jRadioButton2.setSelected(true);
 			smoker = true;
-		}
-		else {
+		} else {
 			jRadioButton2.setSelected(false);
 			jRadioButton3.setSelected(true);
 			smoker = false;
 		}
 	}
+
 	public void clearFields() {
 		jTextField.setText("");
 		jTextField1.setText("");
@@ -553,33 +572,34 @@ public class AdditionalDataWindow extends Frame {
 		jRadioButton2.setSelected(true);
 		jRadioButton3.setSelected(false);
 	}
-	
+
 	/**
 	 * This method initializes jLabel8
 	 * 
 	 * @return javax.swing.JLabel
 	 */
 	private javax.swing.JLabel getJLabel8() {
-		if(jLabel8 == null) {
+		if (jLabel8 == null) {
 			jLabel8 = new javax.swing.JLabel();
 			jLabel8.setBounds(24, 383, 104, 20);
 			jLabel8.setText(language[14]);
 		}
 		return jLabel8;
 	}
+
 	/**
 	 * This method initializes jRadioButton2
 	 * 
 	 * @return javax.swing.JRadioButton
 	 */
 	private javax.swing.JRadioButton getJRadioButton2() {
-		if(jRadioButton2 == null) {
+		if (jRadioButton2 == null) {
 			jRadioButton2 = new javax.swing.JRadioButton();
 			jRadioButton2.setBounds(176, 383, 53, 20);
 			jRadioButton2.setText(language[15]);
 			jRadioButton2.setBackground(java.awt.SystemColor.window);
-			jRadioButton2.addChangeListener(new javax.swing.event.ChangeListener() { 
-				public void stateChanged(javax.swing.event.ChangeEvent e) {    
+			jRadioButton2.addChangeListener(new javax.swing.event.ChangeListener() {
+				public void stateChanged(javax.swing.event.ChangeEvent e) {
 					jRadioButton3.setSelected(false);
 					smoker = true;
 				}
@@ -587,20 +607,21 @@ public class AdditionalDataWindow extends Frame {
 		}
 		return jRadioButton2;
 	}
+
 	/**
 	 * This method initializes jRadioButton3
 	 * 
 	 * @return javax.swing.JRadioButton
 	 */
 	private javax.swing.JRadioButton getJRadioButton3() {
-		if(jRadioButton3 == null) {
+		if (jRadioButton3 == null) {
 			jRadioButton3 = new javax.swing.JRadioButton();
 			jRadioButton3.setBounds(229, 383, 64, 20);
 			jRadioButton3.setText(language[16]);
 			jRadioButton3.setBackground(java.awt.SystemColor.window);
 			jRadioButton3.setSelected(true);
-			jRadioButton3.addChangeListener(new javax.swing.event.ChangeListener() { 
-				public void stateChanged(javax.swing.event.ChangeEvent e) {    
+			jRadioButton3.addChangeListener(new javax.swing.event.ChangeListener() {
+				public void stateChanged(javax.swing.event.ChangeEvent e) {
 					jRadioButton2.setSelected(false);
 					smoker = false;
 				}
@@ -608,66 +629,65 @@ public class AdditionalDataWindow extends Frame {
 		}
 		return jRadioButton3;
 	}
+
 	/**
 	 * This method initializes jButton1
 	 * 
 	 * @return javax.swing.JButton
 	 */
 	private javax.swing.JButton getJButton1() {
-		if(jButton1 == null) {
+		if (jButton1 == null) {
 			jButton1 = new javax.swing.JButton();
 			jButton1.setBounds(161, 433, 100, 23);
 			jButton1.setText(language[22]);
-			jButton1.addActionListener(new java.awt.event.ActionListener() { 
-				public void actionPerformed(java.awt.event.ActionEvent e) {    
+			jButton1.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent e) {
 					Guest g = new Guest();
 					String[] tst = new String[entries];
 					tst = getTempGuest();
 					boolean modified = true;
-					
-					loop1:
-					for (int i=0; i<entries; ++i) {
+
+					loop1: for (int i = 7; i < entries; ++i) {
 						if (tst[i].equals(currentGuest[i])) {
 							modified = false;
-						}
-						else {
+						} else {
 							modified = true;
 							break loop1;
 						}
 					}
-					
+
 					if (modified) {
 						YesNoDialog zn = new YesNoDialog(mw, currentGuest, language[52], "undoAddEntry");
+						zn.addSubscriber(thisWindow);
 						zn.setVisible(true);
-					}
-					else {
+					} else {
 						setVisible(false);
 					}
-					
+
 				}
 			});
 		}
 		return jButton1;
 	}
-	
+
 	public void setTempGuest(String[] tmpGuest) {
 		currentGuest = tmpGuest;
 	}
-	
-	public void reset(String[] tmpGuest) {
-		mw.setGuest(tmpGuest);
+
+	public void reset() {
 		setVisible(false);
 	}
 
-	public String[] getTempGuest() {
+	private String[] getTempGuest() {
 		String[] tst = new String[entries];
-		tst[0] = mw.getCompany();
-		tst[1] = mw.getName();
-		tst[2] = mw.getFirstName();
-		tst[3] = mw.getAddress(false);
-		tst[4] = mw.getBirthday();
-		tst[5] = mw.getCitizenship();
-		tst[6] = mw.getAddress(true);
+		// tst[0] = mw.getCompany();
+		// tst[0] = currentGuest[0];
+		// tst[1] = mw.getName();
+		// tst[2] = mw.getFirstName();
+		// tst[3] = mw.getAddress(false);
+		// tst[4] = mw.getBirthday();
+		// tst[5] = mw.getCitizenship();
+		// tst[6] = mw.getAddress(true);
 		tst[7] = getWife();
 		tst[8] = getChildren();
 		tst[9] = getPhone(false);
@@ -681,16 +701,11 @@ public class AdditionalDataWindow extends Frame {
 		tst[17] = getRoom();
 		if (smoker) {
 			tst[18] = ("yes");
-		}
-		else {
+		} else {
 			tst[18] = ("N/A");
 		}
 		return tst;
 	}
-
-
-
-
 
 	/**
 	 * This method initializes jButton2
@@ -698,16 +713,38 @@ public class AdditionalDataWindow extends Frame {
 	 * @return javax.swing.JButton
 	 */
 	private javax.swing.JButton getJButton2() {
-		if(jButton2 == null) {
+		if (jButton2 == null) {
 			jButton2 = new javax.swing.JButton();
 			jButton2.setBounds(272, 433, 90, 23);
 			jButton2.setText(language[21]);
-			jButton2.addActionListener(new java.awt.event.ActionListener() { 
-				public void actionPerformed(java.awt.event.ActionEvent e) {    
+			jButton2.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent e) {
 					setVisible(false);
 				}
 			});
 		}
 		return jButton2;
 	}
+
+	@Override
+	public void update(Observable o, Object args) {
+		// YesNoDialog dialogue = (YesNoDialog) o;
+		// if(args Answer)
+		Answer discard;
+		if(args instanceof Answer) {
+			discard = (Answer) args;
+			
+			if(discard == Answer.YES)
+			setVisible(false);
+			System.out.println("button " + discard + " clicked");
+			// mw.clearFields();
+			notifySubscribers();
+		}
+		throw new IllegalArgumentException("Object cast failed");
+	}
+
+	private void notifySubscribers() {
+
+	}
+	
 }  //  @jve:visual-info  decl-index=0 visual-constraint="10,10"

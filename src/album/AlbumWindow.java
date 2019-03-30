@@ -120,9 +120,8 @@ public class AlbumWindow extends Frame {
 			}
 		});
 		Album album = new Album();
-
 		setThreadRunning();
-		album.init();
+		album.start();
 		setThreadEnded(album.getEntries());
 
 		this.album = album;		
@@ -608,7 +607,7 @@ public class AlbumWindow extends Frame {
 			jButton2.setText("Stammgast");
 			jButton2.addActionListener(new java.awt.event.ActionListener() { 
 				public void actionPerformed(java.awt.event.ActionEvent e) {    
-					AlbumSearchWindow asw = new AlbumSearchWindow(thisWindow);
+					AlbumSearchWindow asw = new AlbumSearchWindow();
 					asw.setVisible(true);
 				}
 			});
