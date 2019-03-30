@@ -24,6 +24,7 @@ package frontend;
 import java.awt.Frame;
 import java.util.ArrayList;
 
+import backend.Action;
 import backend.Language;
 import backend.Observable;
 import backend.Observer;
@@ -596,7 +597,7 @@ public class ShowReservationWindow extends Frame implements Observer {
 	}
 
 	@Override
-	public void update(Observable observable, Object args, Enum action) {
+	public void update(Observable observable, Object args, Action action) {
 		dispose();
 	}
 }  //  @jve:visual-info  decl-index=0 visual-constraint="10,10"

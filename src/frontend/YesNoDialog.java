@@ -24,6 +24,7 @@ package frontend;
 import java.awt.Frame;
 import java.util.ArrayList;
 
+import backend.Action;
 import backend.Language;
 import backend.Observable;
 import backend.Observer;
@@ -41,8 +42,6 @@ public class YesNoDialog extends Frame implements Observable {
 	String text;
 	String[] language;
 	private ArrayList<Observer> subscribers = new ArrayList<>();
-
-	public enum Action { DELETE, CLEAR, RESET, UNDO };
 
 	/**
 	 * This is the default constructor
@@ -107,7 +106,7 @@ public class YesNoDialog extends Frame implements Observable {
 			jButton.addActionListener(new java.awt.event.ActionListener() { 
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					if (action.equals("deleteEntry")) {
-						notifySubscribers(Action.DELETE);
+						notifySubscribers(Action.DELETE_ENTRY);
 						// mw.deleteEntry(guest);
 					}
 					else if (action.equals("undoEntry")) {
@@ -119,6 +118,7 @@ public class YesNoDialog extends Frame implements Observable {
 						// mw.addDataWindowReset(guest);
 					}
 					else if (action.equals("deleteRes")) {
+						System.out.println("should delete");
 						Reservation res = new Reservation(rm);
 						res.deleteReservation(guest);	
 					}

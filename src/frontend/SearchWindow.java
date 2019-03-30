@@ -31,8 +31,10 @@ import java.util.ArrayList;
 
 import javax.swing.DefaultListModel;
 
+import backend.Action;
 import backend.Guest;
 import backend.Language;
+import backend.Observer;
 import backend.Options;
 
 public class SearchWindow extends Frame {
@@ -43,7 +45,9 @@ public class SearchWindow extends Frame {
 	private javax.swing.JLabel jLabel2 = null;
 	private javax.swing.JButton jButton1 = null;
 	private javax.swing.JButton jButton3 = null;
-	public MainWindow mw;
+	// public MainWindow mw;
+	private ArrayList<Observer> subscribers = new ArrayList<>();
+
 	private javax.swing.JScrollPane jScrollPane = null;
 	private javax.swing.JList jList = null;
 	ArrayList data = new ArrayList();
@@ -53,15 +57,14 @@ public class SearchWindow extends Frame {
 	String dbname;
 	int entries;
 	
-	public SearchWindow(MainWindow window) throws HeadlessException {
-		this.mw = window;
+	public SearchWindow() throws HeadlessException { //Observer window // TODO removed this
+		// o = window;
 		Language lang = new Language();
 		language = lang.getLanguage();
 		Options options = new Options();
 		dbname = options.getFileName();
 		
 		initialize();
-	// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -69,7 +72,6 @@ public class SearchWindow extends Frame {
 	 */
 	public SearchWindow(GraphicsConfiguration gc) {
 		super(gc);
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -78,7 +80,6 @@ public class SearchWindow extends Frame {
 	 */
 	public SearchWindow(String title) throws HeadlessException {
 		super(title);
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -87,7 +88,6 @@ public class SearchWindow extends Frame {
 	 */
 	public SearchWindow(String title, GraphicsConfiguration gc) {
 		super(title, gc);
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -113,7 +113,7 @@ public class SearchWindow extends Frame {
 				jList.setModel(new DefaultListModel());
 				clearFields();
 				setVisible(false);
-				mw.setEnabled(true);
+				// mw.setEnabled(true); // TODO not sure this is needed
         	}
         });
 			
@@ -174,19 +174,21 @@ public class SearchWindow extends Frame {
 
 
 				entry = guest.getGuest(gst);
-					
-				mw.setGuestStatus(true);
-				mw.setVisible(true);
-				mw.setEnabled(true);
-				mw.setGuest(entry);
-				mw.setCurrentGuest();
-				mw.setDeleted(true);
+				
+				// mw.setGuestStatus(true);
+				// mw.setVisible(true);
+				// mw.setEnabled(true);
+				// mw.setGuest(entry);
+				// mw.setCurrentGuest();
+				// mw.setDeleted(true);
+				notifySubscribers(Action.GET_GUEST);
+				
 				clearFields();
 				setVisible(false);
 	
 			}
 	
-	
+
 	private javax.swing.JButton getJButton() {
 		if(jButton == null) {
 			jButton = new javax.swing.JButton();
@@ -359,4 +361,12 @@ public class SearchWindow extends Frame {
 		}
 		return jList;
 	}
+
+	private void notifySubscribers(Action action) {
+		for(Observer subscriber : subscribers) {
+			subscriber.update(null, null, action);
+		}
+	}
+
+
 }  //  @jve:visual-info  decl-index=0 visual-constraint="10,10"

@@ -28,14 +28,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Arrays;
 
+import backend.Action;
 import backend.ActionCommandsMW;
 import backend.Guest;
 import backend.Language;
 import backend.MainMenu;
 import backend.Observable;
 import backend.Observer;
-import frontend.YesNoDialog.Action;
-
 public class MainWindow extends Frame implements ActionListener, Observer {
 
 	private javax.swing.JLabel jLabel = null;
@@ -250,8 +249,7 @@ public class MainWindow extends Frame implements ActionListener, Observer {
 	 * 
 	 * @return javax.swing.JButton
 	 */
-
-	public void searchGuest() {
+	public void searchGuest() { // called when opening search through File > Search
 		searchWindow.setVisible(true);
 		searchWindow.setEnabled(true);
 		searchWindow.setSearchField(true);
@@ -528,6 +526,7 @@ public class MainWindow extends Frame implements ActionListener, Observer {
 					tst = getTempGuest();
 
 					YesNoDialog yn = new YesNoDialog(tst, language[53], "deleteEntry");
+					yn.addSubscriber(thisWindow);
 					yn.setVisible(true);
 				}
 			});
@@ -936,7 +935,7 @@ public class MainWindow extends Frame implements ActionListener, Observer {
 		entries = g.getEntries();
 		MainWindow window = new MainWindow();
 		thisWindow = window;
-		SearchWindow sw = new SearchWindow(thisWindow);
+		SearchWindow sw = new SearchWindow();
 		searchWindow = sw;
 
 		sw.setVisible(false);
@@ -990,16 +989,16 @@ public class MainWindow extends Frame implements ActionListener, Observer {
 	}
 
 	@Override
-	public void update(Observable observable, Object args, Enum action) {
-		System.out.println(action + "...");
-
-		Action dialogueAction = (Action) action;
-		if(dialogueAction == Action.RESET)
+	public void update(Observable observable, Object args, Action action) {
+		if(action == Action.RESET)
 			addDataWindowReset((String[]) args);
-		else if(dialogueAction == Action.CLEAR)
+		else if(action == Action.CLEAR)
 			clearFields();
-		else if(dialogueAction == Action.UNDO) {
+		else if(action == Action.UNDO) {
 
+		}
+		else if(action == Action.DELETE_ENTRY) {
+			deleteEntry((String[]) args);
 		}
 
 
