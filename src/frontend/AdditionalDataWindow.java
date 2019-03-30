@@ -56,7 +56,7 @@ public class AdditionalDataWindow extends Frame {
 	private javax.swing.JRadioButton jRadioButton2 = null;
 	private javax.swing.JRadioButton jRadioButton3 = null;
 	public static boolean smoker = false;
-	MainWindow mw;
+	Observer o;
 	Guest guest;
 	int entries;
 	public String[] currentGuest;
@@ -68,14 +68,14 @@ public class AdditionalDataWindow extends Frame {
 	/**
 	 * This is the default constructor
 	 */
-	public AdditionalDataWindow(Guest guest, MainWindow mw, int entries) {
+	public AdditionalDataWindow(Guest guest, Observer o, int entries) {
 		Language lang = new Language();
 		language = lang.getLanguage();
 
 		this.thisWindow = this;
 		this.guest = guest;
 		this.entries = entries;
-		this.mw = mw;
+		this.o = o;
 		initialize();
 	}
 
@@ -657,7 +657,7 @@ public class AdditionalDataWindow extends Frame {
 
 					if (modified) {
 						YesNoDialog zn = new YesNoDialog(currentGuest, language[52], "undoAddEntry");
-						zn.addSubscriber(mw);
+						zn.addSubscriber(o);
 						zn.setVisible(true);
 					} else {
 						setVisible(false);
