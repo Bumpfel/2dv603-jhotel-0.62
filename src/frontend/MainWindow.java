@@ -26,6 +26,7 @@ import java.awt.GraphicsConfiguration;
 import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Arrays;
 
 import backend.ActionCommandsMW;
 import backend.Guest;
@@ -33,6 +34,7 @@ import backend.Language;
 import backend.MainMenu;
 import backend.Observable;
 import backend.Observer;
+import frontend.YesNoDialog.Action;
 
 public class MainWindow extends Frame implements ActionListener, Observer {
 
@@ -184,7 +186,7 @@ public class MainWindow extends Frame implements ActionListener, Observer {
 	}
 
 	/**
-	 * This method initializes jButton
+	 * This method initializes jButton 
 	 * 
 	 * @return javax.swing.JButton
 	 */
@@ -209,8 +211,9 @@ public class MainWindow extends Frame implements ActionListener, Observer {
 			}
 		}
 
-		if (modified) {
-			YesNoDialog zn = new YesNoDialog(thisWindow, tst, language[52], "undoEntry");
+		if (modified) { // called when fields contain data and "Guest management" buttons is pressed
+			YesNoDialog zn = new YesNoDialog(tst, language[52], "undoEntry");
+			zn.addSubscriber(this);
 			zn.setVisible(true);
 		} else {
 			clearFields();
@@ -219,7 +222,7 @@ public class MainWindow extends Frame implements ActionListener, Observer {
 		}
 	}
 
-	private javax.swing.JButton getJButton() {
+	private javax.swing.JButton getJButton() { // Guest management button
 		if (jButton == null) {
 			jButton = new javax.swing.JButton();
 			jButton.setBounds(37, 125, 198, 33);
@@ -509,7 +512,7 @@ public class MainWindow extends Frame implements ActionListener, Observer {
 	}
 
 	/**
-	 * This method initializes jButton6
+	 * This method initializes jButton6 "Delete" - only shows up when a guest has been loaded from the list 
 	 * 
 	 * @return javax.swing.JButton
 	 */
@@ -524,9 +527,8 @@ public class MainWindow extends Frame implements ActionListener, Observer {
 					String[] tst = new String[entries];
 					tst = getTempGuest();
 
-					YesNoDialog yn = new YesNoDialog(thisWindow, tst, language[53], "deleteEntry");
+					YesNoDialog yn = new YesNoDialog(tst, language[53], "deleteEntry");
 					yn.setVisible(true);
-
 				}
 			});
 		}
@@ -560,7 +562,8 @@ public class MainWindow extends Frame implements ActionListener, Observer {
 					}
 
 					if (modified) {
-						YesNoDialog zn = new YesNoDialog(thisWindow, tst, language[52], "undoEntry");
+						YesNoDialog zn = new YesNoDialog(tst, language[52], "undoEntry");
+						zn.addSubscriber(thisWindow);
 						zn.setVisible(true);
 					} else {
 						clearFields();
@@ -876,9 +879,10 @@ public class MainWindow extends Frame implements ActionListener, Observer {
 		isGuest = g.findGuest(guest);
 
 		if (isGuest) {
-
+			
 			entry = g.getGuest(guest);
-
+			System.out.println(Arrays.toString(entry));
+			
 			setGuestStatus(true);
 			setVisible(true);
 			setEnabled(true);
@@ -986,7 +990,18 @@ public class MainWindow extends Frame implements ActionListener, Observer {
 	}
 
 	@Override
-	public void update(Observable observable, Object args) {
+	public void update(Observable observable, Object args, Enum action) {
+		System.out.println(action + "...");
+
+		Action dialogueAction = (Action) action;
+		if(dialogueAction == Action.RESET)
+			addDataWindowReset((String[]) args);
+		else if(dialogueAction == Action.CLEAR)
+			clearFields();
+		else if(dialogueAction == Action.UNDO) {
+
+		}
+
 
 	}
 }  //  @jve:visual-info  decl-index=0 visual-constraint="22,10"

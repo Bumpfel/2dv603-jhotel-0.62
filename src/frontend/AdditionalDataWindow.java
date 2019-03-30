@@ -28,9 +28,8 @@ import backend.Guest;
 import backend.Language;
 import backend.Observable;
 import backend.Observer;
-import frontend.YesNoDialog.Answer;
 
-public class AdditionalDataWindow extends Frame implements Observer {
+public class AdditionalDataWindow extends Frame {
 
 	private javax.swing.JLabel jLabel = null;
 	private javax.swing.JTextField jTextField = null;
@@ -631,7 +630,7 @@ public class AdditionalDataWindow extends Frame implements Observer {
 	}
 
 	/**
-	 * This method initializes jButton1
+	 * This method initializes jButton1 "Cancel"
 	 * 
 	 * @return javax.swing.JButton
 	 */
@@ -657,8 +656,8 @@ public class AdditionalDataWindow extends Frame implements Observer {
 					}
 
 					if (modified) {
-						YesNoDialog zn = new YesNoDialog(mw, currentGuest, language[52], "undoAddEntry");
-						zn.addSubscriber(thisWindow);
+						YesNoDialog zn = new YesNoDialog(currentGuest, language[52], "undoAddEntry");
+						zn.addSubscriber(mw);
 						zn.setVisible(true);
 					} else {
 						setVisible(false);
@@ -724,27 +723,6 @@ public class AdditionalDataWindow extends Frame implements Observer {
 			});
 		}
 		return jButton2;
-	}
-
-	@Override
-	public void update(Observable o, Object args) {
-		// YesNoDialog dialogue = (YesNoDialog) o;
-		// if(args Answer)
-		Answer discard;
-		if(args instanceof Answer) {
-			discard = (Answer) args;
-			
-			if(discard == Answer.YES)
-			setVisible(false);
-			System.out.println("button " + discard + " clicked");
-			// mw.clearFields();
-			notifySubscribers();
-		}
-		throw new IllegalArgumentException("Object cast failed");
-	}
-
-	private void notifySubscribers() {
-
 	}
 	
 }  //  @jve:visual-info  decl-index=0 visual-constraint="10,10"

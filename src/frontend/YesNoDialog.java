@@ -33,41 +33,23 @@ public class YesNoDialog extends Frame implements Observable {
 
 	private javax.swing.JButton jButton = null;
 	private javax.swing.JButton jButton1 = null;
-	MainWindow mw;
 	SearchWindow sw;
 	ReservationManagement rm;
-	ShowReservationWindow srw;
 	String name, firstlabel, thirdlabel, action, firstname;
 	String[] guest, oldguest, newguest;
 	private javax.swing.JTextArea jTextArea = null;
 	String text;
 	String[] language;
 	private ArrayList<Observer> subscribers = new ArrayList<>();
-	private YesNoDialog thisWindow;
 
-
-	public enum Answer { YES, NO };
+	public enum Action { DELETE, CLEAR, RESET, UNDO };
 
 	/**
 	 * This is the default constructor
 	 */
-	public YesNoDialog(MainWindow mw, String[] guest, String text, String action) {
+	public YesNoDialog(String[] guest, String text, String action) {
 		Language lang = new Language();
 		language = lang.getLanguage();
-		this.mw = mw;
-		this.guest = guest;
-		this.action = action;
-		this.text = text;
-		thisWindow = this;
-		
-		initialize();
-	}
-	
-	public YesNoDialog(ReservationManagement rm, ShowReservationWindow srw, String[] guest, String text, String action) {
-		Language lang = new Language();
-		language = lang.getLanguage();
-		this.rm = rm;
-		this.srw = srw;
 		this.guest = guest;
 		this.action = action;
 		this.text = text;
@@ -75,11 +57,21 @@ public class YesNoDialog extends Frame implements Observable {
 		initialize();
 	}
 	
-	public YesNoDialog(ReservationManagement rm, ShowReservationWindow srw, String[] newguest, String[] oldguest, String text, String action) {
+	public YesNoDialog(ReservationManagement rm, String[] guest, String text, String action) {
 		Language lang = new Language();
 		language = lang.getLanguage();
 		this.rm = rm;
-		this.srw = srw;
+		this.guest = guest;
+		this.action = action;
+		this.text = text;
+		
+		initialize();
+	}
+	
+	public YesNoDialog(ReservationManagement rm, String[] newguest, String[] oldguest, String text, String action) {
+		Language lang = new Language();
+		language = lang.getLanguage();
+		this.rm = rm;
 		this.newguest = newguest;
 		this.oldguest = oldguest;
 		this.action = action;
@@ -103,7 +95,7 @@ public class YesNoDialog extends Frame implements Observable {
 		this.setResizable(false);
 	}
 	/**
-	 * This method initializes jButton
+	 * This method initializes jButton "OK"
 	 * 
 	 * @return javax.swing.JButton
 	 */
@@ -115,22 +107,22 @@ public class YesNoDialog extends Frame implements Observable {
 			jButton.addActionListener(new java.awt.event.ActionListener() { 
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					if (action.equals("deleteEntry")) {
-						mw.deleteEntry(guest);
+						notifySubscribers(Action.DELETE);
+						// mw.deleteEntry(guest);
 					}
 					else if (action.equals("undoEntry")) {
-						mw.clearFields();
+						notifySubscribers(Action.CLEAR);
+						// mw.clearFields();
 					}
 					else if (action.equals("undoAddEntry")) {
-						notifySubscribers(Answer.YES);
+						notifySubscribers(Action.RESET);
 						// mw.addDataWindowReset(guest);
 					}
 					else if (action.equals("deleteRes")) {
-						srw.dispose();
 						Reservation res = new Reservation(rm);
 						res.deleteReservation(guest);	
 					}
 					else if (action.equals("changeRes")) {
-						srw.dispose();
 						Reservation res = new Reservation(rm);
 						res.changeReservation(oldguest, newguest);
 					}
@@ -142,7 +134,7 @@ public class YesNoDialog extends Frame implements Observable {
 	}
 
 	/**
-	 * This method initializes jButton1
+	 * This method initializes jButton1 "Cancel"
 	 * 
 	 * @return javax.swing.JButton
 	 */
@@ -153,20 +145,10 @@ public class YesNoDialog extends Frame implements Observable {
 			jButton1.setText(language[16]);
 			jButton1.addActionListener(new java.awt.event.ActionListener() { 
 				public void actionPerformed(java.awt.event.ActionEvent e) {    
-					//mw.setGuest(guest);
 					if (action.equals("undoEntry")) {
-						notifySubscribers(Answer.NO);
-						mw.setGuest(guest);
+						notifySubscribers(Action.UNDO);
 					}
-					
-					
 					dispose();
-
-						
-						
-
-
-
 				}
 			});
 		}
@@ -196,9 +178,9 @@ public class YesNoDialog extends Frame implements Observable {
 		subscribers.add(o);
 	}
 
-	private void notifySubscribers(Answer answer) {
+	private void notifySubscribers(Action action) {
 		for(Observer o : subscribers) {
-			o.update(this, answer);
+			o.update(this, guest, action);
 		}
 	}
 }  //  @jve:visual-info  decl-index=0 visual-constraint="10,10"
