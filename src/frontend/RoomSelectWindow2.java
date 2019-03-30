@@ -27,18 +27,16 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
 
+import backend.Action;
 import backend.Language;
+import backend.Observer;
 import backend.Options;
 import backend.Reservation;
 
 public class RoomSelectWindow2 extends Frame implements Runnable {
 
 	private javax.swing.JPanel jPanel = null;
-	private ReservationManagement rm;
-	private ShowReservationWindow srw;
 	private int roomtype;
-	private String room;
-	private ArrayList allrooms = new ArrayList();
 	private String[] settings;
 	private int floors;
 	private javax.swing.JRadioButton jRadioButton = null;
@@ -56,6 +54,7 @@ public class RoomSelectWindow2 extends Frame implements Runnable {
 	int endday;
 	String selectedRoom;
 	String filename;
+	private ArrayList<Observer> subscribers = new ArrayList<>();
 
 	private javax.swing.JRadioButton jRadioButton8 = null;
 	private javax.swing.JRadioButton jRadioButton9 = null;
@@ -89,13 +88,10 @@ public class RoomSelectWindow2 extends Frame implements Runnable {
 	/**
 	 * This is the default constructor
 	 */
-	public RoomSelectWindow2(ReservationManagement rm, ShowReservationWindow srw, int roomtype, int startday, int endday, ArrayList reservations) {
-		this.rm = rm;
-		this.srw = srw;
+	public RoomSelectWindow2(ReservationManagement rm, int roomtype, int startday, int endday, ArrayList reservations) {
 		this.startday = startday;
 		this.endday = endday;
 		this.roomtype = roomtype;
-		this.allrooms = getRooms(roomtype);
 		Options options = new Options();
 		settings = options.getSettings();
 		Language lang = new Language();
@@ -1752,8 +1748,9 @@ public class RoomSelectWindow2 extends Frame implements Runnable {
 			jButton.setText(language[21]);
 			jButton.setBounds(416, 337, 110, 23);
 			jButton.addActionListener(new java.awt.event.ActionListener() { 
-				public void actionPerformed(java.awt.event.ActionEvent e) {    
-					srw.setSelectedRoom(selectedRoom);
+				public void actionPerformed(java.awt.event.ActionEvent e) {
+					notifySubscribers();
+					// srw.setSelectedRoom(selectedRoom);
 					dispose();
 				}
 			});
@@ -1835,5 +1832,15 @@ public class RoomSelectWindow2 extends Frame implements Runnable {
 			jProgressBar.setBounds(140, 114, 261, 21);
 		}
 		return jProgressBar;
+	}
+
+	public void addSubscriber(Observer o) {
+		subscribers.add(o);
+	}
+
+	private void notifySubscribers() {
+		for(Observer o : subscribers) {
+			o.update(null, selectedRoom, Action.SELECT_ROOM);
+		}
 	}
 }  //  @jve:visual-info  decl-index=0 visual-constraint="10,10"

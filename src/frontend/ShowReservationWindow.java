@@ -64,6 +64,8 @@ public class ShowReservationWindow extends Frame implements Observer {
 	private javax.swing.JTextField jTextField6 = null;
 	private javax.swing.JLabel jLabel8 = null;
 	boolean checkout = false;
+	
+	private ArrayList<Observer> subscribers = new ArrayList<>();
 
 	/**
 	 * This is the default constructor
@@ -261,7 +263,7 @@ public class ShowReservationWindow extends Frame implements Observer {
 			jButton.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					if (edited) {
-						Reservation res = new Reservation(rm);
+						// Reservation res = new Reservation(rm);
 						String[] newgst = new String[8];
 						newgst[0] = jTextField2.getText();
 						newgst[1] = jTextField3.getText();
@@ -481,9 +483,10 @@ public class ShowReservationWindow extends Frame implements Observer {
 			jButton3.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					Reservation res = new Reservation(rm);
-					RoomSelectWindow2 rsm = new RoomSelectWindow2(rm, thisWindow, 1,
+					RoomSelectWindow2 rsm = new RoomSelectWindow2(rm, 1,
 							res.createCal(jTextField.getText()), res.createCal(jTextField1.getText()), reservations);
 					new Thread(rsm).start();
+					rsm.addSubscriber(thisWindow);
 					rsm.setVisible(true);
 				}
 			});
@@ -598,6 +601,16 @@ public class ShowReservationWindow extends Frame implements Observer {
 
 	@Override
 	public void update(Observable observable, Object args, Action action) {
-		dispose();
+		setSelectedRoom((String) args);
+	}
+
+	public void addSubscriber(Observer o) {
+		subscribers.add(o);
+	}
+
+	private void notifySubscribers() {
+		for(Observer o : subscribers) {
+			// o.update(null, args, action);
+		}
 	}
 }  //  @jve:visual-info  decl-index=0 visual-constraint="10,10"
