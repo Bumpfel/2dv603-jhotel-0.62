@@ -9,6 +9,8 @@ package backend;
         DELETE_ENTRY,
         LOAD_GUEST,
         SELECT_ROOM,
+        DISPOSE,
+        SET_VISIBLE,
 
     }
 

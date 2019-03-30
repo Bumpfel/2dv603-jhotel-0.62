@@ -29,11 +29,14 @@ import java.util.ArrayList;
 
 import javax.swing.DefaultListModel;
 
+import backend.Action;
 import backend.Guest;
 import backend.Language;
+import backend.Observable;
+import backend.Observer;
 
-public class ResGuestList extends Frame {
-	
+public class ResGuestList extends Frame implements Observer {
+
 	private ReservationManagement rm;
 	private ResGuestList thisWindow;
 	private javax.swing.JScrollPane jScrollPane = null;
@@ -47,6 +50,7 @@ public class ResGuestList extends Frame {
 	private javax.swing.JButton jButton2 = null;
 	private javax.swing.JTextField jTextField = null;
 	private javax.swing.JButton jButton3 = null;
+
 	/**
 	 * This is the default constructor
 	 */
@@ -57,16 +61,16 @@ public class ResGuestList extends Frame {
 		language = lang.getLanguage();
 		Guest guest = new Guest();
 		this.entries = guest.getEntries();
-		
+
 		initialize();
 	}
+
 	/**
 	 * This method initializes this
 	 * 
 	 * @return void
 	 */
-		
-	
+
 	private void initialize() {
 		this.setLayout(null);
 		this.add(getJScrollPane(), null);
@@ -77,14 +81,14 @@ public class ResGuestList extends Frame {
 		this.add(getJButton3(), null);
 		this.setBounds(200, 100, 370, 629);
 		this.setTitle(language[49]);
-		this.addWindowListener(new java.awt.event.WindowAdapter() { 
-			public void windowClosing(java.awt.event.WindowEvent e) {    
+		this.addWindowListener(new java.awt.event.WindowAdapter() {
+			public void windowClosing(java.awt.event.WindowEvent e) {
 				jList.setModel(new DefaultListModel());
 				dispose();
 			}
 		});
 	}
-	
+
 	public void getGuestDB() {
 		jList.setModel(new DefaultListModel());
 		DefaultListModel dlm = (DefaultListModel) jList.getModel();
@@ -94,8 +98,8 @@ public class ResGuestList extends Frame {
 		String[] currentGuest;
 		String tmp;
 		int count = 0;
-		
-		for (int i=0; i<db.size(); ++i)  {
+
+		for (int i = 0; i < db.size(); ++i) {
 			currentGuest = (String[]) db.get(i);
 			tmp = (currentGuest[0] + " - " + currentGuest[1] + ", " + currentGuest[2] + " ");
 			rm.setOldGuest(currentGuest);
@@ -106,7 +110,6 @@ public class ResGuestList extends Frame {
 		jList.setModel(dlm);
 	}
 
-	
 	/**
 	 * 
 	 * This method initializes jScrollPane
@@ -114,37 +117,38 @@ public class ResGuestList extends Frame {
 	 * @return javax.swing.JScrollPane
 	 */
 	private javax.swing.JScrollPane getJScrollPane() {
-		if(jScrollPane == null) {
+		if (jScrollPane == null) {
 			jScrollPane = new javax.swing.JScrollPane();
 			jScrollPane.setViewportView(getJList());
 			jScrollPane.setBounds(12, 55, 346, 488);
 		}
 		return jScrollPane;
 	}
+
 	/**
 	 * This method initializes jList
 	 * 
 	 * @return javax.swing.JList
 	 */
 	private javax.swing.JList getJList() {
-		if(jList == null) {
+		if (jList == null) {
 			jList = new javax.swing.JList();
 			jList.setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 			MouseListener mouseListener = new MouseAdapter() {
-				 public void mouseClicked(MouseEvent e) {
-					 if (e.getClickCount() == 2) {
+				public void mouseClicked(MouseEvent e) {
+					if (e.getClickCount() == 2) {
 						int index = jList.locationToIndex(e.getPoint());
 						loadGuest(index);
-					  }
-				 }
-			 };
-			 
+					}
+				}
+			};
+
 			jList.addMouseListener(mouseListener);
 
 		}
 		return jList;
 	}
-	
+
 	public void loadGuest(int index) {
 		Guest guest = new Guest();
 		String[] gst = new String[entries];
@@ -158,21 +162,20 @@ public class ResGuestList extends Frame {
 		jList.setModel(new DefaultListModel());
 	}
 
-	
 	/**
 	 * This method initializes jButton
 	 * 
 	 * @return javax.swing.JButton
 	 */
 	private javax.swing.JButton getJButton() {
-		if(jButton == null) {
+		if (jButton == null) {
 			jButton = new javax.swing.JButton();
 			jButton.setBounds(244, 590, 113, 24);
 			jButton.setText(language[20]);
-			jButton.addActionListener(new java.awt.event.ActionListener() { 
-				public void actionPerformed(java.awt.event.ActionEvent e) {    
+			jButton.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent e) {
 					int index = jList.getSelectedIndex();
-					if (index!=(-1)) {
+					if (index != (-1)) {
 						loadGuest(index);
 					}
 				}
@@ -180,49 +183,47 @@ public class ResGuestList extends Frame {
 		}
 		return jButton;
 	}
+
 	/**
 	 * This method initializes jButton1
 	 * 
 	 * @return javax.swing.JButton
 	 */
 	private javax.swing.JButton getJButton1() {
-		if(jButton1 == null) {
+		if (jButton1 == null) {
 			jButton1 = new javax.swing.JButton();
 			jButton1.setBounds(14, 590, 113, 24);
 			jButton1.setText(language[22]);
-			jButton1.addActionListener(new java.awt.event.ActionListener() { 
-				public void actionPerformed(java.awt.event.ActionEvent e) {    
+			jButton1.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent e) {
 					dispose();
 				}
 			});
 		}
 		return jButton1;
 	}
+
 	/**
 	 * This method initializes jButton2
 	 * 
 	 * @return javax.swing.JButton
 	 */
-	
-	 
+
 	public void findGuest(String val) {
 		Guest guest = new Guest();
 		db = guest.getDB();
 		entries = guest.getEntries();
-	
+
 		boolean isGuest = false;
 		jList.setModel(new DefaultListModel());
 		DefaultListModel dlm = (DefaultListModel) jList.getModel();
 		String[] currentGuest;
 		int count = 0;
-	
-		loop1:
-		for (int i=0; i<db.size(); ++i) {
-		currentGuest = (String[]) db.get(i);
-		
-				
-			loop2:
-			for (int index=0; index<entries; ++index) {
+
+		loop1: for (int i = 0; i < db.size(); ++i) {
+			currentGuest = (String[]) db.get(i);
+
+			loop2: for (int index = 0; index < entries; ++index) {
 				if (currentGuest[index].equalsIgnoreCase(val)) {
 					String tmp = (currentGuest[0] + " - " + currentGuest[1] + ", " + currentGuest[2] + " ");
 					sr.add(count, currentGuest);
@@ -233,55 +234,65 @@ public class ResGuestList extends Frame {
 		}
 	}
 
-	
 	private javax.swing.JButton getJButton2() {
-		if(jButton2 == null) {
+		if (jButton2 == null) {
 			jButton2 = new javax.swing.JButton();
 			jButton2.setText(language[1]);
 			jButton2.setBounds(243, 28, 113, 20);
-			jButton2.addActionListener(new java.awt.event.ActionListener() { 
-				public void actionPerformed(java.awt.event.ActionEvent e) {   
+			jButton2.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent e) {
 					findGuest(jTextField.getText());
 				}
 			});
 		}
 		return jButton2;
 	}
+
 	/**
 	 * This method initializes jTextField
 	 * 
 	 * @return javax.swing.JTextField
 	 */
 	private javax.swing.JTextField getJTextField() {
-		if(jTextField == null) {
+		if (jTextField == null) {
 			jTextField = new javax.swing.JTextField();
 			jTextField.setBounds(13, 28, 224, 20);
-			jTextField.addActionListener(new java.awt.event.ActionListener() { 
-				public void actionPerformed(java.awt.event.ActionEvent e) {    
+			jTextField.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent e) {
 					findGuest(jTextField.getText());
 				}
 			});
 		}
 		return jTextField;
 	}
+
 	/**
 	 * This method initializes jButton3
 	 * 
 	 * @return javax.swing.JButton
 	 */
 	private javax.swing.JButton getJButton3() {
-		if(jButton3 == null) {
+		if (jButton3 == null) {
 			jButton3 = new javax.swing.JButton();
 			jButton3.setBounds(244, 550, 113, 24);
 			jButton3.setText(language[0]);
-			jButton3.addActionListener(new java.awt.event.ActionListener() { 
-				public void actionPerformed(java.awt.event.ActionEvent e) {    
-					NewResGuest nrg = new NewResGuest(rm, thisWindow);
+			jButton3.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent e) {
+					NewResGuest nrg = new NewResGuest(rm);
 					nrg.setVisible(true);
+					nrg.addSubscriber(thisWindow);
 					setVisible(false);
 				}
 			});
 		}
 		return jButton3;
+	}
+
+	@Override
+	public void update(Observable observable, Object args, Action action) {
+		if(action == Action.DISPOSE)
+			dispose();
+		else if(action == Action.SET_VISIBLE)
+			setVisible(true);
 	}
 }  //  @jve:visual-info  decl-index=0 visual-constraint="10,10"
