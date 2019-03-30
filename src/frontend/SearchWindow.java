@@ -45,7 +45,6 @@ public class SearchWindow extends Frame {
 	private javax.swing.JLabel jLabel2 = null;
 	private javax.swing.JButton jButton1 = null;
 	private javax.swing.JButton jButton3 = null;
-	// public MainWindow mw;
 	private ArrayList<Observer> subscribers = new ArrayList<>();
 
 	private javax.swing.JScrollPane jScrollPane = null;
@@ -57,8 +56,7 @@ public class SearchWindow extends Frame {
 	String dbname;
 	int entries;
 	
-	public SearchWindow() throws HeadlessException { //Observer window // TODO removed this
-		// o = window;
+	public SearchWindow() throws HeadlessException {
 		Language lang = new Language();
 		language = lang.getLanguage();
 		Options options = new Options();
@@ -167,11 +165,10 @@ public class SearchWindow extends Frame {
 	}
 	
 	
-	public void getGuest(String[] gst) {
+	private void getGuest(String[] gst) { //TODO is this completely unnecessary?
 		boolean isGuest = false;
 			Guest guest = new Guest();
 			String[] entry = new String[entries];
-
 
 				entry = guest.getGuest(gst);
 				
@@ -181,8 +178,7 @@ public class SearchWindow extends Frame {
 				// mw.setGuest(entry);
 				// mw.setCurrentGuest();
 				// mw.setDeleted(true);
-				notifySubscribers(Action.GET_GUEST);
-				
+
 				clearFields();
 				setVisible(false);
 	
@@ -268,7 +264,7 @@ public class SearchWindow extends Frame {
 		return jLabel2;
 	}
 	/**
-	 * This method initializes jButton1
+	 * This method initializes jButton1 "Back"
 	 * 
 	 * @return javax.swing.JButton
 	 */
@@ -283,9 +279,7 @@ public class SearchWindow extends Frame {
 					jList.setModel(new DefaultListModel());
 					clearFields();
 					setVisible(false);
-					mw.setEnabled(true);
-					
-
+					// mw.setEnabled(true); //TODO temp disabled
 				}
 			});
 		}
@@ -328,13 +322,16 @@ public class SearchWindow extends Frame {
 		gst = (String[]) sr.get(index);
 		
 		entry = guest.getGuest((String[]) sr.get(index));
-					
-		mw.setGuestStatus(true);
-		mw.setVisible(true);
-		mw.setEnabled(true);
-		mw.setGuest(entry);
-		mw.setCurrentGuest();
-		mw.setDeleted(true);
+		
+		// mw.setGuestStatus(true);
+		// mw.setVisible(true);
+		// mw.setEnabled(true);
+		// mw.setGuest(entry);
+		// mw.setCurrentGuest();
+		// mw.setDeleted(true);
+
+		notifySubscribers(Action.LOAD_GUEST, entry);
+		
 		clearFields();
 		setVisible(false);
 
@@ -362,9 +359,9 @@ public class SearchWindow extends Frame {
 		return jList;
 	}
 
-	private void notifySubscribers(Action action) {
+	private void notifySubscribers(Action action, String[] guest) {
 		for(Observer subscriber : subscribers) {
-			subscriber.update(null, null, action);
+			subscriber.update(null, guest, action);
 		}
 	}
 

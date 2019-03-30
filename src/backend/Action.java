@@ -5,5 +5,6 @@ public enum Action {
     CLEAR,
     UNDO,
     DELETE_ENTRY,
+    LOAD_GUEST,
 
 }

@@ -1000,6 +1000,14 @@ public class MainWindow extends Frame implements ActionListener, Observer {
 		else if(action == Action.DELETE_ENTRY) {
 			deleteEntry((String[]) args);
 		}
+		else if(action == Action.LOAD_GUEST) {
+			setGuestStatus(true);
+			setVisible(true);
+			setEnabled(true);
+			setGuest((String[]) args);
+			setCurrentGuest();
+			setDeleted(true);
+		}
 
 
 	}
