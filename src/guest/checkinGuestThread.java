@@ -29,69 +29,75 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 import functions.Language;
-import checkin.CheckinWindow;
+import functions.Observable;
+import functions.Observer;
+// import checkin.CheckinWindow;
+import functions.Action;
 import functions.CalendarCreator;
 
-public class checkinGuestThread extends Thread {
-	
+public class checkinGuestThread extends Thread implements Observable {
+
 	// private Reservation res;
-	private CheckinWindow cw;
+	// private CheckinWindow cw;
 	private String[] oldguest, newguest;
 	String[] language;
 
 	private CalendarCreator calendarCreator = new CalendarCreator();
-	
-	public checkinGuestThread(CheckinWindow cw, String[] oldguest, String[] newguest) {
+	private ArrayList<Observer> subscribers = new ArrayList<>();
+
+	public checkinGuestThread(String[] oldguest, String[] newguest) {
+		System.out.println("guestThread started");
+
 		// Reservation res = new Reservation(cw);
 		Language lang = new Language();
 		language = lang.getLanguage();
 		// this.res = res;
-		this.cw = cw;
+		// this.cw = cw;
 		this.oldguest = oldguest;
 		this.newguest = newguest;
 	}
 
 	public void run() {
-		String gst = newguest[0] + " - " + newguest[1] + ", " + newguest[2] + ": " + newguest[3] + "; " + newguest[4] + "; " + newguest[5] + ": " + newguest[6] + "# " + newguest[7];
-		changeReservation(calendarCreator.createCal(newguest[3]), calendarCreator.createCal(newguest[4]), gst, newguest[5], oldguest);
+		String gst = newguest[0] + " - " + newguest[1] + ", " + newguest[2] + ": " + newguest[3] + "; " + newguest[4]
+				+ "; " + newguest[5] + ": " + newguest[6] + "# " + newguest[7];
+		changeReservation(calendarCreator.createCal(newguest[3]), calendarCreator.createCal(newguest[4]), gst,
+				newguest[5], oldguest);
 	}
 
-
 	public void changeReservation(int arrival, int departure, String name, String room, String[] oldguest) {
-		//String toDelete = oldguest[0] + " - " + oldguest[1] + ", " + oldguest[2] + ": " + oldguest[3] + "; " + oldguest[4] + "; " + oldguest[5] + ": " + oldguest[6];
+		// String toDelete = oldguest[0] + " - " + oldguest[1] + ", " + oldguest[2] + ":
+		// " + oldguest[3] + "; " + oldguest[4] + "; " + oldguest[5] + ": " +
+		// oldguest[6];
 		String roomtoDelete = oldguest[5];
 		int firstday = calendarCreator.createCal(oldguest[3]);
 		int lastday = calendarCreator.createCal(oldguest[4]);
 
-		
 		ArrayList reservations = new ArrayList();
 		String[] availableRooms = new String[168];
 		String[] tmp = new String[100000];
-		int index=0;
-		
-		cw.setThreadRunning(language[66]);
-		
+		int index = 0;
+
+		// cw.setThreadRunning(language[66]);
+
 		try {
 			FileInputStream fis = new FileInputStream("./db/restable.jh");
 			ObjectInputStream ois = new ObjectInputStream(fis);
-			
+
 			reservations = (ArrayList) ois.readObject();
 			ois.close();
-			
-			availableRooms = (String[]) reservations.get(reservations.size()-1);
-			
-			
+
+			availableRooms = (String[]) reservations.get(reservations.size() - 1);
+
 			// First, let's delete the old entry
 			// Determine room - index
-			loop1:
-			for (int i=0; i<availableRooms.length; ++i) {
+			loop1: for (int i = 0; i < availableRooms.length; ++i) {
 				if (availableRooms[i].equals(roomtoDelete)) {
 					index = i;
 					break loop1;
 				}
-			}			
+			}
 			tmp = (String[]) reservations.get(index);
-			for (int i=firstday; i<lastday; ++i) {
+			for (int i = firstday; i < lastday; ++i) {
 				tmp[i] = null;
 			}
 			reservations.set(index, tmp);
@@ -99,46 +105,52 @@ public class checkinGuestThread extends Thread {
 
 			// Now, let's make the new reservation
 			// Determine room - index
-			loop1:
-			for (int i=0; i<availableRooms.length; ++i) {
+			loop1: for (int i = 0; i < availableRooms.length; ++i) {
 				if (availableRooms[i].equals(room)) {
 					index = i;
 					break loop1;
 				}
 			}
 
-			
 			tmp = (String[]) reservations.get(index);
-			for (int i=arrival; i<departure; ++i) {
+			for (int i = arrival; i < departure; ++i) {
 				tmp[i] = name;
 			}
 			reservations.set(index, tmp);
 			/*************************************/
-			
-			
-			
-		}
-		catch (ClassNotFoundException cnf) {
+
+		} catch (ClassNotFoundException cnf) {
 			System.out.println(cnf + " Reservation.makeReservation()");
-		}
-		catch (IOException io) {
+		} catch (IOException io) {
 			System.out.println(io + " Reservation.makeReservation()");
 		}
-		
+
 		try {
 			FileOutputStream fos = new FileOutputStream("./db/restable.jh");
 			ObjectOutputStream oos = new ObjectOutputStream(fos);
-			
+
 			oos.writeObject(reservations);
 			oos.flush();
 			oos.close();
-			
-			cw.setCheckinList(reservations);
-		}
-		catch (IOException io) {
+
+			notifySubcribers(Action.SET_CHECKIN_LIST, null);
+			// cw.setCheckinList(reservations);
+		} catch (IOException io) {
 			System.out.println(io);
 		}
-		//cw.dispose();
-		cw.setThreadEnded();
+		// cw.dispose();
+		notifySubcribers(Action.THREAD_ENDED, reservations);
+		// cw.setThreadEnded();
+	}
+
+	@Override
+	public void addSubscriber(Observer o) {
+		subscribers.add(o);
+	}
+
+	private void notifySubcribers(Action action, Object reservations) {
+		for(Observer o : subscribers) {
+			o.update(null, reservations, action);
+		}
 	}
 }

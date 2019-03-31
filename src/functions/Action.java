@@ -1,26 +1,19 @@
 package functions;
 
-// public class Action {
+public enum Action {
+    RESET,
+    CLEAR,
+    UNDO,
+    DELETE_ENTRY,
+    LOAD_GUEST,
+    SELECT_ROOM,
+    SET_VISIBLE,
+    GET_GUEST_DB,
+    NEW_RES_GUEST,
+    UPDATE_LIST,
+    SET_GUEST,
+    INITIALIZED,
+    THREAD_ENDED,
+    SET_CHECKIN_LIST,
 
-    public enum Action { //MainAction {
-        RESET,
-        CLEAR,
-        UNDO,
-        DELETE_ENTRY,
-        LOAD_GUEST,
-        SELECT_ROOM,
-        // DISPOSE,
-        SET_VISIBLE,
-        GET_GUEST_DB,
-        NEW_RES_GUEST,
-        UPDATE_LIST,
-        SET_GUEST,
-        INITIALIZED,
-        
-    }
-
-    // public enum ReservationAction {
-
-    // }
-    
-// }
+}

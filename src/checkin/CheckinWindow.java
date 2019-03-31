@@ -34,7 +34,6 @@ import functions.Language;
 import functions.Observer;
 import guest.checkinGuestThread;
 import main.MainWindow;
-import reservation.Reservation;
 // import reservation.ReservationManagement;
 import reservation.ShowReservationWindow;
 
@@ -168,6 +167,7 @@ public class CheckinWindow extends Frame implements Observer {
 
 						// Reservation res = new Reservation(thisWindow);
 						// res.checkinGuest(tmp2, tmp);
+						setThreadRunning(language[66]);
 						new checkinGuestThread(thisWindow, tmp2, tmp).start();
 					}
 				}
@@ -226,6 +226,7 @@ public class CheckinWindow extends Frame implements Observer {
 
 						// Reservation res = new Reservation(thisWindow);
 						// res.checkinGuest(tmp2, tmp);
+						setThreadRunning(language[66]);
 						new checkinGuestThread(thisWindow, tmp2, tmp).start();
 					}
 				}
@@ -398,6 +399,12 @@ public class CheckinWindow extends Frame implements Observer {
 	public void update(Observer obs, Object args, Action action) {
 		if(action == Action.INITIALIZED) {
 			setInitialized();
+		}
+		else if(action == Action.THREAD_ENDED) {
+			setThreadEnded();
+		}
+		else if(action == Action.SET_CHECKIN_LIST) {
+			setCheckinList((ArrayList) args);
 		}
 	}
 }  //  @jve:visual-info  decl-index=0 visual-constraint="10,10"
