@@ -307,8 +307,9 @@ public class ReservationManagement extends Frame implements Runnable, Observer {
 							|| (res.correctDate(jTextField1.getText()) == false)) {
 						// nada
 					} else {
-						RoomSelectWindow rsm = new RoomSelectWindow(thisWindow, 1, res.createCal(jTextField.getText()),
+						RoomSelectWindow rsm = new RoomSelectWindow(1, res.createCal(jTextField.getText()),
 								res.createCal(jTextField1.getText()), restable);
+						rsm.addSubscriber(thisWindow);
 						new Thread(rsm).start();
 						rsm.setVisible(true);
 					}
@@ -347,8 +348,9 @@ public class ReservationManagement extends Frame implements Runnable, Observer {
 						// nada
 					} else {
 
-						RoomSelectWindow rsm = new RoomSelectWindow(thisWindow, 2, res.createCal(jTextField.getText()),
+						RoomSelectWindow rsm = new RoomSelectWindow(2, res.createCal(jTextField.getText()),
 								res.createCal(jTextField1.getText()), restable);
+						rsm.addSubscriber(thisWindow);
 						new Thread(rsm).start();
 						rsm.setVisible(true);
 					}
@@ -387,8 +389,9 @@ public class ReservationManagement extends Frame implements Runnable, Observer {
 						// nada
 					} else {
 
-						RoomSelectWindow rsm = new RoomSelectWindow(thisWindow, 3, res.createCal(jTextField.getText()),
+						RoomSelectWindow rsm = new RoomSelectWindow(3, res.createCal(jTextField.getText()),
 								res.createCal(jTextField1.getText()), restable);
+						rsm.addSubscriber(thisWindow);
 						new Thread(rsm).start();
 						rsm.setVisible(true);
 					}
@@ -427,8 +430,9 @@ public class ReservationManagement extends Frame implements Runnable, Observer {
 						// nada
 					} else {
 
-						RoomSelectWindow rsm = new RoomSelectWindow(thisWindow, 4, res.createCal(jTextField.getText()),
+						RoomSelectWindow rsm = new RoomSelectWindow(4, res.createCal(jTextField.getText()),
 								res.createCal(jTextField1.getText()), restable);
+						rsm.addSubscriber(thisWindow);
 						new Thread(rsm).start();
 						rsm.setVisible(true);
 					}
@@ -467,8 +471,9 @@ public class ReservationManagement extends Frame implements Runnable, Observer {
 						// nada
 					} else {
 
-						RoomSelectWindow rsm = new RoomSelectWindow(thisWindow, 5, res.createCal(jTextField.getText()),
+						RoomSelectWindow rsm = new RoomSelectWindow(5, res.createCal(jTextField.getText()),
 								res.createCal(jTextField1.getText()), restable);
+						rsm.addSubscriber(thisWindow);
 						new Thread(rsm).start();
 						rsm.setVisible(true);
 					}
@@ -1015,7 +1020,7 @@ public class ReservationManagement extends Frame implements Runnable, Observer {
 			jButton5.setText(language[25]);
 			jButton5.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					UpdateListThread ult = new UpdateListThread(thisWindow);
+					UpdateListThread ult = new UpdateListThread();
 					ult.addSubscriber(thisWindow);
 					ult.run();
 				}
@@ -1109,6 +1114,8 @@ public class ReservationManagement extends Frame implements Runnable, Observer {
 			run();
 			setThreadEnded();
 		}
+		else if(action == Action.SELECT_ROOM)
+			setSelectedRoom((String) args);
 	}
 
 }  //  @jve:visual-info  decl-index=0 visual-constraint="10,10"
