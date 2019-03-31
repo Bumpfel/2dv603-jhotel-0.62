@@ -24,16 +24,10 @@ package functions;
 import java.awt.Frame;
 import java.util.ArrayList;
 
-import main.SearchWindow;
-import reservation.Reservation;
-import reservation.ReservationManagement;
-
 public class YesNoDialog extends Frame implements Observable {
 
 	private javax.swing.JButton jButton = null;
 	private javax.swing.JButton jButton1 = null;
-	SearchWindow sw;
-	// ReservationManagement rm;
 	String name, firstlabel, thirdlabel, action, firstname;
 	String[] guest, oldguest, newguest;
 	private javax.swing.JTextArea jTextArea = null;

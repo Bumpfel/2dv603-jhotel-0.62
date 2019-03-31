@@ -3,9 +3,6 @@ package functions;
 import java.awt.Frame;
 import java.util.ArrayList;
 
-import functions.Action;
-import functions.Observer;
-
 @SuppressWarnings("serial")
 public class ObservableFrame extends Frame {
 

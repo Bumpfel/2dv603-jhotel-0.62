@@ -31,7 +31,6 @@ import javax.swing.DefaultListModel;
 
 import functions.*;
 
-
 public class InitializeLists extends Thread implements Observable {
 
 	// private CheckinWindow cw;

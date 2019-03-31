@@ -31,11 +31,8 @@ import javax.swing.DefaultListModel;
 
 import functions.Action;
 import functions.Language;
-import functions.Observable;
 import functions.Observer;
 import guest.checkinGuestThread;
-import main.MainWindow;
-// import reservation.ReservationManagement;
 import reservation.ShowReservationWindow;
 
 public class CheckinWindow extends Frame implements Observer {

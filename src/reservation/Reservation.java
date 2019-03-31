@@ -31,14 +31,11 @@ import java.util.ArrayList;
 import functions.Language;
 import functions.Observable;
 import functions.Observer;
-import checkin.CheckinWindow;
 import functions.Action;
 import functions.CalendarCreator;
 import guest.Guest;
-// import guest.checkinGuestThread;
 
 public class Reservation extends Thread implements Observer, Observable {
-	// private ReservationManagement rm;
 	private int arrival;
 	private int departure;
 	private String name;
@@ -50,7 +47,6 @@ public class Reservation extends Thread implements Observer, Observable {
 	Guest guest = new Guest();
 	private String[] emptyGuest = new String[guest.getEntries()];
 	private String arrivalS, departureS;
-	private CheckinWindow cw;
 
 	private CalendarCreator calendarCreator = new CalendarCreator();
 	private ArrayList<Observer> subscribers = new ArrayList<>();
@@ -58,21 +54,14 @@ public class Reservation extends Thread implements Observer, Observable {
 	public Reservation() {
 		Language lang = new Language();
 		language = lang.getLanguage();
-		// this.rm = rm;
 	}
 
-	public Reservation(CheckinWindow cw) {
-		this.cw = cw;
-		Language lang = new Language();
-		language = lang.getLanguage();
-	}
 
 	public Reservation(String arr, String dep, String name, String room, String price) {
 		this.arrival = calendarCreator.createCal(arr);
 		this.departure = calendarCreator.createCal(dep);
 		this.name = name;
 		this.room = room;
-		// this.rm = rm;
 		this.arrivalS = arr;
 		this.departureS = dep;
 		if (price.length() < 3) {

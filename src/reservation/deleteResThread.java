@@ -30,14 +30,11 @@ import java.util.ArrayList;
 
 import functions.Language;
 import functions.ObservableThread;
-import functions.Observer;
 import functions.Action;
 import functions.CalendarCreator;
 
 public class deleteResThread extends ObservableThread {
 
-	// private Reservation res;
-	// private ReservationManagement rm;
 	private String[] reservation;
 	private String[] language;
 

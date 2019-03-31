@@ -30,14 +30,12 @@ import java.util.Calendar;
 
 import javax.swing.table.DefaultTableModel;
 
-import main.MainWindow;
 import functions.Action;
 import functions.CalendarCreator;
 import functions.Language;
 import functions.Observable;
 import functions.Observer;
 import functions.Options;
-import functions.YesNoDialog;
 
 public class ReservationManagement extends Frame implements Runnable, Observer, Observable {
 

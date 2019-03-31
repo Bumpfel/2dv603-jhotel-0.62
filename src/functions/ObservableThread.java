@@ -2,9 +2,6 @@ package functions;
 
 import java.util.ArrayList;
 
-import functions.Action;
-import functions.Observer;
-
 public class ObservableThread extends Thread {
 
     private ArrayList<Observer> subscribers = new ArrayList<>();
