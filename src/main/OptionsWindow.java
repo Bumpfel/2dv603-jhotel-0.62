@@ -41,7 +41,7 @@ import functions.Options;
 import reservation.Reservation;
 import reservation.ReservationManagement;
 
-public class OptionsWindow extends Frame{
+public class OptionsWindow extends Frame {
 
 	private javax.swing.JLabel jLabel = null;
 	private javax.swing.JTextField jTextField = null;

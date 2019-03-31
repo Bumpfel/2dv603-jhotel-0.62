@@ -29,10 +29,11 @@ import java.util.ArrayList;
 
 import functions.Action;
 import functions.Language;
+import functions.ObservableFrame;
 import functions.Observer;
 import functions.Options;
 
-public class RoomSelectWindow2 extends Frame implements Runnable {
+public class RoomSelectWindow2 extends ObservableFrame implements Runnable {
 
 	private javax.swing.JPanel jPanel = null;
 	private int roomtype;
@@ -53,7 +54,6 @@ public class RoomSelectWindow2 extends Frame implements Runnable {
 	int endday;
 	String selectedRoom;
 	String filename;
-	private ArrayList<Observer> subscribers = new ArrayList<>();
 
 	private javax.swing.JRadioButton jRadioButton8 = null;
 	private javax.swing.JRadioButton jRadioButton9 = null;
@@ -1748,7 +1748,7 @@ public class RoomSelectWindow2 extends Frame implements Runnable {
 			jButton.setBounds(416, 337, 110, 23);
 			jButton.addActionListener(new java.awt.event.ActionListener() { 
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					notifySubscribers();
+					notifySubscribers(null, selectedRoom, Action.SELECT_ROOM);
 					dispose();
 				}
 			});
@@ -1832,13 +1832,4 @@ public class RoomSelectWindow2 extends Frame implements Runnable {
 		return jProgressBar;
 	}
 
-	public void addSubscriber(Observer o) {
-		subscribers.add(o);
-	}
-
-	private void notifySubscribers() {
-		for(Observer o : subscribers) {
-			o.update(null, selectedRoom, Action.SELECT_ROOM);
-		}
-	}
 }  //  @jve:visual-info  decl-index=0 visual-constraint="10,10"

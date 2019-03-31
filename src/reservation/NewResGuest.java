@@ -26,10 +26,10 @@ import java.util.ArrayList;
 
 import functions.Action;
 import functions.Language;
-import functions.Observable;
+import functions.ObservableFrame;
 import functions.Observer;
 
-public class NewResGuest extends Frame implements Observable {
+public class NewResGuest extends ObservableFrame {
 
 	String[] language;
 	private javax.swing.JLabel jLabel = null;
@@ -40,8 +40,6 @@ public class NewResGuest extends Frame implements Observable {
 	private javax.swing.JTextField jTextField2 = null;
 	private javax.swing.JButton jButton = null;
 	private javax.swing.JButton jButton1 = null;
-
-	private ArrayList<Observer> subscribers;
 
 	/**
 	 * This is the default constructor
@@ -127,7 +125,8 @@ public class NewResGuest extends Frame implements Observable {
 			jTextField.setBounds(121, 35, 164, 21);
 			jTextField.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					notifySubscriber(Action.SET_GUEST);
+					String[] textFields = { jTextField.getText(), jTextField1.getText(), jTextField2.getText() };
+					notifySubscribers(null, textFields, Action.SET_GUEST);
 					dispose();
 				}
 			});
@@ -146,7 +145,8 @@ public class NewResGuest extends Frame implements Observable {
 			jTextField1.setBounds(121, 63, 164, 21);
 			jTextField1.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					notifySubscriber(Action.SET_GUEST);
+					String[] textFields = { jTextField.getText(), jTextField1.getText(), jTextField2.getText() };
+					notifySubscribers(null, textFields, Action.SET_GUEST);
 					dispose();
 				}
 			});
@@ -165,7 +165,8 @@ public class NewResGuest extends Frame implements Observable {
 			jTextField2.setBounds(121, 94, 164, 21);
 			jTextField2.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					notifySubscriber( Action.SET_GUEST);
+					String[] textFields = { jTextField.getText(), jTextField1.getText(), jTextField2.getText() };
+					notifySubscribers(null, textFields, Action.SET_GUEST);
 					dispose();
 				}
 			});
@@ -185,7 +186,8 @@ public class NewResGuest extends Frame implements Observable {
 			jButton.setText(language[21]);
 			jButton.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					notifySubscriber(Action.SET_GUEST);
+					String[] textFields = { jTextField.getText(), jTextField1.getText(), jTextField2.getText() };
+					notifySubscribers(null, textFields, Action.SET_GUEST);
 					dispose();
 				}
 			});
@@ -205,25 +207,12 @@ public class NewResGuest extends Frame implements Observable {
 			jButton1.setText(language[22]);
 			jButton1.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					notifySubscriber(Action.SET_VISIBLE);
+					notifySubscribers(null, null, Action.SET_VISIBLE);
 					dispose();
 				}
 			});
 		}
 		return jButton1;
-	}
-
-	@Override
-	public void addSubscriber(Observer o) {
-		subscribers.add(o);
-	}
-
-	private void notifySubscriber(Action action) {
-		String[] textFields = { jTextField.getText(), jTextField1.getText(), jTextField2.getText() };
-
-		for(Observer o : subscribers) {
-			o.update(null, textFields, action);
-		}
 	}
 
 }

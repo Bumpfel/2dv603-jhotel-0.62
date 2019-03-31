@@ -67,6 +67,7 @@ public class MainWindow extends Frame implements ActionListener, Observer {
 	private static int entries;
 	static Guest g = new Guest();
 	public String[] currentGuest = new String[entries];
+	public String[] tmpGuest = new String[entries];
 	public boolean first = true;
 	public boolean smoker = false;
 	public String[] oldGuest = new String[entries];
@@ -520,10 +521,10 @@ public class MainWindow extends Frame implements ActionListener, Observer {
 			jButton6.setVisible(true);
 			jButton6.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					String[] tst = new String[entries];
-					tst = getTempGuest();
+					// String[] tst = new String[entries];
+					tmpGuest = getTempGuest();
 
-					YesNoDialog yn = new YesNoDialog(tst, language[53], "deleteEntry");
+					YesNoDialog yn = new YesNoDialog(language[53], "deleteEntry");
 					yn.addSubscriber(thisWindow);
 					yn.setVisible(true);
 				}
@@ -972,7 +973,7 @@ public class MainWindow extends Frame implements ActionListener, Observer {
 		thisWindow.jButton6.setVisible(false);
 		thisWindow.setMenuBar(new MainMenu(thisWindow));
 
-		AdditionalDataWindow adw = new AdditionalDataWindow(g, thisWindow, entries);
+		AdditionalDataWindow adw = new AdditionalDataWindow(thisWindow, g, entries);
 		addDataWindow = adw;
 		adw.setVisible(false);
 
@@ -1027,7 +1028,7 @@ public class MainWindow extends Frame implements ActionListener, Observer {
 
 		}
 		else if(action == Action.DELETE_ENTRY) {
-			deleteEntry((String[]) args);
+			deleteEntry(tmpGuest);
 		}
 		else if(action == Action.LOAD_GUEST) {
 			setGuestStatus(true);

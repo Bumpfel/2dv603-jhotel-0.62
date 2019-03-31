@@ -29,18 +29,17 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 import functions.Language;
-import functions.Observable;
+import functions.ObservableThread;
 import functions.Observer;
 import functions.Action;
 import functions.CalendarCreator;
 
-public class checkinGuestThread extends Thread implements Observable {
+public class checkinGuestThread extends ObservableThread {
 
 	private String[] oldguest, newguest;
 	String[] language;
 
 	private CalendarCreator calendarCreator = new CalendarCreator();
-	private ArrayList<Observer> subscribers = new ArrayList<>();
 
 	public checkinGuestThread(String[] oldguest, String[] newguest) {
 		System.out.println("guestThread started");
@@ -127,23 +126,12 @@ public class checkinGuestThread extends Thread implements Observable {
 			oos.flush();
 			oos.close();
 
-			notifySubcribers(Action.SET_CHECKIN_LIST, null);
-			// cw.setCheckinList(reservations);
+			notifySubscribers(null, null, Action.SET_CHECKIN_LIST);
 		} catch (IOException io) {
 			System.out.println(io);
 		}
-		notifySubcribers(Action.THREAD_ENDED, reservations);
+		notifySubscribers(null, reservations, Action.THREAD_ENDED);
 		// cw.setThreadEnded();
 	}
 
-	@Override
-	public void addSubscriber(Observer o) {
-		subscribers.add(o);
-	}
-
-	private void notifySubcribers(Action action, Object reservations) {
-		for(Observer o : subscribers) {
-			o.update(null, reservations, action);
-		}
-	}
 }

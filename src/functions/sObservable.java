@@ -1,6 +1,6 @@
 package functions;
 
-public interface Observable {
+public interface sObservable {
 
     public void addSubscriber(Observer o);
 

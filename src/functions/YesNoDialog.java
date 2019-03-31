@@ -24,7 +24,7 @@ package functions;
 import java.awt.Frame;
 import java.util.ArrayList;
 
-public class YesNoDialog extends Frame implements Observable {
+public class YesNoDialog extends ObservableFrame {
 
 	private javax.swing.JButton jButton = null;
 	private javax.swing.JButton jButton1 = null;
@@ -33,7 +33,6 @@ public class YesNoDialog extends Frame implements Observable {
 	private javax.swing.JTextArea jTextArea = null;
 	String text;
 	String[] language;
-	private ArrayList<Observer> subscribers = new ArrayList<>();
 
 	/**
 	 * This is the default constructor
@@ -84,19 +83,19 @@ public class YesNoDialog extends Frame implements Observable {
 			jButton.addActionListener(new java.awt.event.ActionListener() { 
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					if (action.equals("deleteEntry")) {
-						notifySubscribers(Action.DELETE_ENTRY);
+						notifySubscribers(null, null, Action.DELETE_ENTRY);
 					}
 					else if (action.equals("undoEntry")) {
-						notifySubscribers(Action.CLEAR);
+						notifySubscribers(null, null, Action.CLEAR);
 					}
 					else if (action.equals("undoAddEntry")) {
-						notifySubscribers(Action.RESET);
+						notifySubscribers(null, guest, Action.RESET);
 					}
 					else if (action.equals("deleteRes")) {
-						notifySubscribers(Action.DELETE_RES);
+						notifySubscribers(null, null, Action.DELETE_RES);
 					}
 					else if (action.equals("changeRes")) {
-						notifySubscribers(Action.CHANGE_RES);
+						notifySubscribers(null, null, Action.CHANGE_RES);
 					}
 					dispose();
 				}
@@ -118,7 +117,7 @@ public class YesNoDialog extends Frame implements Observable {
 			jButton1.addActionListener(new java.awt.event.ActionListener() { 
 				public void actionPerformed(java.awt.event.ActionEvent e) {    
 					if (action.equals("undoEntry")) {
-						notifySubscribers(Action.UNDO);
+						notifySubscribers(null, null, Action.UNDO);
 					}
 					dispose();
 				}
@@ -146,13 +145,4 @@ public class YesNoDialog extends Frame implements Observable {
 		return jTextArea;
 	}
 
-	public void addSubscriber(Observer o) {
-		subscribers.add(o);
-	}
-
-	private void notifySubscribers(Action action) {
-		for(Observer o : subscribers) {
-			o.update(null, guest, action);
-		}
-	}
 }  //  @jve:visual-info  decl-index=0 visual-constraint="10,10"

@@ -29,11 +29,11 @@ import java.util.ArrayList;
 
 import functions.Action;
 import functions.Language;
-import functions.Observable;
+import functions.ObservableFrame;
 import functions.Observer;
 import functions.Options;
 
-public class RoomSelectWindow extends Frame implements Runnable, Observable {
+public class RoomSelectWindow extends ObservableFrame implements Runnable {
 
 	private javax.swing.JPanel jPanel = null;
 	private int roomtype;
@@ -86,8 +86,6 @@ public class RoomSelectWindow extends Frame implements Runnable, Observable {
 	String[] availableRooms = new String[168];
 
 	private javax.swing.JProgressBar jProgressBar = null;
-
-	private ArrayList<Observer> subscribers = new ArrayList<>();
 
 	/**
 	 * This is the default constructor
@@ -1750,7 +1748,7 @@ public class RoomSelectWindow extends Frame implements Runnable, Observable {
 			jButton.setBounds(416, 337, 110, 23);
 			jButton.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					notifySubscribers(Action.SELECT_ROOM);
+					notifySubscribers(null, selectedRoom, Action.SELECT_ROOM);
 					dispose();
 				}
 			});
@@ -1833,14 +1831,4 @@ public class RoomSelectWindow extends Frame implements Runnable, Observable {
 		return jProgressBar;
 	}
 
-	@Override
-	public void addSubscriber(Observer o) {
-		subscribers.add(o);
-	}
-
-	private void notifySubscribers(Action action) {
-		for(Observer o : subscribers) {
-			o.update(null, selectedRoom, action);
-		}
-	}
 }  //  @jve:visual-info  decl-index=0 visual-constraint="10,10"

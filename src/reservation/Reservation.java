@@ -29,13 +29,12 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 import functions.Language;
-import functions.Observable;
 import functions.Observer;
 import functions.Action;
 import functions.CalendarCreator;
 import guest.Guest;
 
-public class Reservation extends Thread implements Observer, Observable {
+public class Reservation extends Thread implements Observer {
 	private int arrival;
 	private int departure;
 	private String name;
@@ -49,7 +48,6 @@ public class Reservation extends Thread implements Observer, Observable {
 	private String arrivalS, departureS;
 
 	private CalendarCreator calendarCreator = new CalendarCreator();
-	private ArrayList<Observer> subscribers = new ArrayList<>();
 
 	public Reservation() {
 		Language lang = new Language();
@@ -470,17 +468,6 @@ public class Reservation extends Thread implements Observer, Observable {
 		}
 
 		return available;
-	}
-
-	@Override
-	public void addSubscriber(Observer o) {
-		subscribers.add(o);
-	}
-
-	private void notifySubscribers(Action action) {
-		for(Observer o : subscribers) {
-			o.update(null, null, action);
-		}
 	}
 
 	@Override

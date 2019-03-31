@@ -21,7 +21,6 @@
 **/
 package reservation;
 
-import java.awt.Frame;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -33,11 +32,11 @@ import javax.swing.table.DefaultTableModel;
 import functions.Action;
 import functions.CalendarCreator;
 import functions.Language;
-import functions.Observable;
+import functions.ObservableFrame;
 import functions.Observer;
 import functions.Options;
 
-public class ReservationManagement extends Frame implements Runnable, Observer, Observable {
+public class ReservationManagement extends ObservableFrame implements Runnable, Observer {
 
 	private javax.swing.JPanel jPanel = null;
 	private javax.swing.JPanel jPanel1 = null;
@@ -89,7 +88,6 @@ public class ReservationManagement extends Frame implements Runnable, Observer, 
 	private javax.swing.JLabel jLabel8 = null;
 
 	private CalendarCreator calendarCreator = new CalendarCreator();
-	private ArrayList<Observer> subscribers = new ArrayList<>();
 
 	/**
 	 * This is the default constructor
@@ -138,7 +136,7 @@ public class ReservationManagement extends Frame implements Runnable, Observer, 
 		this.setVisible(true);
 		this.addWindowListener(new java.awt.event.WindowAdapter() {
 			public void windowClosing(java.awt.event.WindowEvent e) {
-				notifySubscribers(Action.SHOW_WINDOW);
+				notifySubscribers(null, null, Action.SHOW_WINDOW);
 				dispose();
 			}
 		});
@@ -1008,9 +1006,7 @@ public class ReservationManagement extends Frame implements Runnable, Observer, 
 			jButton5.setText(language[25]);
 			jButton5.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					UpdateListThread ult = new UpdateListThread();
-					ult.addSubscriber(thisWindow);
-					ult.run();
+					run();
 				}
 			});
 		}
@@ -1098,9 +1094,6 @@ public class ReservationManagement extends Frame implements Runnable, Observer, 
 			nrg.setVisible(true);
 			nrg.addSubscriber(o);
 		}
-		else if(action == Action.UPDATE_LIST) {
-			new Thread(() -> thisWindow.run()).start();
-		}
 		else if(action == Action.SELECT_ROOM)
 			setSelectedRoom((String) args);
 		else if(action == Action.SET_GUEST) {
@@ -1115,16 +1108,5 @@ public class ReservationManagement extends Frame implements Runnable, Observer, 
 			updateTable((ArrayList) args);
 		}
 	}
-
-	@Override
-	public void addSubscriber(Observer o) {
-		subscribers.add(o);
-	}
-
-	private void notifySubscribers(Action action) {
-		for(Observer o : subscribers) {
-			o.update(null, null, action);
-		}
-	} 
 
 }  //  @jve:visual-info  decl-index=0 visual-constraint="10,10"

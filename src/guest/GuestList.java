@@ -21,7 +21,6 @@
 **/
 package guest;
 
-import java.awt.Frame;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -31,10 +30,9 @@ import javax.swing.DefaultListModel;
 
 import functions.Action;
 import functions.Language;
-import functions.Observable;
-import functions.Observer;
+import functions.ObservableFrame;
 
-public class GuestList extends Frame implements Observable {
+public class GuestList extends ObservableFrame {
 	
 	private javax.swing.JScrollPane jScrollPane = null;
 	private javax.swing.JList jList = null;
@@ -46,8 +44,6 @@ public class GuestList extends Frame implements Observable {
 	ArrayList db = new ArrayList();
 	private javax.swing.JButton jButton2 = null;
 	private javax.swing.JTextField jTextField = null;
-
-	private ArrayList<Observer> subscribers = new ArrayList<>();
 
 	/**
 	 * This is the default constructor
@@ -156,7 +152,7 @@ public class GuestList extends Frame implements Observable {
 		
 		entry = guest.getGuest((String[]) sr.get(index));
 					
-		notifySubscribers(entry);
+		notifySubscribers(null, entry, Action.LOAD_GUEST);
 		dispose();
 
 		jList.setModel(new DefaultListModel());
@@ -263,14 +259,4 @@ public class GuestList extends Frame implements Observable {
 		return jTextField;
 	}
 
-	@Override
-	public void addSubscriber(Observer o) {
-		subscribers.add(o);
-	}
-
-	private void notifySubscribers(String[] guest) {
-		for(Observer o : subscribers) {
-			o.update(null, guest, Action.LOAD_GUEST);
-		}
-	}
 }  //  @jve:visual-info  decl-index=0 visual-constraint="10,10"
