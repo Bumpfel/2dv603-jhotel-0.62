@@ -29,23 +29,25 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 import functions.Language;
+import functions.ObservableThread;
 import functions.CalendarCreator;
+import functions.Action;
 
-public class changeResThread extends Thread {
+public class changeResThread extends ObservableThread {
 	
 	// private Reservation res;
-	private ReservationManagement rm;
+	// private ReservationManagement rm;
 	private String[] oldguest, newguest;
 	String[] language;
 
 	private CalendarCreator calendarCreator = new CalendarCreator();
 	
-	public changeResThread(ReservationManagement rm, String[] oldguest, String[] newguest) {
+	public changeResThread(String[] oldguest, String[] newguest) {
 		// Reservation res = new Reservation(rm);
 		Language lang = new Language();
 		language = lang.getLanguage();
 		// this.res = res;
-		this.rm = rm;
+		// this.rm = rm;
 		this.oldguest = oldguest;
 		this.newguest = newguest;
 	}
@@ -67,7 +69,7 @@ public class changeResThread extends Thread {
 		String[] tmp = new String[100000];
 		int index=0;
 		
-		rm.setThreadRunning(language[66]);
+		// rm.setThreadRunning(language[66]);
 		
 		try {
 			FileInputStream fis = new FileInputStream("./db/restable.jh");
@@ -134,7 +136,8 @@ public class changeResThread extends Thread {
 			System.out.println(io);
 		}
 		
-		rm.updateTable(reservations);
-		rm.setThreadEnded();
+		notifySubscribers(null, reservations, Action.UPDATE_TABLE);
+		// rm.updateTable(reservations);
+		// rm.setThreadEnded();
 	}
 }

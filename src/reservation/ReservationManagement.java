@@ -37,6 +37,7 @@ import functions.Language;
 import functions.Observable;
 import functions.Observer;
 import functions.Options;
+import functions.YesNoDialog;
 
 public class ReservationManagement extends Frame implements Runnable, Observer, Observable {
 
@@ -58,9 +59,9 @@ public class ReservationManagement extends Frame implements Runnable, Observer, 
 	private javax.swing.JTextField jTextField3 = null;
 	private javax.swing.JButton jButton3 = null;
 	private javax.swing.JButton jButton4 = null;
-	private Reservation res;
+	// private Reservation res;
 	public static ReservationManagement thisWindow;
-	private ReservationManagement rm;
+	// private ReservationManagement rm;
 	private int roomtype;
 	private String room;
 	String selectedRoom;
@@ -100,8 +101,8 @@ public class ReservationManagement extends Frame implements Runnable, Observer, 
 	public ReservationManagement() {
 		Options options = new Options();
 		settings = options.getSettings();
-		Reservation r = new Reservation(thisWindow);
-		this.res = r;
+		// Reservation r = new Reservation();
+		// this.res = r;
 		thisWindow = this;
 		Language lang = new Language();
 		language = lang.getLanguage();
@@ -232,7 +233,7 @@ public class ReservationManagement extends Frame implements Runnable, Observer, 
 			jTextField1.setText("");
 			jTextField1.addFocusListener(new java.awt.event.FocusAdapter() {
 				public void focusLost(java.awt.event.FocusEvent e) {
-					Reservation res = new Reservation(rm);
+					// Reservation res = new Reservation(rm);
 
 					int days = 0;
 					int startday;
@@ -300,7 +301,7 @@ public class ReservationManagement extends Frame implements Runnable, Observer, 
 			});
 			jRadioButton.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					Reservation res = new Reservation(thisWindow);
+					// Reservation res = new Reservation(thisWindow);
 					if (jTextField.getText().equals("") || jTextField1.getText().equals("")
 							|| (calendarCreator.correctDate(jTextField.getText()) == false)
 							|| (calendarCreator.correctDate(jTextField1.getText()) == false)) {
@@ -340,7 +341,7 @@ public class ReservationManagement extends Frame implements Runnable, Observer, 
 			});
 			jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					Reservation res = new Reservation(thisWindow);
+					// Reservation res = new Reservation(thisWindow);
 					if (jTextField.getText().equals("") || jTextField1.getText().equals("")
 							|| (calendarCreator.correctDate(jTextField.getText()) == false)
 							|| (calendarCreator.correctDate(jTextField1.getText()) == false)) {
@@ -381,7 +382,7 @@ public class ReservationManagement extends Frame implements Runnable, Observer, 
 			});
 			jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					Reservation res = new Reservation(thisWindow);
+					// Reservation res = new Reservation(thisWindow);
 					if (jTextField.getText().equals("") || jTextField1.getText().equals("")
 							|| (calendarCreator.correctDate(jTextField.getText()) == false)
 							|| (calendarCreator.correctDate(jTextField1.getText()) == false)) {
@@ -422,7 +423,7 @@ public class ReservationManagement extends Frame implements Runnable, Observer, 
 			});
 			jRadioButton3.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					Reservation res = new Reservation(thisWindow);
+					// Reservation res = new Reservation(thisWindow);
 					if (jTextField.getText().equals("") || jTextField1.getText().equals("")
 							|| (calendarCreator.correctDate(jTextField.getText()) == false)
 							|| (calendarCreator.correctDate(jTextField1.getText()) == false)) {
@@ -463,7 +464,7 @@ public class ReservationManagement extends Frame implements Runnable, Observer, 
 			});
 			jRadioButton4.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					Reservation res = new Reservation(thisWindow);
+					// Reservation res = new Reservation(thisWindow);
 					if (jTextField.getText().equals("") || jTextField1.getText().equals("")
 							|| (calendarCreator.correctDate(jTextField.getText()) == false)
 							|| (calendarCreator.correctDate(jTextField1.getText()) == false)) {
@@ -520,11 +521,11 @@ public class ReservationManagement extends Frame implements Runnable, Observer, 
 							|| jLabel8.getText().equals("")) {
 						// nada
 					} else {
-						Reservation res2 = new Reservation(thisWindow, jTextField.getText(), jTextField1.getText(),
+						Reservation res2 = new Reservation(jTextField.getText(), jTextField1.getText(),
 								jTextField3.getText(), selectedRoom, jTextField2.getText());
 						res2.start();
+						run();
 						clearFields();
-
 					}
 				}
 			});
@@ -690,7 +691,7 @@ public class ReservationManagement extends Frame implements Runnable, Observer, 
 	 */
 	public int getDaysOfMonth() {
 		int daysInMonth = 0;
-		Reservation res = new Reservation(thisWindow);
+		// Reservation res = new Reservation();
 
 		if ((jComboBox.getSelectedIndex() == 0) || (jComboBox.getSelectedIndex() == 2)
 				|| (jComboBox.getSelectedIndex() == 4) || (jComboBox.getSelectedIndex() == 6)
@@ -711,6 +712,7 @@ public class ReservationManagement extends Frame implements Runnable, Observer, 
 	}
 
 	public void run() {
+		setThreadRunning(language[66]);
 		DefaultTableModel tm = (DefaultTableModel) jTable.getModel();
 		ArrayList al = new ArrayList();
 		String[] availableRooms;
@@ -776,6 +778,7 @@ public class ReservationManagement extends Frame implements Runnable, Observer, 
 
 		tm.setColumnIdentifiers(columnid);
 		jTable.setModel(tm);
+		setThreadEnded();
 	}
 
 	public void updateTable(ArrayList al) {
@@ -1099,6 +1102,7 @@ public class ReservationManagement extends Frame implements Runnable, Observer, 
 
 	@Override
 	public void update(Observer o, Object args, Action action) {
+		System.out.println("ResMgmt notified of " + action);
 		if(action == Action.GET_GUEST_DB)
 			setOldGuest((String[]) args);
 		else if(action == Action.LOAD_GUEST)
@@ -1109,9 +1113,7 @@ public class ReservationManagement extends Frame implements Runnable, Observer, 
 			nrg.addSubscriber(o);
 		}
 		else if(action == Action.UPDATE_LIST) {
-			setThreadRunning(language[66]);
-			run();
-			setThreadEnded();
+			new Thread(() -> thisWindow.run()).start();
 		}
 		else if(action == Action.SELECT_ROOM)
 			setSelectedRoom((String) args);
@@ -1119,6 +1121,28 @@ public class ReservationManagement extends Frame implements Runnable, Observer, 
 			String[] guest = (String[]) args;
 			setGuest(guest[0], guest[1], guest[2]);
 		}
+		else if(action == Action.THREAD_RUNNING) {
+			setThreadRunning((String) args);
+		}
+		else if(action == Action.UPDATE_TABLE) {
+			setThreadEnded();
+			updateTable((ArrayList) args);
+		}
+
+		// else if(action == Action.CHANGE_RES_CONFIRMATION) {
+		// 	Object[] newArgs = (Object[]) args;
+		// 	String[] gst = (String[]) newArgs[0];
+		// 	String[] newGst = (String[]) newArgs[1];
+
+		// 	YesNoDialog ynd = new YesNoDialog(newGst, gst, language[83], "changeRes");
+		// 	ynd.addSubscriber(thisWindow);
+		// 	ynd.setVisible(true);
+		// }
+		// else if(action == Action.DELETE_RES_CONFIRMATION) {
+		// 	YesNoDialog ynd = new YesNoDialog((String[]) args, language[83], "deleteRes");
+		// 	ynd.addSubscriber(thisWindow);
+		// 	ynd.setVisible(true);
+		// }
 	}
 
 	@Override

@@ -97,19 +97,19 @@ public class ResGuestList extends Frame implements Observer, Observable {
 		Guest guest = new Guest();
 		int entries = guest.getEntries();
 		ArrayList db = guest.getDB();
-		String[] currentGuest;
+		String[] currentGuest = null;
 		String tmp;
 		int count = 0;
 
 		for (int i = 0; i < db.size(); ++i) {
 			currentGuest = (String[]) db.get(i);
 			tmp = (currentGuest[0] + " - " + currentGuest[1] + ", " + currentGuest[2] + " ");
-			notifySubscribers(currentGuest, Action.GET_GUEST_DB);
 			// rm.setOldGuest(currentGuest);
 			sr.add(count, currentGuest);
 			++count;
 			dlm.addElement((Object) tmp);
 		}
+		notifySubscribers(currentGuest, Action.GET_GUEST_DB);
 		jList.setModel(dlm);
 	}
 

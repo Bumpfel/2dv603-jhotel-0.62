@@ -87,7 +87,7 @@ public class RoomSelectWindow2 extends Frame implements Runnable {
 	/**
 	 * This is the default constructor
 	 */
-	public RoomSelectWindow2(ReservationManagement rm, int roomtype, int startday, int endday, ArrayList reservations) {
+	public RoomSelectWindow2(int roomtype, int startday, int endday, ArrayList reservations) {
 		this.startday = startday;
 		this.endday = endday;
 		this.roomtype = roomtype;

@@ -2896,7 +2896,7 @@ public class OptionsWindow extends Frame{
 			}*/
 			ReservationManagement rm = new ReservationManagement();
 			rm.setVisible(false);
-			Reservation res = new Reservation(rm);
+			Reservation res = new Reservation();
 			res.createResTable();
 			rm.dispose();
 

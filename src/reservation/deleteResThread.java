@@ -29,23 +29,26 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 import functions.Language;
+import functions.ObservableThread;
+import functions.Observer;
+import functions.Action;
 import functions.CalendarCreator;
 
-public class deleteResThread extends Thread{
-	
+public class deleteResThread extends ObservableThread {
+
 	// private Reservation res;
-	private ReservationManagement rm;
+	// private ReservationManagement rm;
 	private String[] reservation;
 	private String[] language;
 
 	private CalendarCreator calendarCreator = new CalendarCreator();
-	
-	public deleteResThread(ReservationManagement rm, String[] reservation) {
+
+	public deleteResThread(String[] reservation) {
 		// Reservation res = new Reservation(rm);
 		Language lang = new Language();
 		language = lang.getLanguage();
 		// this.res = res;
-		this.rm = rm;
+		// this.rm = rm;
 		this.reservation = reservation;
 	}
 
@@ -53,67 +56,63 @@ public class deleteResThread extends Thread{
 		deleteReservation(reservation);
 	}
 
-
 	public void deleteReservation(String[] reservation) {
-		String toDelete = reservation[0] + " - " + reservation[1] + ", " + reservation[2] + ": " + reservation[3] + "; " + reservation[4];
+		String toDelete = reservation[0] + " - " + reservation[1] + ", " + reservation[2] + ": " + reservation[3] + "; "
+				+ reservation[4];
 		String roomtoDelete = reservation[5];
-		
+
 		int firstday = calendarCreator.createCal(reservation[3]);
 		int lastday = calendarCreator.createCal(reservation[4]);
-		
+
 		ArrayList reservations = new ArrayList();
 		String[] availableRooms = new String[168];
 		String[] tmp = new String[100000];
-		int index=0;
-		
-		rm.setThreadRunning(language[80]);
-		
+		int index = 0;
+
+		// rm.setThreadRunning(language[80]);
+
 		try {
 			FileInputStream fis = new FileInputStream("./db/restable.jh");
 			ObjectInputStream ois = new ObjectInputStream(fis);
-			
+
 			reservations = (ArrayList) ois.readObject();
 			ois.close();
-			
-			availableRooms = (String[]) reservations.get(reservations.size()-1);
-			
+
+			availableRooms = (String[]) reservations.get(reservations.size() - 1);
+
 			// Determine room - index
-			loop1:
-			for (int i=0; i<availableRooms.length; ++i) {
+			loop1: for (int i = 0; i < availableRooms.length; ++i) {
 				if (availableRooms[i].equals(roomtoDelete)) {
 					index = i;
 					break loop1;
 				}
 			}
 
-			
 			tmp = (String[]) reservations.get(index);
-			for (int i=firstday; i<lastday; ++i) {
+			for (int i = firstday; i < lastday; ++i) {
 				tmp[i] = null;
 			}
 			reservations.set(index, tmp);
-		}
-		catch (ClassNotFoundException cnf) {
+		} catch (ClassNotFoundException cnf) {
 			System.out.println(cnf + " Reservation.makeReservation()");
-		}
-		catch (IOException io) {
+		} catch (IOException io) {
 			System.out.println(io + " Reservation.makeReservation()");
 		}
-		
+
 		try {
 			FileOutputStream fos = new FileOutputStream("./db/restable.jh");
 			ObjectOutputStream oos = new ObjectOutputStream(fos);
-			
+
 			oos.writeObject(reservations);
 			oos.flush();
 			oos.close();
-		}
-		catch (IOException io) {
+		} catch (IOException io) {
 			System.out.println(io);
 		}
 
-		rm.updateTable(reservations);
-		rm.setThreadEnded();
+		notifySubscribers(null, reservations, Action.UPDATE_TABLE);
+		// rm.updateTable(reservations);
+		// rm.setThreadEnded();
 
 	}
 }

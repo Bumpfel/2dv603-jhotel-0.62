@@ -33,7 +33,7 @@ public class YesNoDialog extends Frame implements Observable {
 	private javax.swing.JButton jButton = null;
 	private javax.swing.JButton jButton1 = null;
 	SearchWindow sw;
-	ReservationManagement rm;
+	// ReservationManagement rm;
 	String name, firstlabel, thirdlabel, action, firstname;
 	String[] guest, oldguest, newguest;
 	private javax.swing.JTextArea jTextArea = null;
@@ -44,7 +44,7 @@ public class YesNoDialog extends Frame implements Observable {
 	/**
 	 * This is the default constructor
 	 */
-	public YesNoDialog(String[] guest, String text, String action) {
+	public YesNoDialog(String[] guest, String text, String action) { //TODO shouldnt need guest
 		Language lang = new Language();
 		language = lang.getLanguage();
 		this.guest = guest;
@@ -54,23 +54,23 @@ public class YesNoDialog extends Frame implements Observable {
 		initialize();
 	}
 	
-	public YesNoDialog(ReservationManagement rm, String[] guest, String text, String action) {
-		Language lang = new Language();
-		language = lang.getLanguage();
-		this.rm = rm;
-		this.guest = guest;
-		this.action = action;
-		this.text = text;
+	// public YesNoDialog(String[] guest, String text, String action) {
+	// 	Language lang = new Language();
+	// 	language = lang.getLanguage();
+	// 	// this.rm = rm;
+	// 	this.guest = guest;
+	// 	this.action = action;
+	// 	this.text = text;
 		
-		initialize();
-	}
+	// 	initialize();
+	// }
 	
-	public YesNoDialog(ReservationManagement rm, String[] newguest, String[] oldguest, String text, String action) {
+	public YesNoDialog(String text, String action) {
 		Language lang = new Language();
 		language = lang.getLanguage();
-		this.rm = rm;
-		this.newguest = newguest;
-		this.oldguest = oldguest;
+		// this.rm = rm;
+		// this.newguest = newguest;
+		// this.oldguest = oldguest;
 		this.action = action;
 		this.text = text;
 		
@@ -116,14 +116,14 @@ public class YesNoDialog extends Frame implements Observable {
 						// mw.addDataWindowReset(guest);
 					}
 					else if (action.equals("deleteRes")) {
-						Reservation res = new Reservation(rm);
-						notifySubscribers(Action.DISPOSE);
-						res.deleteReservation(guest);	
+						// Reservation res = new Reservation();
+						notifySubscribers(Action.DELETE_RES);
+						// res.deleteReservation(guest);	
 					}
 					else if (action.equals("changeRes")) {
-						Reservation res = new Reservation(rm);
-						notifySubscribers(Action.DISPOSE);
-						res.changeReservation(oldguest, newguest);
+						// Reservation res = new Reservation();
+						notifySubscribers(Action.CHANGE_RES);
+						// res.changeReservation(oldguest, newguest);
 					}
 					dispose();
 				}

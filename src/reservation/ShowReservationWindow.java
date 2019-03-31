@@ -29,9 +29,10 @@ import functions.Action;
 import functions.CalendarCreator;
 import functions.Language;
 import functions.Observable;
+import functions.ObservableFrame;
 import functions.Observer;
 
-public class ShowReservationWindow extends Frame implements Observer, Observable {
+public class ShowReservationWindow extends ObservableFrame implements Observer {
 
 	private javax.swing.JLabel jLabel = null;
 	private javax.swing.JLabel jLabel1 = null;
@@ -51,6 +52,7 @@ public class ShowReservationWindow extends Frame implements Observer, Observable
 	String[] language;
 	private String company, name, firstname, arrival, departure, room, checkedin, price;
 	private String[] gst = new String[8];
+	private String[] newgst = new String[8];
 	private ShowReservationWindow thisWindow;
 	private boolean edited = false;
 	private ArrayList reservations;
@@ -65,8 +67,7 @@ public class ShowReservationWindow extends Frame implements Observer, Observable
 	private javax.swing.JTextField jTextField6 = null;
 	private javax.swing.JLabel jLabel8 = null;
 	boolean checkout = false;
-	
-	private ArrayList<Observer> subscribers = new ArrayList<>();
+
 	private CalendarCreator calendarCreator = new CalendarCreator();
 
 	/**
@@ -266,7 +267,6 @@ public class ShowReservationWindow extends Frame implements Observer, Observable
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					if (edited) {
 						// Reservation res = new Reservation(rm);
-						String[] newgst = new String[8];
 						newgst[0] = jTextField2.getText();
 						newgst[1] = jTextField3.getText();
 						newgst[2] = jTextField4.getText();
@@ -289,7 +289,8 @@ public class ShowReservationWindow extends Frame implements Observer, Observable
 
 						edited = false;
 
-						YesNoDialog ynd = new YesNoDialog(rm, newgst, gst, language[83], "changeRes");
+						// notifySubscriber(Action.CHANGE_RES_CONFIRMATION, newgst);
+						YesNoDialog ynd = new YesNoDialog(language[83], "changeRes");
 						ynd.addSubscriber(thisWindow);
 						ynd.setVisible(true);
 
@@ -317,7 +318,8 @@ public class ShowReservationWindow extends Frame implements Observer, Observable
 			}
 			jButton1.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					YesNoDialog ynd = new YesNoDialog(rm, gst, language[83], "deleteRes");
+					// notifySubscriber(Action.DELETE_RES_CONFIRMATION, null);
+					YesNoDialog ynd = new YesNoDialog(gst, language[83], "deleteRes");
 					ynd.addSubscriber(thisWindow);
 					ynd.setVisible(true);
 				}
@@ -484,9 +486,9 @@ public class ShowReservationWindow extends Frame implements Observer, Observable
 			jButton3.setEnabled(false);
 			jButton3.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					Reservation res = new Reservation(rm);
-					RoomSelectWindow2 rsm = new RoomSelectWindow2(rm, 1,
-					calendarCreator.createCal(jTextField.getText()), calendarCreator.createCal(jTextField1.getText()), reservations);
+					// Reservation res = new Reservation(rm);
+					RoomSelectWindow2 rsm = new RoomSelectWindow2(1,
+						calendarCreator.createCal(jTextField.getText()), calendarCreator.createCal(jTextField1.getText()), reservations);
 					new Thread(rsm).start();
 					rsm.addSubscriber(thisWindow);
 					rsm.setVisible(true);
@@ -603,17 +605,43 @@ public class ShowReservationWindow extends Frame implements Observer, Observable
 
 	@Override
 	public void update(Observer o, Object args, Action action) {
+		System.out.println("SRW notified of " + action);
 		if(action == Action.SELECT_ROOM) {
 			setSelectedRoom((String) args);
 		}
-		else if(action == Action.DISPOSE) {
+		else if(action == Action.DELETE_RES) {
+			deleteResThread drt = new deleteResThread(gst);
+			notifySubscribers(null, language[80], Action.THREAD_RUNNING);
+			drt.addSubscriber(this);
+			drt.start();
+			// drt.deleteReservation((String[]) args);
 			dispose();
+		}
+		else if(action == Action.CHANGE_RES) {
+			changeResThread crt = new changeResThread(gst, newgst);
+			notifySubscribers(null, language[66], Action.THREAD_RUNNING);
+			crt.addSubscriber(this);
+			crt.start();
+			// crt.changeReservation(arrival, departure, name, room, guest);
+			dispose();
+		}
+		else if(action == Action.UPDATE_TABLE) { // ship to ReservationManagement
+			notifySubscribers(null, args, Action.UPDATE_TABLE);
 		}
 	}
 
-	@Override
-	public void addSubscriber(Observer o) {
-		subscribers.add(o);
-	}
+// @Override
+	// public void addSubscriber(Observer o) {
+	// 	subscribers.add(o);
+	// }
+
+	// private void notifySubscriber(Action action, Object args) {
+	// 	for(Observer o : subscribers) {
+	// 		if(action == Action.CHANGE_RES_CONFIRMATION)
+	// 			o.update(null, new Object[] { gst, args }, action); // horrible hidden dependency, but what do you do with this P.O.S. base...
+	// 		else
+	// 			o.update(null, gst, action);
+	// 	}
+	// }
 
 }  //  @jve:visual-info  decl-index=0 visual-constraint="10,10"
