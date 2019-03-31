@@ -32,9 +32,10 @@ import javax.swing.DefaultListModel;
 import functions.Action;
 import functions.Language;
 import functions.Observer;
+import guest.checkinGuestThread;
 import main.MainWindow;
 import reservation.Reservation;
-import reservation.ReservationManagement;
+// import reservation.ReservationManagement;
 import reservation.ShowReservationWindow;
 
 public class CheckinWindow extends Frame implements Observer {
@@ -53,7 +54,7 @@ public class CheckinWindow extends Frame implements Observer {
 	DefaultListModel dlm_checkout = new DefaultListModel();
 	CheckinWindow thisWindow;
 	MainWindow mw;
-	ReservationManagement rm;
+	// ReservationManagement rm;
 	ArrayList al;
 
 	private javax.swing.JProgressBar jProgressBar = null;
@@ -165,8 +166,9 @@ public class CheckinWindow extends Frame implements Observer {
 						String[] tmp2 = initializeLists.getCheckin(index);
 						tmp[6] = "true";
 
-						Reservation res = new Reservation(thisWindow);
-						res.checkinGuest(tmp2, tmp);
+						// Reservation res = new Reservation(thisWindow);
+						// res.checkinGuest(tmp2, tmp);
+						new checkinGuestThread(thisWindow, tmp2, tmp).start();
 					}
 				}
 			};
@@ -222,8 +224,9 @@ public class CheckinWindow extends Frame implements Observer {
 						String[] tmp2 = initializeLists.getCheckin(index);
 						tmp[6] = "true";
 
-						Reservation res = new Reservation(thisWindow);
-						res.checkinGuest(tmp2, tmp);
+						// Reservation res = new Reservation(thisWindow);
+						// res.checkinGuest(tmp2, tmp);
+						new checkinGuestThread(thisWindow, tmp2, tmp).start();
 					}
 				}
 			});

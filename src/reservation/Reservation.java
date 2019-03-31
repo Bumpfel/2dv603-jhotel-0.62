@@ -32,7 +32,7 @@ import functions.Language;
 import checkin.CheckinWindow;
 import functions.CalendarCreator;
 import guest.Guest;
-import guest.checkinGuestThread;
+// import guest.checkinGuestThread;
 
 public class Reservation extends Thread {
 	private ReservationManagement rm;
@@ -100,10 +100,10 @@ public class Reservation extends Thread {
 		crt.start();
 	}
 	
-	public void checkinGuest(String[] oldguest, String[] newguest) {
-		checkinGuestThread cgt = new checkinGuestThread(cw, oldguest, newguest);
-		cgt.start();
-	}
+	// public void checkinGuest(String[] oldguest, String[] newguest) {
+	// 	checkinGuestThread cgt = new checkinGuestThread(cw, oldguest, newguest);
+	// 	cgt.start();
+	// }
 	
 	public void makeReservation(int arrival, int departure, String name, String room) {
 		ArrayList reservations = new ArrayList();
