@@ -29,7 +29,6 @@ import java.awt.event.ActionListener;
 import java.util.Arrays;
 
 import backend.Action;
-import backend.ActionCommandsMW;
 import backend.Guest;
 import backend.Language;
 import backend.MainMenu;
@@ -925,7 +924,38 @@ public class MainWindow extends Frame implements ActionListener, Observer {
 
 	public void actionPerformed(ActionEvent event) {
 		String command = event.getActionCommand();
-		ActionCommandsMW action = new ActionCommandsMW(thisWindow, command);
+		// ActionCommandsMW action = new ActionCommandsMW(thisWindow, command);
+		if (command.equals(language[0])) {
+			newGuest();
+		}
+		else if (command.equals(language[1])) {
+			searchGuest();
+		}
+		else if (command.equals(language[2])) {
+			saveGuest();	
+		}
+		else if (command.equals(language[4])) {
+			ImportWindow iw = new ImportWindow();
+			iw.setVisible(true);
+			//importDB();
+		}
+		else if (command.equals(language[3])) {
+			ExportWindow ew = new ExportWindow();
+			ew.setVisible(true);
+			//exportDB();
+		}
+		else if (command.equals(language[6])) {
+			OptionsWindow ow = new OptionsWindow(this);
+			ow.setVisible(true);
+		}
+		else if (command.equals(language[24])) {
+			System.exit(0);
+		}
+		else if (command.equals(language[87])) {
+			AboutWindow aw = new AboutWindow();
+			aw.setVisible(true);
+		}
+
 	}
 
 	public static void main(String[] args) {
