@@ -29,12 +29,15 @@ import java.util.ArrayList;
 
 import javax.swing.DefaultListModel;
 
+import backend.Action;
 import backend.Guest;
 import backend.Language;
+import backend.Observable;
+import backend.Observer;
 
-public class GuestList extends Frame {
+public class GuestList extends Frame implements Observable {
 	
-	private MainWindow mw;
+	// private MainWindow mw;
 	private javax.swing.JScrollPane jScrollPane = null;
 	private javax.swing.JList jList = null;
 	private javax.swing.JButton jButton = null;
@@ -45,11 +48,14 @@ public class GuestList extends Frame {
 	ArrayList db = new ArrayList();
 	private javax.swing.JButton jButton2 = null;
 	private javax.swing.JTextField jTextField = null;
+
+	private ArrayList<Observer> subscribers = new ArrayList<>();
+
 	/**
 	 * This is the default constructor
 	 */
-	public GuestList(MainWindow mw) {
-		this.mw = mw;
+	public GuestList() {
+		// this.mw = mw;
 		Language lang = new Language();
 		language = lang.getLanguage();
 		Guest guest = new Guest();
@@ -153,12 +159,13 @@ public class GuestList extends Frame {
 		
 		entry = guest.getGuest((String[]) sr.get(index));
 					
-		mw.setGuestStatus(true);
-		mw.setVisible(true);
-		mw.setEnabled(true);
-		mw.setGuest(entry);
-		mw.setCurrentGuest();
-		mw.setDeleted(true);
+		// mw.setGuestStatus(true);
+		// mw.setVisible(true);
+		// mw.setEnabled(true);
+		// mw.setGuest(entry);
+		// mw.setCurrentGuest();
+		// mw.setDeleted(true);
+		notifySubscribers(entry);
 		dispose();
 
 		jList.setModel(new DefaultListModel());
@@ -264,5 +271,16 @@ public class GuestList extends Frame {
 			jTextField.setBounds(13, 28, 224, 20);
 		}
 		return jTextField;
+	}
+
+	@Override
+	public void addSubscriber(Observer o) {
+		subscribers.add(o);
+	}
+
+	private void notifySubscribers(String[] guest) {
+		for(Observer o : subscribers) {
+			o.update(null, guest, Action.LOAD_GUEST);
+		}
 	}
 }  //  @jve:visual-info  decl-index=0 visual-constraint="10,10"

@@ -964,7 +964,8 @@ public class MainWindow extends Frame implements ActionListener, Observer {
 			jButton9.setFont(new java.awt.Font("Dialog", java.awt.Font.PLAIN, 10));
 			jButton9.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					GuestList gl = new GuestList(thisWindow);
+					GuestList gl = new GuestList();
+					gl.addSubscriber(thisWindow);
 					gl.setVisible(true);
 					gl.getGuestDB();
 				}
@@ -1008,7 +1009,6 @@ public class MainWindow extends Frame implements ActionListener, Observer {
 			setCurrentGuest();
 			setDeleted(true);
 		}
-
 
 	}
 }  //  @jve:visual-info  decl-index=0 visual-constraint="22,10"
