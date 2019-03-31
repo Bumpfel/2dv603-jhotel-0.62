@@ -21,16 +21,14 @@
 **/
 package reservation;
 
-import java.awt.Frame;
 import java.util.ArrayList;
 
-import functions.YesNoDialog;
 import functions.Action;
 import functions.CalendarCreator;
 import functions.Language;
-import functions.Observable;
 import functions.ObservableFrame;
 import functions.Observer;
+import functions.YesNoDialog;
 
 public class ShowReservationWindow extends ObservableFrame implements Observer {
 
@@ -47,8 +45,6 @@ public class ShowReservationWindow extends ObservableFrame implements Observer {
 	private javax.swing.JTextField jTextField3 = null;
 	private javax.swing.JTextField jTextField4 = null;
 
-	private ReservationManagement rm;
-	private String[] guest;
 	String[] language;
 	private String company, name, firstname, arrival, departure, room, checkedin, price;
 	private String[] gst = new String[8];
@@ -74,7 +70,7 @@ public class ShowReservationWindow extends ObservableFrame implements Observer {
 	 * This is the default constructor
 	 */
 
-	public ShowReservationWindow(ReservationManagement rm, String[] guest, ArrayList reservations) {
+	public ShowReservationWindow(String[] guest, ArrayList reservations) {
 		Language lang = new Language();
 		language = lang.getLanguage();
 		this.thisWindow = this;
@@ -92,8 +88,7 @@ public class ShowReservationWindow extends ObservableFrame implements Observer {
 		initialize();
 	}
 
-	public ShowReservationWindow(ReservationManagement rm, Object guest, ArrayList reservations) {
-		this.rm = rm;
+	public ShowReservationWindow(Object guest, ArrayList reservations) {
 		this.thisWindow = this;
 		this.reservations = reservations;
 
@@ -614,7 +609,6 @@ public class ShowReservationWindow extends ObservableFrame implements Observer {
 			notifySubscribers(null, language[80], Action.THREAD_RUNNING);
 			drt.addSubscriber(this);
 			drt.start();
-			// drt.deleteReservation((String[]) args);
 			dispose();
 		}
 		else if(action == Action.CHANGE_RES) {
@@ -622,26 +616,11 @@ public class ShowReservationWindow extends ObservableFrame implements Observer {
 			notifySubscribers(null, language[66], Action.THREAD_RUNNING);
 			crt.addSubscriber(this);
 			crt.start();
-			// crt.changeReservation(arrival, departure, name, room, guest);
 			dispose();
 		}
 		else if(action == Action.UPDATE_TABLE) { // ship to ReservationManagement
 			notifySubscribers(null, args, Action.UPDATE_TABLE);
 		}
 	}
-
-// @Override
-	// public void addSubscriber(Observer o) {
-	// 	subscribers.add(o);
-	// }
-
-	// private void notifySubscriber(Action action, Object args) {
-	// 	for(Observer o : subscribers) {
-	// 		if(action == Action.CHANGE_RES_CONFIRMATION)
-	// 			o.update(null, new Object[] { gst, args }, action); // horrible hidden dependency, but what do you do with this P.O.S. base...
-	// 		else
-	// 			o.update(null, gst, action);
-	// 	}
-	// }
 
 }  //  @jve:visual-info  decl-index=0 visual-constraint="10,10"

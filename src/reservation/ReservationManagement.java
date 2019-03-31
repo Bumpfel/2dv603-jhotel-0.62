@@ -59,9 +59,7 @@ public class ReservationManagement extends Frame implements Runnable, Observer, 
 	private javax.swing.JTextField jTextField3 = null;
 	private javax.swing.JButton jButton3 = null;
 	private javax.swing.JButton jButton4 = null;
-	// private Reservation res;
 	public static ReservationManagement thisWindow;
-	// private ReservationManagement rm;
 	private int roomtype;
 	private String room;
 	String selectedRoom;
@@ -865,8 +863,7 @@ public class ReservationManagement extends Frame implements Runnable, Observer, 
 						index[1] = jTable.getSelectedColumn();
 
 						// System.out.println(jTable.getValueAt(index[0], index[1]));
-						ShowReservationWindow srw = new ShowReservationWindow(thisWindow,
-								jTable.getValueAt(index[0], index[1]), restable);
+						ShowReservationWindow srw = new ShowReservationWindow(jTable.getValueAt(index[0], index[1]), restable);
 						srw.addSubscriber(thisWindow);
 						srw.setVisible(true);
 					} catch (NullPointerException npe) {
