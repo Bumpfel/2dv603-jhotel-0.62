@@ -32,9 +32,9 @@ import javax.swing.DefaultListModel;
 import frontend.CheckinWindow;
 
 
-public class InitializeLists extends Thread {
+public class InitializeLists extends Thread implements Observable {
 
-	private CheckinWindow cw;
+	// private CheckinWindow cw;
 	private DefaultListModel dlm_checkin, dlm_checkout;
 	private String[] language;
 	private String company, name, firstname, arrival, departure, room, checkedin, price;
@@ -46,9 +46,10 @@ public class InitializeLists extends Thread {
 	private ArrayList al;
 
 	private CalendarCreator calendarCreator = new CalendarCreator();
+	private ArrayList<Observer> subscribers = new ArrayList<>();
 
-	public InitializeLists(CheckinWindow cw, DefaultListModel dlm_checkin, DefaultListModel dlm_checkout) {
-		this.cw = cw;
+	public InitializeLists(DefaultListModel dlm_checkin, DefaultListModel dlm_checkout) {
+		// this.cw = cw;
 		this.dlm_checkin = dlm_checkin;
 		this.dlm_checkout = dlm_checkout;
 		
@@ -56,8 +57,8 @@ public class InitializeLists extends Thread {
 		language = lang.getLanguage();
 	}
 	
-	public InitializeLists(CheckinWindow cw, DefaultListModel dlm_checkin, DefaultListModel dlm_checkout, String date) {
-		this.cw = cw;
+	public InitializeLists(DefaultListModel dlm_checkin, DefaultListModel dlm_checkout, String date) {
+		// this.cw = cw;
 		this.dlm_checkin = dlm_checkin;
 		this.dlm_checkout = dlm_checkout;
 		this.other = true;
@@ -84,7 +85,7 @@ public class InitializeLists extends Thread {
 			
 			dlm_checkin.clear();
 			dlm_checkout.clear();
-			cw.setThreadRunning(language[65]);
+			// cw.setThreadRunning(language[65]);
 			
 			ArrayList reservations = new ArrayList();
 			String[] availableRooms;
@@ -113,7 +114,7 @@ public class InitializeLists extends Thread {
 			}
 			
 			year = Integer.toString(cal.get(Calendar.YEAR));
-			Reservation res = new Reservation(cw);
+			// Reservation res = new Reservation(cw);
 			int date;
 			if (other) {
 				date = calendarCreator.createCal(otherdate);
@@ -205,7 +206,8 @@ public class InitializeLists extends Thread {
 				}
 			}	
 			
-			cw.setInitialized();		
+			// cw.setInitialized();
+			notifySubscriber(Action.INITIALIZED);
 		}
 		catch (IOException io) {
 			System.out.println(io);
@@ -223,7 +225,7 @@ public class InitializeLists extends Thread {
 		
 			dlm_checkin.clear();
 			dlm_checkout.clear();
-			cw.setThreadRunning(language[65]);
+			// cw.setThreadRunning(language[65]);
 			ArrayList reservations = altmp;
 			String[] availableRooms;
 			String[] currentRoom;
@@ -251,7 +253,7 @@ public class InitializeLists extends Thread {
 			}
 			
 			year = Integer.toString(cal.get(Calendar.YEAR));
-			Reservation res = new Reservation(cw);
+			// Reservation res = new Reservation(cw);
 			int date;
 			if (other) {
 				date = calendarCreator.createCal(otherdate);
@@ -332,7 +334,19 @@ public class InitializeLists extends Thread {
 				}
 			}	
 			
-			cw.setInitialized();		
+			// cw.setInitialized();
+			notifySubscriber(Action.INITIALIZED);		
+	}
+
+	@Override
+	public void addSubscriber(Observer o) {
+		subscribers.add(o);
+	}
+
+	private void notifySubscriber(Action action) {
+		for(Observer o : subscribers) {
+			o.update(null, null, action);
+		}
 	}
 
 

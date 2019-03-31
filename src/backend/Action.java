@@ -15,7 +15,8 @@ package backend;
         NEW_RES_GUEST,
         UPDATE_LIST,
         SET_GUEST,
-
+        INITIALIZED,
+        
     }
 
     // public enum ReservationAction {
