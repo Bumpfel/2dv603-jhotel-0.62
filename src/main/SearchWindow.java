@@ -19,9 +19,10 @@
  *
  *
 **/
-package album;
+package main;
 
 import java.awt.Frame;
+import java.awt.GraphicsConfiguration;
 import java.awt.HeadlessException;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -30,11 +31,13 @@ import java.util.ArrayList;
 
 import javax.swing.DefaultListModel;
 
+import functions.Action;
 import guest.Guest;
 import functions.Language;
+import functions.Observer;
 import functions.Options;
 
-public class AlbumSearchWindow extends Frame {
+public class SearchWindow extends Frame {
 
 	private javax.swing.JButton jButton = null;
 	private javax.swing.JTextField jTextField = null;
@@ -42,6 +45,8 @@ public class AlbumSearchWindow extends Frame {
 	private javax.swing.JLabel jLabel2 = null;
 	private javax.swing.JButton jButton1 = null;
 	private javax.swing.JButton jButton3 = null;
+	private ArrayList<Observer> subscribers = new ArrayList<>();
+
 	private javax.swing.JScrollPane jScrollPane = null;
 	private javax.swing.JList jList = null;
 	ArrayList data = new ArrayList();
@@ -51,15 +56,43 @@ public class AlbumSearchWindow extends Frame {
 	String dbname;
 	int entries;
 	
-	public AlbumSearchWindow() throws HeadlessException {
+	public SearchWindow() throws HeadlessException {
 		Language lang = new Language();
 		language = lang.getLanguage();
 		Options options = new Options();
 		dbname = options.getFileName();
-
+		
 		initialize();
 	}
 
+	/**
+	 * @param gc
+	 */
+	public SearchWindow(GraphicsConfiguration gc) {
+		super(gc);
+	}
+
+	/**
+	 * @param title
+	 * @throws java.awt.HeadlessException
+	 */
+	public SearchWindow(String title) throws HeadlessException {
+		super(title);
+	}
+
+	/**
+	 * @param title
+	 * @param gc
+	 */
+	public SearchWindow(String title, GraphicsConfiguration gc) {
+		super(title, gc);
+	}
+
+	/**
+	 * This method initializes this
+	 * 
+	 * @return void
+	 */
 	private void initialize() {
         this.setLayout(null);
         this.add(getJButton(), null);
@@ -78,6 +111,7 @@ public class AlbumSearchWindow extends Frame {
 				jList.setModel(new DefaultListModel());
 				clearFields();
 				setVisible(false);
+				// mw.setEnabled(true); // TODO not sure this is needed
         	}
         });
 			
@@ -128,8 +162,29 @@ public class AlbumSearchWindow extends Frame {
 
 		
 		
-	}	
+	}
 	
+	
+	private void getGuest(String[] gst) { //TODO is this completely unnecessary?
+		boolean isGuest = false;
+			Guest guest = new Guest();
+			String[] entry = new String[entries];
+
+				entry = guest.getGuest(gst);
+				
+				// mw.setGuestStatus(true);
+				// mw.setVisible(true);
+				// mw.setEnabled(true);
+				// mw.setGuest(entry);
+				// mw.setCurrentGuest();
+				// mw.setDeleted(true);
+
+				clearFields();
+				setVisible(false);
+	
+			}
+	
+
 	private javax.swing.JButton getJButton() {
 		if(jButton == null) {
 			jButton = new javax.swing.JButton();
@@ -148,7 +203,7 @@ public class AlbumSearchWindow extends Frame {
 		if(jButton3 == null) {
 			jButton3 = new javax.swing.JButton();
 			jButton3.setBounds(250, 400, 133, 26);
-			jButton3.setText(language[47]);
+			jButton3.setText(language[25]);
 			jButton3.addActionListener(new java.awt.event.ActionListener() { 
 				public void actionPerformed(java.awt.event.ActionEvent e) {    
 					int index = jList.getSelectedIndex();
@@ -209,7 +264,7 @@ public class AlbumSearchWindow extends Frame {
 		return jLabel2;
 	}
 	/**
-	 * This method initializes jButton1
+	 * This method initializes jButton1 "Back"
 	 * 
 	 * @return javax.swing.JButton
 	 */
@@ -224,6 +279,7 @@ public class AlbumSearchWindow extends Frame {
 					jList.setModel(new DefaultListModel());
 					clearFields();
 					setVisible(false);
+					// mw.setEnabled(true); //TODO temp disabled
 				}
 			});
 		}
@@ -259,7 +315,7 @@ public class AlbumSearchWindow extends Frame {
 	 * @return javax.swing.JList
 	 */
 	
-	private void loadGuest(int index) {
+	public void loadGuest(int index) {
 		Guest guest = new Guest();
 		String[] gst = new String[entries];
 		String[] entry = new String[entries];
@@ -267,7 +323,15 @@ public class AlbumSearchWindow extends Frame {
 		
 		entry = guest.getGuest((String[]) sr.get(index));
 		
-		// aw.setGuest(entry);
+		// mw.setGuestStatus(true);
+		// mw.setVisible(true);
+		// mw.setEnabled(true);
+		// mw.setGuest(entry);
+		// mw.setCurrentGuest();
+		// mw.setDeleted(true);
+
+		notifySubscribers(Action.LOAD_GUEST, entry);
+		
 		clearFields();
 		setVisible(false);
 
@@ -294,5 +358,12 @@ public class AlbumSearchWindow extends Frame {
 		}
 		return jList;
 	}
+
+	private void notifySubscribers(Action action, String[] guest) {
+		for(Observer subscriber : subscribers) {
+			subscriber.update(null, guest, action);
+		}
+	}
+
 
 }  //  @jve:visual-info  decl-index=0 visual-constraint="10,10"

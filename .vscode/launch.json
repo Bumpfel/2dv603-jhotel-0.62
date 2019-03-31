@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - MainWindow",
+            "request": "launch",
+            "mainClass": "main.MainWindow",
+            "projectName": "2dv603-jhotel-0.62"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - Reservation",
             "request": "launch",
             "mainClass": "backend.Reservation",
