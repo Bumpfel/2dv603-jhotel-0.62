@@ -32,7 +32,7 @@ import frontend.ReservationManagement;
 
 public class changeResThread extends Thread {
 	
-	private Reservation res;
+	// private Reservation res;
 	private ReservationManagement rm;
 	private String[] oldguest, newguest;
 	String[] language;
@@ -40,10 +40,10 @@ public class changeResThread extends Thread {
 	private CalendarCreator calendarCreator = new CalendarCreator();
 	
 	public changeResThread(ReservationManagement rm, String[] oldguest, String[] newguest) {
-		Reservation res = new Reservation(rm);
+		// Reservation res = new Reservation(rm);
 		Language lang = new Language();
 		language = lang.getLanguage();
-		this.res = res;
+		// this.res = res;
 		this.rm = rm;
 		this.oldguest = oldguest;
 		this.newguest = newguest;
