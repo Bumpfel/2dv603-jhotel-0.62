@@ -316,7 +316,7 @@ public class MainWindow extends Frame implements ActionListener, Observer {
 			jButton3.setEnabled(true);
 			jButton3.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					CheckinWindow cw = new CheckinWindow(thisWindow);
+					CheckinWindow cw = new CheckinWindow();
 					cw.setVisible(true);
 				}
 			});

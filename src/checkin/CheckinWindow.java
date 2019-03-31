@@ -31,6 +31,7 @@ import javax.swing.DefaultListModel;
 
 import functions.Action;
 import functions.Language;
+import functions.Observable;
 import functions.Observer;
 import guest.checkinGuestThread;
 import main.MainWindow;
@@ -52,7 +53,7 @@ public class CheckinWindow extends Frame implements Observer {
 	DefaultListModel dlm_checkin = new DefaultListModel();
 	DefaultListModel dlm_checkout = new DefaultListModel();
 	CheckinWindow thisWindow;
-	MainWindow mw;
+	// MainWindow mw;
 	// ReservationManagement rm;
 	ArrayList al;
 
@@ -65,9 +66,9 @@ public class CheckinWindow extends Frame implements Observer {
 	/**
 	 * This is the default constructor
 	 */
-	public CheckinWindow(MainWindow mw) { // , ReservationManagement rm) {
+	public CheckinWindow() { // , ReservationManagement rm) {
 		this.thisWindow = this;
-		this.mw = mw;
+		// this.mw = mw;
 		Language lang = new Language();
 		language = lang.getLanguage();
 
@@ -407,4 +408,5 @@ public class CheckinWindow extends Frame implements Observer {
 			setCheckinList((ArrayList) args);
 		}
 	}
+
 }  //  @jve:visual-info  decl-index=0 visual-constraint="10,10"
