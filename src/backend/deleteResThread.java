@@ -36,6 +36,8 @@ public class deleteResThread extends Thread{
 	private ReservationManagement rm;
 	private String[] reservation;
 	private String[] language;
+
+	private CalendarCreator calendarCreator = new CalendarCreator();
 	
 	public deleteResThread(ReservationManagement rm, String[] reservation) {
 		Reservation res = new Reservation(rm);
@@ -55,8 +57,8 @@ public class deleteResThread extends Thread{
 		String toDelete = reservation[0] + " - " + reservation[1] + ", " + reservation[2] + ": " + reservation[3] + "; " + reservation[4];
 		String roomtoDelete = reservation[5];
 		
-		int firstday = res.createCal(reservation[3]);
-		int lastday = res.createCal(reservation[4]);
+		int firstday = calendarCreator.createCal(reservation[3]);
+		int lastday = calendarCreator.createCal(reservation[4]);
 		
 		ArrayList reservations = new ArrayList();
 		String[] availableRooms = new String[168];

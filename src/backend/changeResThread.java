@@ -36,6 +36,8 @@ public class changeResThread extends Thread {
 	private ReservationManagement rm;
 	private String[] oldguest, newguest;
 	String[] language;
+
+	private CalendarCreator calendarCreator = new CalendarCreator();
 	
 	public changeResThread(ReservationManagement rm, String[] oldguest, String[] newguest) {
 		Reservation res = new Reservation(rm);
@@ -49,15 +51,15 @@ public class changeResThread extends Thread {
 
 	public void run() {
 		String gst = newguest[0] + " - " + newguest[1] + ", " + newguest[2] + ": " + newguest[3] + "; " + newguest[4] + "; " + newguest[5] + ": " + newguest[6] + "# " + newguest[7];
-		changeReservation(res.createCal(newguest[3]), res.createCal(newguest[4]), gst, newguest[5], oldguest);
+		changeReservation(calendarCreator.createCal(newguest[3]), calendarCreator.createCal(newguest[4]), gst, newguest[5], oldguest);
 	}
 
 
 	public void changeReservation(int arrival, int departure, String name, String room, String[] oldguest) {
 		String toDelete = oldguest[0] + " - " + oldguest[1] + ", " + oldguest[2] + ": " + oldguest[3] + "; " + oldguest[4];
 		String roomtoDelete = oldguest[5];
-		int firstday = res.createCal(oldguest[3]);
-		int lastday = res.createCal(oldguest[4]);
+		int firstday = calendarCreator.createCal(oldguest[3]);
+		int lastday = calendarCreator.createCal(oldguest[4]);
 		
 		ArrayList reservations = new ArrayList();
 		String[] availableRooms = new String[168];

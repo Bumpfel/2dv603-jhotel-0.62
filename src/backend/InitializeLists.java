@@ -45,6 +45,8 @@ public class InitializeLists extends Thread {
 	private String otherdate;
 	private ArrayList al;
 
+	private CalendarCreator calendarCreator = new CalendarCreator();
+
 	public InitializeLists(CheckinWindow cw, DefaultListModel dlm_checkin, DefaultListModel dlm_checkout) {
 		this.cw = cw;
 		this.dlm_checkin = dlm_checkin;
@@ -114,10 +116,10 @@ public class InitializeLists extends Thread {
 			Reservation res = new Reservation(cw);
 			int date;
 			if (other) {
-				date = res.createCal(otherdate);
+				date = calendarCreator.createCal(otherdate);
 			}
 			else {
-				date = res.createCal((day + "." + month + "." + year));
+				date = calendarCreator.createCal((day + "." + month + "." + year));
 			}
 			
 			
@@ -169,7 +171,7 @@ public class InitializeLists extends Thread {
 					
 
 	
-					if (res.createCal(gst[3])==date && gst[6].equals("false")) {
+					if (calendarCreator.createCal(gst[3])==date && gst[6].equals("false")) {
 						dlm_checkin.add(index, (gst[5] + ": " + gst[0] + " - " + gst[1] + ", " + gst[2]));
 						checkins.add(gst);
 						index++;
@@ -195,7 +197,7 @@ public class InitializeLists extends Thread {
 					lgst[6] = lcheckedin;
 					lgst[7] = lprice;
 
-					if (res.createCal(lgst[4])==(date+1)) {
+					if (calendarCreator.createCal(lgst[4])==(date+1)) {
 						dlm_checkout.add(checkoutindex, (lgst[5] + ": " + lgst[0] + " - " + lgst[1] + ", " + lgst[2]));
 						checkouts.add(lgst);
 						checkoutindex++;
@@ -252,10 +254,10 @@ public class InitializeLists extends Thread {
 			Reservation res = new Reservation(cw);
 			int date;
 			if (other) {
-				date = res.createCal(otherdate);
+				date = calendarCreator.createCal(otherdate);
 			}
 			else {
-				date = res.createCal((day + "." + month + "." + year));
+				date = calendarCreator.createCal((day + "." + month + "." + year));
 			}
 			
 			availableRooms = (String[]) reservations.get(reservations.size()-1);
@@ -296,7 +298,7 @@ public class InitializeLists extends Thread {
 					
 
 	
-					if (res.createCal(gst[3])==date && gst[6].equals("false")) {
+					if (calendarCreator.createCal(gst[3])==date && gst[6].equals("false")) {
 						dlm_checkin.add(index, (gst[5] + ": " + gst[0] + " - " + gst[1] + ", " + gst[2]));
 						checkins.add(gst);
 						index++;
@@ -322,7 +324,7 @@ public class InitializeLists extends Thread {
 					lgst[6] = lcheckedin;
 					lgst[7] = lprice;
 
-					if (res.createCal(lgst[4])==(date+1)) {
+					if (calendarCreator.createCal(lgst[4])==(date+1)) {
 						dlm_checkout.add(checkoutindex, (lgst[5] + ": " + lgst[0] + " - " + lgst[1] + ", " + lgst[2]));
 						checkouts.add(lgst);
 						checkoutindex++;

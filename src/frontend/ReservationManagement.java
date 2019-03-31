@@ -31,6 +31,7 @@ import java.util.Calendar;
 import javax.swing.table.DefaultTableModel;
 
 import backend.Action;
+import backend.CalendarCreator;
 import backend.Language;
 import backend.Observable;
 import backend.Observer;
@@ -92,6 +93,8 @@ public class ReservationManagement extends Frame implements Runnable, Observer {
 	private javax.swing.JLabel jLabel7 = null;
 	private javax.swing.JLabel jLabel8 = null;
 
+	private CalendarCreator calendarCreator = new CalendarCreator();
+
 	/**
 	 * This is the default constructor
 	 */
@@ -105,7 +108,7 @@ public class ReservationManagement extends Frame implements Runnable, Observer {
 		mw.setVisible(false);
 		Language lang = new Language();
 		language = lang.getLanguage();
-		int[] days = res.calcDate();
+		int[] days = calendarCreator.calcDate();
 		this.firstday = days[0];
 		this.lastday = days[1];
 
@@ -239,8 +242,8 @@ public class ReservationManagement extends Frame implements Runnable, Observer {
 					int startday;
 					int endday;
 
-					startday = res.createCal(jTextField.getText());
-					endday = res.createCal(jTextField1.getText());
+					startday = calendarCreator.createCal(jTextField.getText());
+					endday = calendarCreator.createCal(jTextField1.getText());
 					days = endday - startday;
 
 					jLabel3.setText(Integer.toString(days));
@@ -303,12 +306,12 @@ public class ReservationManagement extends Frame implements Runnable, Observer {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					Reservation res = new Reservation(thisWindow);
 					if (jTextField.getText().equals("") || jTextField1.getText().equals("")
-							|| (res.correctDate(jTextField.getText()) == false)
-							|| (res.correctDate(jTextField1.getText()) == false)) {
+							|| (calendarCreator.correctDate(jTextField.getText()) == false)
+							|| (calendarCreator.correctDate(jTextField1.getText()) == false)) {
 						// nada
 					} else {
-						RoomSelectWindow rsm = new RoomSelectWindow(1, res.createCal(jTextField.getText()),
-								res.createCal(jTextField1.getText()), restable);
+						RoomSelectWindow rsm = new RoomSelectWindow(1, calendarCreator.createCal(jTextField.getText()),
+								calendarCreator.createCal(jTextField1.getText()), restable);
 						rsm.addSubscriber(thisWindow);
 						new Thread(rsm).start();
 						rsm.setVisible(true);
@@ -343,13 +346,13 @@ public class ReservationManagement extends Frame implements Runnable, Observer {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					Reservation res = new Reservation(thisWindow);
 					if (jTextField.getText().equals("") || jTextField1.getText().equals("")
-							|| (res.correctDate(jTextField.getText()) == false)
-							|| (res.correctDate(jTextField1.getText()) == false)) {
+							|| (calendarCreator.correctDate(jTextField.getText()) == false)
+							|| (calendarCreator.correctDate(jTextField1.getText()) == false)) {
 						// nada
 					} else {
 
-						RoomSelectWindow rsm = new RoomSelectWindow(2, res.createCal(jTextField.getText()),
-								res.createCal(jTextField1.getText()), restable);
+						RoomSelectWindow rsm = new RoomSelectWindow(2, calendarCreator.createCal(jTextField.getText()),
+								calendarCreator.createCal(jTextField1.getText()), restable);
 						rsm.addSubscriber(thisWindow);
 						new Thread(rsm).start();
 						rsm.setVisible(true);
@@ -384,13 +387,13 @@ public class ReservationManagement extends Frame implements Runnable, Observer {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					Reservation res = new Reservation(thisWindow);
 					if (jTextField.getText().equals("") || jTextField1.getText().equals("")
-							|| (res.correctDate(jTextField.getText()) == false)
-							|| (res.correctDate(jTextField1.getText()) == false)) {
+							|| (calendarCreator.correctDate(jTextField.getText()) == false)
+							|| (calendarCreator.correctDate(jTextField1.getText()) == false)) {
 						// nada
 					} else {
 
-						RoomSelectWindow rsm = new RoomSelectWindow(3, res.createCal(jTextField.getText()),
-								res.createCal(jTextField1.getText()), restable);
+						RoomSelectWindow rsm = new RoomSelectWindow(3, calendarCreator.createCal(jTextField.getText()),
+								calendarCreator.createCal(jTextField1.getText()), restable);
 						rsm.addSubscriber(thisWindow);
 						new Thread(rsm).start();
 						rsm.setVisible(true);
@@ -425,13 +428,13 @@ public class ReservationManagement extends Frame implements Runnable, Observer {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					Reservation res = new Reservation(thisWindow);
 					if (jTextField.getText().equals("") || jTextField1.getText().equals("")
-							|| (res.correctDate(jTextField.getText()) == false)
-							|| (res.correctDate(jTextField1.getText()) == false)) {
+							|| (calendarCreator.correctDate(jTextField.getText()) == false)
+							|| (calendarCreator.correctDate(jTextField1.getText()) == false)) {
 						// nada
 					} else {
 
-						RoomSelectWindow rsm = new RoomSelectWindow(4, res.createCal(jTextField.getText()),
-								res.createCal(jTextField1.getText()), restable);
+						RoomSelectWindow rsm = new RoomSelectWindow(4, calendarCreator.createCal(jTextField.getText()),
+								calendarCreator.createCal(jTextField1.getText()), restable);
 						rsm.addSubscriber(thisWindow);
 						new Thread(rsm).start();
 						rsm.setVisible(true);
@@ -466,13 +469,13 @@ public class ReservationManagement extends Frame implements Runnable, Observer {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					Reservation res = new Reservation(thisWindow);
 					if (jTextField.getText().equals("") || jTextField1.getText().equals("")
-							|| (res.correctDate(jTextField.getText()) == false)
-							|| (res.correctDate(jTextField1.getText()) == false)) {
+							|| (calendarCreator.correctDate(jTextField.getText()) == false)
+							|| (calendarCreator.correctDate(jTextField1.getText()) == false)) {
 						// nada
 					} else {
 
-						RoomSelectWindow rsm = new RoomSelectWindow(5, res.createCal(jTextField.getText()),
-								res.createCal(jTextField1.getText()), restable);
+						RoomSelectWindow rsm = new RoomSelectWindow(5, calendarCreator.createCal(jTextField.getText()),
+								calendarCreator.createCal(jTextField1.getText()), restable);
 						rsm.addSubscriber(thisWindow);
 						new Thread(rsm).start();
 						rsm.setVisible(true);
@@ -699,7 +702,7 @@ public class ReservationManagement extends Frame implements Runnable, Observer {
 				|| (jComboBox.getSelectedIndex() == 11)) {
 			daysInMonth = 31;
 		} else if (jComboBox.getSelectedIndex() == 1) {
-			if (res.isLeapYear(Integer.parseInt((String) jComboBox1.getSelectedItem()))) {
+			if (calendarCreator.isLeapYear(Integer.parseInt((String) jComboBox1.getSelectedItem()))) {
 				daysInMonth = 29;
 			} else {
 				daysInMonth = 28;
@@ -898,7 +901,7 @@ public class ReservationManagement extends Frame implements Runnable, Observer {
 							} else {
 								jTextField1.setText(day + "." + month + "." + jComboBox1.getSelectedItem());
 								jLabel3.setText(Integer.toString(
-										res.createCal(jTextField1.getText()) - res.createCal(jTextField.getText())));
+										calendarCreator.createCal(jTextField1.getText()) - calendarCreator.createCal(jTextField.getText())));
 								setSelectedRoom((String) jTable.getValueAt(reservation[0], 0));
 							}
 
@@ -941,7 +944,7 @@ public class ReservationManagement extends Frame implements Runnable, Observer {
 			jComboBox.setBounds(371, 227, 137, 19);
 			jComboBox.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					int[] days = res.calcDate(jComboBox.getSelectedIndex(),
+					int[] days = calendarCreator.calcDate(jComboBox.getSelectedIndex(),
 							Integer.parseInt((String) jComboBox1.getSelectedItem()));
 					firstday = days[0];
 					lastday = days[1];
@@ -971,7 +974,7 @@ public class ReservationManagement extends Frame implements Runnable, Observer {
 			jComboBox1.setSelectedItem(Integer.toString(year));
 			jComboBox1.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					int[] days = res.calcDate(jComboBox.getSelectedIndex(),
+					int[] days = calendarCreator.calcDate(jComboBox.getSelectedIndex(),
 							Integer.parseInt((String) jComboBox1.getSelectedItem()));
 					firstday = days[0];
 					lastday = days[1];

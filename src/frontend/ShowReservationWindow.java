@@ -25,6 +25,7 @@ import java.awt.Frame;
 import java.util.ArrayList;
 
 import backend.Action;
+import backend.CalendarCreator;
 import backend.Language;
 import backend.Observable;
 import backend.Observer;
@@ -66,6 +67,7 @@ public class ShowReservationWindow extends Frame implements Observer {
 	boolean checkout = false;
 	
 	private ArrayList<Observer> subscribers = new ArrayList<>();
+	private CalendarCreator calendarCreator = new CalendarCreator();
 
 	/**
 	 * This is the default constructor
@@ -484,7 +486,7 @@ public class ShowReservationWindow extends Frame implements Observer {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					Reservation res = new Reservation(rm);
 					RoomSelectWindow2 rsm = new RoomSelectWindow2(rm, 1,
-							res.createCal(jTextField.getText()), res.createCal(jTextField1.getText()), reservations);
+					calendarCreator.createCal(jTextField.getText()), calendarCreator.createCal(jTextField1.getText()), reservations);
 					new Thread(rsm).start();
 					rsm.addSubscriber(thisWindow);
 					rsm.setVisible(true);
