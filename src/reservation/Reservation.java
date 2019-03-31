@@ -88,9 +88,6 @@ public class Reservation extends Thread {
 		rm.setThreadEnded();
 	}
 	
-	
-	
-		
 	public void deleteReservation(String[] guest) {
 		deleteResThread drt = new deleteResThread(rm, guest);
 		drt.start();

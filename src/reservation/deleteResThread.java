@@ -33,7 +33,7 @@ import functions.CalendarCreator;
 
 public class deleteResThread extends Thread{
 	
-	private Reservation res;
+	// private Reservation res;
 	private ReservationManagement rm;
 	private String[] reservation;
 	private String[] language;
@@ -41,10 +41,10 @@ public class deleteResThread extends Thread{
 	private CalendarCreator calendarCreator = new CalendarCreator();
 	
 	public deleteResThread(ReservationManagement rm, String[] reservation) {
-		Reservation res = new Reservation(rm);
+		// Reservation res = new Reservation(rm);
 		Language lang = new Language();
 		language = lang.getLanguage();
-		this.res = res;
+		// this.res = res;
 		this.rm = rm;
 		this.reservation = reservation;
 	}
