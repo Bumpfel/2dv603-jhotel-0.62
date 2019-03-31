@@ -29,14 +29,12 @@ import functions.Observer;
 import java.util.ArrayList;
 
 public class UpdateListThread extends Thread implements Observable {
-	// private ReservationManagement rm;
 	private String[] language;
 	private ArrayList<Observer> subscribers = new ArrayList<>();
 	
 	public UpdateListThread() {
 		Language lang = new Language();
 		language = lang.getLanguage();
-		// this.rm = rm;
 	}
 
 	public void run() {

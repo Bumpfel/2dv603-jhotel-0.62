@@ -34,6 +34,7 @@ import guest.Guest;
 import functions.Language;
 import functions.Options;
 
+
 public class AlbumSearchWindow extends Frame {
 
 	private javax.swing.JButton jButton = null;

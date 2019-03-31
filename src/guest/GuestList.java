@@ -36,7 +36,6 @@ import functions.Observer;
 
 public class GuestList extends Frame implements Observable {
 	
-	// private MainWindow mw;
 	private javax.swing.JScrollPane jScrollPane = null;
 	private javax.swing.JList jList = null;
 	private javax.swing.JButton jButton = null;
@@ -54,7 +53,6 @@ public class GuestList extends Frame implements Observable {
 	 * This is the default constructor
 	 */
 	public GuestList() {
-		// this.mw = mw;
 		Language lang = new Language();
 		language = lang.getLanguage();
 		Guest guest = new Guest();
@@ -158,12 +156,6 @@ public class GuestList extends Frame implements Observable {
 		
 		entry = guest.getGuest((String[]) sr.get(index));
 					
-		// mw.setGuestStatus(true);
-		// mw.setVisible(true);
-		// mw.setEnabled(true);
-		// mw.setGuest(entry);
-		// mw.setCurrentGuest();
-		// mw.setDeleted(true);
 		notifySubscribers(entry);
 		dispose();
 
@@ -232,7 +224,6 @@ public class GuestList extends Frame implements Observable {
 		for (int i=0; i<db.size(); ++i) {
 		currentGuest = (String[]) db.get(i);
 		
-				
 			loop2:
 			for (int index=0; index<entries; ++index) {
 				if (currentGuest[index].equalsIgnoreCase(val)) {

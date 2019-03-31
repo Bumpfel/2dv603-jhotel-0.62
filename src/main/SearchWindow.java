@@ -111,7 +111,6 @@ public class SearchWindow extends Frame {
 				jList.setModel(new DefaultListModel());
 				clearFields();
 				setVisible(false);
-				// mw.setEnabled(true); // TODO not sure this is needed
         	}
         });
 			
@@ -172,13 +171,6 @@ public class SearchWindow extends Frame {
 
 				entry = guest.getGuest(gst);
 				
-				// mw.setGuestStatus(true);
-				// mw.setVisible(true);
-				// mw.setEnabled(true);
-				// mw.setGuest(entry);
-				// mw.setCurrentGuest();
-				// mw.setDeleted(true);
-
 				clearFields();
 				setVisible(false);
 	
@@ -279,7 +271,6 @@ public class SearchWindow extends Frame {
 					jList.setModel(new DefaultListModel());
 					clearFields();
 					setVisible(false);
-					// mw.setEnabled(true); //TODO temp disabled
 				}
 			});
 		}
@@ -323,13 +314,6 @@ public class SearchWindow extends Frame {
 		
 		entry = guest.getGuest((String[]) sr.get(index));
 		
-		// mw.setGuestStatus(true);
-		// mw.setVisible(true);
-		// mw.setEnabled(true);
-		// mw.setGuest(entry);
-		// mw.setCurrentGuest();
-		// mw.setDeleted(true);
-
 		notifySubscribers(Action.LOAD_GUEST, entry);
 		
 		clearFields();

@@ -31,8 +31,6 @@ import functions.Observer;
 
 public class NewResGuest extends Frame implements Observable {
 
-	// private ReservationManagement rm;
-	// private ResGuestList rgl;
 	String[] language;
 	private javax.swing.JLabel jLabel = null;
 	private javax.swing.JLabel jLabel1 = null;
@@ -129,9 +127,7 @@ public class NewResGuest extends Frame implements Observable {
 			jTextField.setBounds(121, 35, 164, 21);
 			jTextField.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					// rm.setGuest(jTextField.getText(), jTextField1.getText(), jTextField2.getText());
 					notifySubscriber(Action.SET_GUEST);
-					// rgl.dispose();
 					dispose();
 				}
 			});
@@ -150,9 +146,7 @@ public class NewResGuest extends Frame implements Observable {
 			jTextField1.setBounds(121, 63, 164, 21);
 			jTextField1.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					// rm.setGuest(jTextField.getText(), jTextField1.getText(), jTextField2.getText());
 					notifySubscriber(Action.SET_GUEST);
-					// rgl.dispose();
 					dispose();
 				}
 			});
@@ -171,9 +165,7 @@ public class NewResGuest extends Frame implements Observable {
 			jTextField2.setBounds(121, 94, 164, 21);
 			jTextField2.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					// rm.setGuest(jTextField.getText(), jTextField1.getText(), jTextField2.getText());
 					notifySubscriber( Action.SET_GUEST);
-					// rgl.dispose();
 					dispose();
 				}
 			});
@@ -193,9 +185,7 @@ public class NewResGuest extends Frame implements Observable {
 			jButton.setText(language[21]);
 			jButton.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					// rm.setGuest(jTextField.getText(), jTextField1.getText(), jTextField2.getText());
 					notifySubscriber(Action.SET_GUEST);
-					// rgl.dispose();
 					dispose();
 				}
 			});
@@ -215,9 +205,8 @@ public class NewResGuest extends Frame implements Observable {
 			jButton1.setText(language[22]);
 			jButton1.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					dispose();
 					notifySubscriber(Action.SET_VISIBLE);
-					// rgl.setVisible(true);
+					dispose();
 				}
 			});
 		}

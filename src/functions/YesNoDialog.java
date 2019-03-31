@@ -48,23 +48,9 @@ public class YesNoDialog extends Frame implements Observable {
 		initialize();
 	}
 	
-	// public YesNoDialog(String[] guest, String text, String action) {
-	// 	Language lang = new Language();
-	// 	language = lang.getLanguage();
-	// 	// this.rm = rm;
-	// 	this.guest = guest;
-	// 	this.action = action;
-	// 	this.text = text;
-		
-	// 	initialize();
-	// }
-	
 	public YesNoDialog(String text, String action) {
 		Language lang = new Language();
 		language = lang.getLanguage();
-		// this.rm = rm;
-		// this.newguest = newguest;
-		// this.oldguest = oldguest;
 		this.action = action;
 		this.text = text;
 		
@@ -99,25 +85,18 @@ public class YesNoDialog extends Frame implements Observable {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					if (action.equals("deleteEntry")) {
 						notifySubscribers(Action.DELETE_ENTRY);
-						// mw.deleteEntry(guest);
 					}
 					else if (action.equals("undoEntry")) {
 						notifySubscribers(Action.CLEAR);
-						// mw.clearFields();
 					}
 					else if (action.equals("undoAddEntry")) {
 						notifySubscribers(Action.RESET);
-						// mw.addDataWindowReset(guest);
 					}
 					else if (action.equals("deleteRes")) {
-						// Reservation res = new Reservation();
 						notifySubscribers(Action.DELETE_RES);
-						// res.deleteReservation(guest);	
 					}
 					else if (action.equals("changeRes")) {
-						// Reservation res = new Reservation();
 						notifySubscribers(Action.CHANGE_RES);
-						// res.changeReservation(oldguest, newguest);
 					}
 					dispose();
 				}

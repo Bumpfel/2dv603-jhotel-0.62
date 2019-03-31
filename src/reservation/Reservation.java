@@ -81,23 +81,6 @@ public class Reservation extends Thread implements Observer, Observable {
 		// rm.setThreadEnded();
 	}
 
-	// public void deleteReservation(String[] guest) {
-	// 	notifySubscribers(Action.DELETE_RES);		
-	// 	deleteResThread drt = new deleteResThread(guest);
-	// 	drt.addSubscriber(this);
-	// 	drt.start();
-	// }
-	
-	// public void changeReservation(String[] oldguest, String[] newguest) {
-	// 	changeResThread crt = new changeResThread(oldguest, newguest);
-	// 	crt.addSubscriber(this);
-	// 	crt.start();
-	// }
-
-	// public void checkinGuest(String[] oldguest, String[] newguest) {
-	// checkinGuestThread cgt = new checkinGuestThread(cw, oldguest, newguest);
-	// cgt.start();
-	// }
 
 	public void makeReservation(int arrival, int departure, String name, String room) {
 		ArrayList reservations = new ArrayList();

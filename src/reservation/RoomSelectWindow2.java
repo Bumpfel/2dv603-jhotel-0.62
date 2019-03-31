@@ -1749,7 +1749,6 @@ public class RoomSelectWindow2 extends Frame implements Runnable {
 			jButton.addActionListener(new java.awt.event.ActionListener() { 
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					notifySubscribers();
-					// srw.setSelectedRoom(selectedRoom);
 					dispose();
 				}
 			});

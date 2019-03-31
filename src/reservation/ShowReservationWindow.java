@@ -261,7 +261,6 @@ public class ShowReservationWindow extends ObservableFrame implements Observer {
 			jButton.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					if (edited) {
-						// Reservation res = new Reservation(rm);
 						newgst[0] = jTextField2.getText();
 						newgst[1] = jTextField3.getText();
 						newgst[2] = jTextField4.getText();
@@ -284,7 +283,6 @@ public class ShowReservationWindow extends ObservableFrame implements Observer {
 
 						edited = false;
 
-						// notifySubscriber(Action.CHANGE_RES_CONFIRMATION, newgst);
 						YesNoDialog ynd = new YesNoDialog(language[83], "changeRes");
 						ynd.addSubscriber(thisWindow);
 						ynd.setVisible(true);
@@ -313,7 +311,6 @@ public class ShowReservationWindow extends ObservableFrame implements Observer {
 			}
 			jButton1.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					// notifySubscriber(Action.DELETE_RES_CONFIRMATION, null);
 					YesNoDialog ynd = new YesNoDialog(gst, language[83], "deleteRes");
 					ynd.addSubscriber(thisWindow);
 					ynd.setVisible(true);
@@ -481,7 +478,6 @@ public class ShowReservationWindow extends ObservableFrame implements Observer {
 			jButton3.setEnabled(false);
 			jButton3.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					// Reservation res = new Reservation(rm);
 					RoomSelectWindow2 rsm = new RoomSelectWindow2(1,
 						calendarCreator.createCal(jTextField.getText()), calendarCreator.createCal(jTextField1.getText()), reservations);
 					new Thread(rsm).start();
@@ -618,7 +614,7 @@ public class ShowReservationWindow extends ObservableFrame implements Observer {
 			crt.start();
 			dispose();
 		}
-		else if(action == Action.UPDATE_TABLE) { // ship to ReservationManagement
+		else if(action == Action.UPDATE_TABLE) { // re-send to ReservationManagement
 			notifySubscribers(null, args, Action.UPDATE_TABLE);
 		}
 	}

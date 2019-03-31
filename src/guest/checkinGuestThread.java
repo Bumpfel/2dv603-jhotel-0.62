@@ -31,14 +31,11 @@ import java.util.ArrayList;
 import functions.Language;
 import functions.Observable;
 import functions.Observer;
-// import checkin.CheckinWindow;
 import functions.Action;
 import functions.CalendarCreator;
 
 public class checkinGuestThread extends Thread implements Observable {
 
-	// private Reservation res;
-	// private CheckinWindow cw;
 	private String[] oldguest, newguest;
 	String[] language;
 
@@ -48,11 +45,8 @@ public class checkinGuestThread extends Thread implements Observable {
 	public checkinGuestThread(String[] oldguest, String[] newguest) {
 		System.out.println("guestThread started");
 
-		// Reservation res = new Reservation(cw);
 		Language lang = new Language();
 		language = lang.getLanguage();
-		// this.res = res;
-		// this.cw = cw;
 		this.oldguest = oldguest;
 		this.newguest = newguest;
 	}
@@ -138,7 +132,6 @@ public class checkinGuestThread extends Thread implements Observable {
 		} catch (IOException io) {
 			System.out.println(io);
 		}
-		// cw.dispose();
 		notifySubcribers(Action.THREAD_ENDED, reservations);
 		// cw.setThreadEnded();
 	}

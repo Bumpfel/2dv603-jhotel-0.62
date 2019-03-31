@@ -200,7 +200,6 @@ public class OptionsWindow extends Frame{
 	 * This is the default constructor
 	 */
 	public OptionsWindow() {
-		System.out.println("opened options window");
 		Language lang = new Language();
 		language = lang.getLanguage();
 		getRooms();
@@ -406,9 +405,8 @@ public class OptionsWindow extends Frame{
 					JFileChooser chooser = new JFileChooser("./db");
 					int returnVal = chooser.showOpenDialog(OptionsWindow.this);
 					if(returnVal == JFileChooser.APPROVE_OPTION) {
-					jTextField.setText(chooser.getSelectedFile().getPath());
-}
-
+						jTextField.setText(chooser.getSelectedFile().getPath());
+					}
 				}
 			});
 		}
@@ -579,8 +577,7 @@ public class OptionsWindow extends Frame{
 		return jTree;
 	}
 	
-		
-		
+	
 	/**
 	 * This method initializes jButton3
 	 * 

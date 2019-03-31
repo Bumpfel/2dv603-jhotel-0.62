@@ -626,8 +626,6 @@ public class AlbumWindow extends Frame {
 			jButton3.setText("Im Buch suchen");
 			jButton3.addActionListener(new java.awt.event.ActionListener() { 
 				public void actionPerformed(java.awt.event.ActionEvent e) {    
-					//AlbumSearch as = new AlbumSearch(thisWindow);
-					//as.setVisible(true);
 				}
 			});
 		}

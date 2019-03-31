@@ -33,7 +33,6 @@ import functions.*;
 
 public class InitializeLists extends Thread implements Observable {
 
-	// private CheckinWindow cw;
 	private DefaultListModel dlm_checkin, dlm_checkout;
 	private String[] language;
 	private String company, name, firstname, arrival, departure, room, checkedin, price;
@@ -48,7 +47,6 @@ public class InitializeLists extends Thread implements Observable {
 	private ArrayList<Observer> subscribers = new ArrayList<>();
 
 	public InitializeLists(DefaultListModel dlm_checkin, DefaultListModel dlm_checkout) {
-		// this.cw = cw;
 		this.dlm_checkin = dlm_checkin;
 		this.dlm_checkout = dlm_checkout;
 		
@@ -57,7 +55,6 @@ public class InitializeLists extends Thread implements Observable {
 	}
 	
 	public InitializeLists(DefaultListModel dlm_checkin, DefaultListModel dlm_checkout, String date) {
-		// this.cw = cw;
 		this.dlm_checkin = dlm_checkin;
 		this.dlm_checkout = dlm_checkout;
 		this.other = true;
@@ -113,7 +110,6 @@ public class InitializeLists extends Thread implements Observable {
 			}
 			
 			year = Integer.toString(cal.get(Calendar.YEAR));
-			// Reservation res = new Reservation(cw);
 			int date;
 			if (other) {
 				date = calendarCreator.createCal(otherdate);
@@ -121,10 +117,7 @@ public class InitializeLists extends Thread implements Observable {
 			else {
 				date = calendarCreator.createCal((day + "." + month + "." + year));
 			}
-			
-			
-			
-			
+
 			
 			FileInputStream fis = new FileInputStream("./db/restable.jh");
 			ObjectInputStream ois = new ObjectInputStream(fis);
@@ -169,7 +162,6 @@ public class InitializeLists extends Thread implements Observable {
 					gst[6] = checkedin;
 					gst[7] = price;
 					
-
 	
 					if (calendarCreator.createCal(gst[3])==date && gst[6].equals("false")) {
 						dlm_checkin.add(index, (gst[5] + ": " + gst[0] + " - " + gst[1] + ", " + gst[2]));
@@ -203,9 +195,8 @@ public class InitializeLists extends Thread implements Observable {
 						checkoutindex++;
 					}
 				}
-			}	
+			}
 			
-			// cw.setInitialized();
 			notifySubscriber(Action.INITIALIZED);
 		}
 		catch (IOException io) {
@@ -252,7 +243,6 @@ public class InitializeLists extends Thread implements Observable {
 			}
 			
 			year = Integer.toString(cal.get(Calendar.YEAR));
-			// Reservation res = new Reservation(cw);
 			int date;
 			if (other) {
 				date = calendarCreator.createCal(otherdate);
@@ -333,7 +323,6 @@ public class InitializeLists extends Thread implements Observable {
 				}
 			}	
 			
-			// cw.setInitialized();
 			notifySubscriber(Action.INITIALIZED);		
 	}
 

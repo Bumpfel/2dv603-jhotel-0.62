@@ -23,5 +23,4 @@ public enum Action {
     DELETE_RES,
     CHANGE_RES,
     UPDATE_TABLE,
-
 }

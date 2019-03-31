@@ -97,8 +97,6 @@ public class ReservationManagement extends Frame implements Runnable, Observer, 
 	public ReservationManagement() {
 		Options options = new Options();
 		settings = options.getSettings();
-		// Reservation r = new Reservation();
-		// this.res = r;
 		thisWindow = this;
 		Language lang = new Language();
 		language = lang.getLanguage();
@@ -229,7 +227,6 @@ public class ReservationManagement extends Frame implements Runnable, Observer, 
 			jTextField1.setText("");
 			jTextField1.addFocusListener(new java.awt.event.FocusAdapter() {
 				public void focusLost(java.awt.event.FocusEvent e) {
-					// Reservation res = new Reservation(rm);
 
 					int days = 0;
 					int startday;
@@ -297,7 +294,6 @@ public class ReservationManagement extends Frame implements Runnable, Observer, 
 			});
 			jRadioButton.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					// Reservation res = new Reservation(thisWindow);
 					if (jTextField.getText().equals("") || jTextField1.getText().equals("")
 							|| (calendarCreator.correctDate(jTextField.getText()) == false)
 							|| (calendarCreator.correctDate(jTextField1.getText()) == false)) {
@@ -337,7 +333,6 @@ public class ReservationManagement extends Frame implements Runnable, Observer, 
 			});
 			jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					// Reservation res = new Reservation(thisWindow);
 					if (jTextField.getText().equals("") || jTextField1.getText().equals("")
 							|| (calendarCreator.correctDate(jTextField.getText()) == false)
 							|| (calendarCreator.correctDate(jTextField1.getText()) == false)) {
@@ -378,7 +373,6 @@ public class ReservationManagement extends Frame implements Runnable, Observer, 
 			});
 			jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					// Reservation res = new Reservation(thisWindow);
 					if (jTextField.getText().equals("") || jTextField1.getText().equals("")
 							|| (calendarCreator.correctDate(jTextField.getText()) == false)
 							|| (calendarCreator.correctDate(jTextField1.getText()) == false)) {
@@ -419,7 +413,6 @@ public class ReservationManagement extends Frame implements Runnable, Observer, 
 			});
 			jRadioButton3.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					// Reservation res = new Reservation(thisWindow);
 					if (jTextField.getText().equals("") || jTextField1.getText().equals("")
 							|| (calendarCreator.correctDate(jTextField.getText()) == false)
 							|| (calendarCreator.correctDate(jTextField1.getText()) == false)) {
@@ -460,7 +453,6 @@ public class ReservationManagement extends Frame implements Runnable, Observer, 
 			});
 			jRadioButton4.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					// Reservation res = new Reservation(thisWindow);
 					if (jTextField.getText().equals("") || jTextField1.getText().equals("")
 							|| (calendarCreator.correctDate(jTextField.getText()) == false)
 							|| (calendarCreator.correctDate(jTextField1.getText()) == false)) {
@@ -687,7 +679,6 @@ public class ReservationManagement extends Frame implements Runnable, Observer, 
 	 */
 	public int getDaysOfMonth() {
 		int daysInMonth = 0;
-		// Reservation res = new Reservation();
 
 		if ((jComboBox.getSelectedIndex() == 0) || (jComboBox.getSelectedIndex() == 2)
 				|| (jComboBox.getSelectedIndex() == 4) || (jComboBox.getSelectedIndex() == 6)
@@ -1123,21 +1114,6 @@ public class ReservationManagement extends Frame implements Runnable, Observer, 
 			setThreadEnded();
 			updateTable((ArrayList) args);
 		}
-
-		// else if(action == Action.CHANGE_RES_CONFIRMATION) {
-		// 	Object[] newArgs = (Object[]) args;
-		// 	String[] gst = (String[]) newArgs[0];
-		// 	String[] newGst = (String[]) newArgs[1];
-
-		// 	YesNoDialog ynd = new YesNoDialog(newGst, gst, language[83], "changeRes");
-		// 	ynd.addSubscriber(thisWindow);
-		// 	ynd.setVisible(true);
-		// }
-		// else if(action == Action.DELETE_RES_CONFIRMATION) {
-		// 	YesNoDialog ynd = new YesNoDialog((String[]) args, language[83], "deleteRes");
-		// 	ynd.addSubscriber(thisWindow);
-		// 	ynd.setVisible(true);
-		// }
 	}
 
 	@Override

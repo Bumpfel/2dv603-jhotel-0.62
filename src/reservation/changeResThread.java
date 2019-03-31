@@ -35,19 +35,14 @@ import functions.Action;
 
 public class changeResThread extends ObservableThread {
 	
-	// private Reservation res;
-	// private ReservationManagement rm;
 	private String[] oldguest, newguest;
 	String[] language;
 
 	private CalendarCreator calendarCreator = new CalendarCreator();
 	
 	public changeResThread(String[] oldguest, String[] newguest) {
-		// Reservation res = new Reservation(rm);
 		Language lang = new Language();
 		language = lang.getLanguage();
-		// this.res = res;
-		// this.rm = rm;
 		this.oldguest = oldguest;
 		this.newguest = newguest;
 	}

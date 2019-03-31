@@ -50,8 +50,6 @@ public class CheckinWindow extends Frame implements Observer {
 	DefaultListModel dlm_checkin = new DefaultListModel();
 	DefaultListModel dlm_checkout = new DefaultListModel();
 	CheckinWindow thisWindow;
-	// MainWindow mw;
-	// ReservationManagement rm;
 	ArrayList al;
 
 	private javax.swing.JProgressBar jProgressBar = null;
@@ -63,9 +61,8 @@ public class CheckinWindow extends Frame implements Observer {
 	/**
 	 * This is the default constructor
 	 */
-	public CheckinWindow() { // , ReservationManagement rm) {
+	public CheckinWindow() {
 		this.thisWindow = this;
-		// this.mw = mw;
 		Language lang = new Language();
 		language = lang.getLanguage();
 
@@ -163,8 +160,6 @@ public class CheckinWindow extends Frame implements Observer {
 						String[] tmp2 = initializeLists.getCheckin(index);
 						tmp[6] = "true";
 
-						// Reservation res = new Reservation(thisWindow);
-						// res.checkinGuest(tmp2, tmp);
 						setThreadRunning(language[66]);
 						new checkinGuestThread(tmp2, tmp).start();
 					}
@@ -222,8 +217,6 @@ public class CheckinWindow extends Frame implements Observer {
 						String[] tmp2 = initializeLists.getCheckin(index);
 						tmp[6] = "true";
 
-						// Reservation res = new Reservation(thisWindow);
-						// res.checkinGuest(tmp2, tmp);
 						setThreadRunning(language[66]);
 						new checkinGuestThread(tmp2, tmp).start();
 					}

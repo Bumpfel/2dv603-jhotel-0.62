@@ -36,7 +36,6 @@ import functions.Options;
 public class RoomSelectWindow extends Frame implements Runnable, Observable {
 
 	private javax.swing.JPanel jPanel = null;
-	// private ReservationManagement rm;
 	private int roomtype;
 	private String room;
 	private ArrayList allrooms = new ArrayList();
@@ -1751,7 +1750,6 @@ public class RoomSelectWindow extends Frame implements Runnable, Observable {
 			jButton.setBounds(416, 337, 110, 23);
 			jButton.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					// rm.setSelectedRoom(selectedRoom);
 					notifySubscribers(Action.SELECT_ROOM);
 					dispose();
 				}

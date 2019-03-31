@@ -61,7 +61,6 @@ public class AdditionalDataWindow extends Frame {
 	public String[] currentGuest;
 	private javax.swing.JButton jButton1 = null;
 	private javax.swing.JButton jButton2 = null;
-	private AdditionalDataWindow thisWindow;
 	String[] language;
 
 	/**
@@ -71,7 +70,6 @@ public class AdditionalDataWindow extends Frame {
 		Language lang = new Language();
 		language = lang.getLanguage();
 
-		this.thisWindow = this;
 		this.guest = guest;
 		this.entries = entries;
 		this.o = o;

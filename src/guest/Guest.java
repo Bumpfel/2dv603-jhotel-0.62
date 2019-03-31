@@ -278,13 +278,6 @@ public class Guest {
 	}
 
 	
-	
-	
-	
-	
-	
-	
-	
 	public void addGuest(String[] newguest, String[] oldguest) {
 		boolean isGuest = false;
 		ArrayList db = new ArrayList();
@@ -371,7 +364,6 @@ public class Guest {
 		ArrayList db = new ArrayList();
 		String[] currentGuest;
 
-		
 		try {
 			FileInputStream fis = new FileInputStream(dbname);
 			ObjectInputStream ois = new ObjectInputStream(fis);
@@ -396,14 +388,10 @@ public class Guest {
 			oos.writeObject(db);
 			oos.flush();
 			oos.close();
-			
-			
-			
 		}
 		catch (IOException io) {
 			// nada
 		}
-
 
 	}
 

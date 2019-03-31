@@ -128,7 +128,6 @@ public class ExportWindow extends Frame {
 				public void actionPerformed(java.awt.event.ActionEvent e) {    
 					ArrayList db = new ArrayList();
 					
-					
 					try {
 						FileInputStream fis = new FileInputStream(dbname);
 						ObjectInputStream ois = new ObjectInputStream(fis);
@@ -149,8 +148,6 @@ public class ExportWindow extends Frame {
 					catch (ClassNotFoundException cnf) {
 						// nada
 					}
-					
-					
 					
 				}
 			});

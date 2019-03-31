@@ -93,7 +93,6 @@ public class MainWindow extends Frame implements ActionListener, Observer {
 		Language lang = new Language();
 		language = lang.getLanguage();
 		initialize();
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -101,7 +100,6 @@ public class MainWindow extends Frame implements ActionListener, Observer {
 	 */
 	public MainWindow(GraphicsConfiguration gc) {
 		super(gc);
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -110,7 +108,6 @@ public class MainWindow extends Frame implements ActionListener, Observer {
 	 */
 	public MainWindow(String title) throws HeadlessException {
 		super(title);
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -119,7 +116,6 @@ public class MainWindow extends Frame implements ActionListener, Observer {
 	 */
 	public MainWindow(String title, GraphicsConfiguration gc) {
 		super(title, gc);
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -212,7 +208,7 @@ public class MainWindow extends Frame implements ActionListener, Observer {
 			}
 		}
 
-		if (modified) { // called when fields contain data and "Guest management" buttons is pressed
+		if (modified) { // called when fields contain data and "Guest management" button is pressed
 			YesNoDialog zn = new YesNoDialog(tst, language[52], "undoEntry");
 			zn.addSubscriber(this);
 			zn.setVisible(true);
@@ -256,7 +252,6 @@ public class MainWindow extends Frame implements ActionListener, Observer {
 		searchWindow.setEnabled(true);
 		searchWindow.setSearchField(true);
 		searchWindow.clearFields();
-		// thisWindow.setVisible(false);
 	}
 
 	private javax.swing.JButton getJButton1() {
@@ -928,7 +923,6 @@ public class MainWindow extends Frame implements ActionListener, Observer {
 
 	public void actionPerformed(ActionEvent event) {
 		String command = event.getActionCommand();
-		// ActionCommandsMW action = new ActionCommandsMW(thisWindow, command);
 		if (command.equals(language[0])) {
 			newGuest();
 		}

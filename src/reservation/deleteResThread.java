@@ -41,11 +41,8 @@ public class deleteResThread extends ObservableThread {
 	private CalendarCreator calendarCreator = new CalendarCreator();
 
 	public deleteResThread(String[] reservation) {
-		// Reservation res = new Reservation(rm);
 		Language lang = new Language();
 		language = lang.getLanguage();
-		// this.res = res;
-		// this.rm = rm;
 		this.reservation = reservation;
 	}
 
