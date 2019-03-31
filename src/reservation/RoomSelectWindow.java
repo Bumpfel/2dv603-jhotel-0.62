@@ -1752,7 +1752,7 @@ public class RoomSelectWindow extends Frame implements Runnable, Observable {
 			jButton.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					// rm.setSelectedRoom(selectedRoom);
-					notifySubscribers();
+					notifySubscribers(Action.SELECT_ROOM);
 					dispose();
 				}
 			});
@@ -1840,9 +1840,9 @@ public class RoomSelectWindow extends Frame implements Runnable, Observable {
 		subscribers.add(o);
 	}
 
-	private void notifySubscribers() {
+	private void notifySubscribers(Action action) {
 		for(Observer o : subscribers) {
-			o.update(null, selectedRoom, Action.SELECT_ROOM);
+			o.update(null, selectedRoom, action);
 		}
 	}
 }  //  @jve:visual-info  decl-index=0 visual-constraint="10,10"

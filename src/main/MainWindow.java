@@ -290,11 +290,12 @@ public class MainWindow extends Frame implements ActionListener, Observer {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					// setGuestStatus(false);
 					// jButton6.setVisible(false);
-					ReservationManagement rm = new ReservationManagement(thisWindow);
+					ReservationManagement rm = new ReservationManagement();
+					rm.addSubscriber(thisWindow);
 					rm.setVisible(true);
-					new Thread(rm).start();
 					rm.setEnabled(true);
-
+					new Thread(rm).start();
+					
 					setVisible(false);
 				}
 			});
@@ -948,7 +949,7 @@ public class MainWindow extends Frame implements ActionListener, Observer {
 			//exportDB();
 		}
 		else if (command.equals(language[6])) {
-			OptionsWindow ow = new OptionsWindow(this);
+			OptionsWindow ow = new OptionsWindow();
 			ow.setVisible(true);
 		}
 		else if (command.equals(language[24])) {
@@ -1041,6 +1042,10 @@ public class MainWindow extends Frame implements ActionListener, Observer {
 			setGuest((String[]) args);
 			setCurrentGuest();
 			setDeleted(true);
+		}
+		else if(action == Action.SHOW_WINDOW) {
+			setVisible(true);
+			setEnabled(true);
 		}
 
 	}

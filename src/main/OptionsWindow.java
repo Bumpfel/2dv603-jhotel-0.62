@@ -53,7 +53,6 @@ public class OptionsWindow extends Frame{
 	private javax.swing.JButton jButton1 = null;
 	private javax.swing.JButton jButton2 = null;
 	boolean standard;
-	MainWindow mw;
 	Options options = new Options();
 	String[] language;
 	String language2;
@@ -200,14 +199,14 @@ public class OptionsWindow extends Frame{
 	/**
 	 * This is the default constructor
 	 */
-	public OptionsWindow(MainWindow mw) {
+	public OptionsWindow() {
+		System.out.println("opened options window");
 		Language lang = new Language();
 		language = lang.getLanguage();
 		getRooms();
 		
 		this.settings = options.getSettings();
 		this.floors = settings[2];
-		this.mw = mw;
 		initialize();
 	}
 	/**
@@ -1711,7 +1710,6 @@ public class OptionsWindow extends Frame{
 				public void actionPerformed(java.awt.event.ActionEvent e) {    
 					saveRooms();
 					dispose();
-					mw.setVisible(true);
 				}
 			});
 		}
@@ -2896,7 +2894,7 @@ public class OptionsWindow extends Frame{
 			for (int i=1; i<=Integer.parseInt(settings[2]); ++i) {
 				rt.createRoomFiles(rt.getRooms(i));
 			}*/
-			ReservationManagement rm = new ReservationManagement(mw);
+			ReservationManagement rm = new ReservationManagement();
 			rm.setVisible(false);
 			Reservation res = new Reservation(rm);
 			res.createResTable();

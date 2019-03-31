@@ -34,10 +34,11 @@ import main.MainWindow;
 import functions.Action;
 import functions.CalendarCreator;
 import functions.Language;
+import functions.Observable;
 import functions.Observer;
 import functions.Options;
 
-public class ReservationManagement extends Frame implements Runnable, Observer {
+public class ReservationManagement extends Frame implements Runnable, Observer, Observable {
 
 	private javax.swing.JPanel jPanel = null;
 	private javax.swing.JPanel jPanel1 = null;
@@ -57,7 +58,6 @@ public class ReservationManagement extends Frame implements Runnable, Observer {
 	private javax.swing.JTextField jTextField3 = null;
 	private javax.swing.JButton jButton3 = null;
 	private javax.swing.JButton jButton4 = null;
-	private MainWindow mw;
 	private Reservation res;
 	public static ReservationManagement thisWindow;
 	private ReservationManagement rm;
@@ -92,18 +92,17 @@ public class ReservationManagement extends Frame implements Runnable, Observer {
 	private javax.swing.JLabel jLabel8 = null;
 
 	private CalendarCreator calendarCreator = new CalendarCreator();
+	private ArrayList<Observer> subscribers = new ArrayList<>();
 
 	/**
 	 * This is the default constructor
 	 */
-	public ReservationManagement(MainWindow mw) {
+	public ReservationManagement() {
 		Options options = new Options();
 		settings = options.getSettings();
 		Reservation r = new Reservation(thisWindow);
 		this.res = r;
 		thisWindow = this;
-		this.mw = mw;
-		mw.setVisible(false);
 		Language lang = new Language();
 		language = lang.getLanguage();
 		int[] days = calendarCreator.calcDate();
@@ -144,8 +143,7 @@ public class ReservationManagement extends Frame implements Runnable, Observer {
 		this.setVisible(true);
 		this.addWindowListener(new java.awt.event.WindowAdapter() {
 			public void windowClosing(java.awt.event.WindowEvent e) {
-				mw.setVisible(true);
-				mw.setEnabled(true);
+				notifySubscribers(Action.SHOW_WINDOW);
 				dispose();
 			}
 		});
@@ -1122,5 +1120,16 @@ public class ReservationManagement extends Frame implements Runnable, Observer {
 			setGuest(guest[0], guest[1], guest[2]);
 		}
 	}
+
+	@Override
+	public void addSubscriber(Observer o) {
+		subscribers.add(o);
+	}
+
+	private void notifySubscribers(Action action) {
+		for(Observer o : subscribers) {
+			o.update(null, null, action);
+		}
+	} 
 
 }  //  @jve:visual-info  decl-index=0 visual-constraint="10,10"

@@ -116,12 +116,13 @@ public class YesNoDialog extends Frame implements Observable {
 						// mw.addDataWindowReset(guest);
 					}
 					else if (action.equals("deleteRes")) {
-						System.out.println("should delete");
 						Reservation res = new Reservation(rm);
+						notifySubscribers(Action.DISPOSE);
 						res.deleteReservation(guest);	
 					}
 					else if (action.equals("changeRes")) {
 						Reservation res = new Reservation(rm);
+						notifySubscribers(Action.DISPOSE);
 						res.changeReservation(oldguest, newguest);
 					}
 					dispose();

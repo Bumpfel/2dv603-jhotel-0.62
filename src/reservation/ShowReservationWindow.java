@@ -28,9 +28,10 @@ import functions.YesNoDialog;
 import functions.Action;
 import functions.CalendarCreator;
 import functions.Language;
+import functions.Observable;
 import functions.Observer;
 
-public class ShowReservationWindow extends Frame implements Observer {
+public class ShowReservationWindow extends Frame implements Observer, Observable {
 
 	private javax.swing.JLabel jLabel = null;
 	private javax.swing.JLabel jLabel1 = null;
@@ -602,16 +603,17 @@ public class ShowReservationWindow extends Frame implements Observer {
 
 	@Override
 	public void update(Observer o, Object args, Action action) {
-		setSelectedRoom((String) args);
+		if(action == Action.SELECT_ROOM) {
+			setSelectedRoom((String) args);
+		}
+		else if(action == Action.DISPOSE) {
+			dispose();
+		}
 	}
 
+	@Override
 	public void addSubscriber(Observer o) {
 		subscribers.add(o);
 	}
 
-	private void notifySubscribers() {
-		for(Observer o : subscribers) {
-			// o.update(null, args, action);
-		}
-	}
 }  //  @jve:visual-info  decl-index=0 visual-constraint="10,10"

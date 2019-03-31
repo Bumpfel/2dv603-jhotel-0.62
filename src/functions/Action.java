@@ -15,5 +15,7 @@ public enum Action {
     INITIALIZED,
     THREAD_ENDED,
     SET_CHECKIN_LIST,
-
+    SHOW_WINDOW,
+    DISPOSE,
+    
 }
