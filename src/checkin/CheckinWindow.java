@@ -168,7 +168,7 @@ public class CheckinWindow extends Frame implements Observer {
 						// Reservation res = new Reservation(thisWindow);
 						// res.checkinGuest(tmp2, tmp);
 						setThreadRunning(language[66]);
-						new checkinGuestThread(thisWindow, tmp2, tmp).start();
+						new checkinGuestThread(tmp2, tmp).start();
 					}
 				}
 			};
@@ -227,7 +227,7 @@ public class CheckinWindow extends Frame implements Observer {
 						// Reservation res = new Reservation(thisWindow);
 						// res.checkinGuest(tmp2, tmp);
 						setThreadRunning(language[66]);
-						new checkinGuestThread(thisWindow, tmp2, tmp).start();
+						new checkinGuestThread(tmp2, tmp).start();
 					}
 				}
 			});
