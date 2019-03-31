@@ -1084,7 +1084,6 @@ public class ReservationManagement extends ObservableFrame implements Runnable, 
 
 	@Override
 	public void update(Observer o, Object args, Action action) {
-		System.out.println("ResMgmt notified of " + action);
 		if(action == Action.GET_GUEST_DB)
 			setOldGuest((String[]) args);
 		else if(action == Action.LOAD_GUEST)

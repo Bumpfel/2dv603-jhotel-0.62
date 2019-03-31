@@ -596,7 +596,6 @@ public class ShowReservationWindow extends ObservableFrame implements Observer {
 
 	@Override
 	public void update(Observer o, Object args, Action action) {
-		System.out.println("SRW notified of " + action);
 		if(action == Action.SELECT_ROOM) {
 			setSelectedRoom((String) args);
 		}
