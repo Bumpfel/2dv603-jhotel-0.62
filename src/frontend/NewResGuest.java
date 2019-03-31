@@ -31,7 +31,7 @@ import backend.Observer;
 
 public class NewResGuest extends Frame implements Observable {
 
-	private ReservationManagement rm;
+	// private ReservationManagement rm;
 	// private ResGuestList rgl;
 	String[] language;
 	private javax.swing.JLabel jLabel = null;
@@ -48,8 +48,8 @@ public class NewResGuest extends Frame implements Observable {
 	/**
 	 * This is the default constructor
 	 */
-	public NewResGuest(ReservationManagement rm) {
-		this.rm = rm;
+	public NewResGuest() {
+		// this.rm = rm;
 		// this.rgl = rgl;
 
 		Language lang = new Language();
@@ -129,8 +129,8 @@ public class NewResGuest extends Frame implements Observable {
 			jTextField.setBounds(121, 35, 164, 21);
 			jTextField.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					rm.setGuest(jTextField.getText(), jTextField1.getText(), jTextField2.getText());
-					notifySubscriber(Action.DISPOSE);
+					// rm.setGuest(jTextField.getText(), jTextField1.getText(), jTextField2.getText());
+					notifySubscriber(Action.SET_GUEST);
 					// rgl.dispose();
 					dispose();
 				}
@@ -150,8 +150,8 @@ public class NewResGuest extends Frame implements Observable {
 			jTextField1.setBounds(121, 63, 164, 21);
 			jTextField1.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					rm.setGuest(jTextField.getText(), jTextField1.getText(), jTextField2.getText());
-					notifySubscriber(Action.DISPOSE);
+					// rm.setGuest(jTextField.getText(), jTextField1.getText(), jTextField2.getText());
+					notifySubscriber(Action.SET_GUEST);
 					// rgl.dispose();
 					dispose();
 				}
@@ -171,8 +171,8 @@ public class NewResGuest extends Frame implements Observable {
 			jTextField2.setBounds(121, 94, 164, 21);
 			jTextField2.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					rm.setGuest(jTextField.getText(), jTextField1.getText(), jTextField2.getText());
-					notifySubscriber(Action.DISPOSE);
+					// rm.setGuest(jTextField.getText(), jTextField1.getText(), jTextField2.getText());
+					notifySubscriber( Action.SET_GUEST);
 					// rgl.dispose();
 					dispose();
 				}
@@ -193,8 +193,8 @@ public class NewResGuest extends Frame implements Observable {
 			jButton.setText(language[21]);
 			jButton.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					rm.setGuest(jTextField.getText(), jTextField1.getText(), jTextField2.getText());
-					notifySubscriber(Action.DISPOSE);
+					// rm.setGuest(jTextField.getText(), jTextField1.getText(), jTextField2.getText());
+					notifySubscriber(Action.SET_GUEST);
 					// rgl.dispose();
 					dispose();
 				}
@@ -230,8 +230,10 @@ public class NewResGuest extends Frame implements Observable {
 	}
 
 	private void notifySubscriber(Action action) {
+		String[] textFields = { jTextField.getText(), jTextField1.getText(), jTextField2.getText() };
+
 		for(Observer o : subscribers) {
-			o.update(null, null, action);
+			o.update(null, textFields, action);
 		}
 	}
 

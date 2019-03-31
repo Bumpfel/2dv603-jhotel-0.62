@@ -9,12 +9,13 @@ package backend;
         DELETE_ENTRY,
         LOAD_GUEST,
         SELECT_ROOM,
-        DISPOSE,
+        // DISPOSE,
         SET_VISIBLE,
         GET_GUEST_DB,
         NEW_RES_GUEST,
         UPDATE_LIST,
-        
+        SET_GUEST,
+
     }
 
     // public enum ReservationAction {

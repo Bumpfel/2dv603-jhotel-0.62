@@ -1105,7 +1105,7 @@ public class ReservationManagement extends Frame implements Runnable, Observer {
 		else if(action == Action.LOAD_GUEST)
 			setGuest((String[]) args);
 		else if(action == Action.NEW_RES_GUEST) {
-			NewResGuest nrg = new NewResGuest(rm);
+			NewResGuest nrg = new NewResGuest();
 			nrg.setVisible(true);
 			nrg.addSubscriber(o);
 		}
@@ -1116,6 +1116,10 @@ public class ReservationManagement extends Frame implements Runnable, Observer {
 		}
 		else if(action == Action.SELECT_ROOM)
 			setSelectedRoom((String) args);
+		else if(action == Action.SET_GUEST) {
+			String[] guest = (String[]) args;
+			setGuest(guest[0], guest[1], guest[2]);
+		}
 	}
 
 }  //  @jve:visual-info  decl-index=0 visual-constraint="10,10"

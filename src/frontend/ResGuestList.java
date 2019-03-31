@@ -295,7 +295,7 @@ public class ResGuestList extends Frame implements Observer, Observable {
 
 	@Override
 	public void update(Observer o, Object args, Action action) {
-		if(action == Action.DISPOSE)
+		if(action == Action.SET_GUEST)
 			dispose();
 		else if(action == Action.SET_VISIBLE)
 			setVisible(true);
