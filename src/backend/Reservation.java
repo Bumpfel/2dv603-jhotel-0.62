@@ -46,6 +46,7 @@ public class Reservation extends Thread {
 	private String[] emptyGuest = new String[guest.getEntries()];
 	private String arrivalS, departureS;
 	private CheckinWindow cw;
+	private CalendarCreator calendarCreator = new CalendarCreator();
 	
 	public Reservation(ReservationManagement rm) {
 		Language lang = new Language();
@@ -60,8 +61,8 @@ public class Reservation extends Thread {
 	}
 	
 	public Reservation(ReservationManagement rm, String arr, String dep, String name, String room, String price) {
-		this.arrival = createCal(arr);
-		this.departure = createCal(dep);
+		this.arrival = calendarCreator.createCal(arr);
+		this.departure = calendarCreator.createCal(dep);
 		this.name = name;
 		this.room = room;
 		this.rm = rm;
@@ -118,7 +119,7 @@ public class Reservation extends Thread {
 			}
 		}
 		else if (month==2) {
-			if (isLeapYear(year)) {
+			if (calendarCreator.isLeapYear(year)) {
 				if (day>29) {
 					correctDate = false;
 				}
@@ -511,99 +512,6 @@ public class Reservation extends Thread {
 		}
 	}
 	
-	
-	public int createCal(String date) {
-		int day, month, year;
-		
-		day = Integer.parseInt(date.substring(0, 2));
-		month = Integer.parseInt(date.substring(3, 5));
-		
-		try {
-			year = Integer.parseInt(date.substring(6, 10));
-		}
-		catch (StringIndexOutOfBoundsException sioob) {
-			year = Integer.parseInt(("20") + date.substring(6, 8));
-		}
-
-		int days = 0;
-
-		for (int i=2004; i<year; ++i) {
-			if (isLeapYear(i)) {
-				days = days + 366;
-			}
-			else {
-				days = days + 365;
-			}
-		}
-		
-		for (int i=1; i<month; ++i) {
-			if (i==1) {
-				days = days + 31;
-			}
-			else if (i==2) {
-				if (isLeapYear(year)) {
-					days = days + 29;
-				}
-				else {
-					days = days + 28;
-				}
-			}
-			else if (i==3) {
-				days = days + 31;
-			}
-			else if (i==4) {
-				days = days + 30;
-			}
-			else if (i==5) {
-				days = days + 31;
-			}
-			else if (i==6) {
-				days = days + 30;
-			}
-			else if (i==7) {
-				days = days + 31;
-			}
-			else if (i==8) {
-				days = days +  31;
-			}
-			else if (i==9) {
-				days = days + 30;
-			}
-			else if (i==10) {
-				days = days + 31;
-			}
-			else if (i==11) {
-				days = days + 30;
-			}
-			else if (i==12) {
-				days = days + 31;
-			}
-		}
-		
-		days = days + day;
-		
-		return days;
-	}
-	
-	public boolean isLeapYear(int year) {
-		boolean isLY = false;
-		
-		if ((year % 4)!=0) {
-			isLY = false; 
-		}
-		else if (((year % 4) == 0) && ((year % 100) == 0) && (year % 1000) == 0) {
-			isLY = true;
-		}
-		else if ((year % 4) == 0 && ((year % 100) == 0)) {
-			isLY = false;
-		}
-		else if ((year % 4) == 0) {
-			isLY = true;
-		}
-		
-		return isLY;
-	}
-	
 	public boolean checkAvailability(int arrival, int departure, String room) {
 		boolean available = true;
 		ArrayList reservations = new ArrayList();
@@ -665,7 +573,7 @@ public class Reservation extends Thread {
 			daysInMonth = 31;
 		}
 		else if (month==1) {
-			if (isLeapYear(year)) {
+			if (calendarCreator.isLeapYear(year)) {
 				daysInMonth = 29;
 			}
 			else {
@@ -685,8 +593,8 @@ public class Reservation extends Thread {
 			l = daysInMonth + "." + (month+1) + "." + year;
 		}
 		
-		days[0] = createCal(f);
-		days[1] = createCal(l);
+		days[0] = calendarCreator.createCal(f);
+		days[1] = calendarCreator.createCal(l);
 		return days;
 	}
 	
@@ -701,7 +609,7 @@ public class Reservation extends Thread {
 			daysInMonth = 31;
 		}
 		else if (month==1) {
-			if (isLeapYear(year)) {
+			if (calendarCreator.isLeapYear(year)) {
 				daysInMonth = 29;
 			}
 			else {
@@ -721,8 +629,8 @@ public class Reservation extends Thread {
 			l = daysInMonth + "." + (month+1) + "." + year;
 		}
 		
-		days[0] = createCal(f);
-		days[1] = createCal(l);
+		days[0] = calendarCreator.createCal(f);
+		days[1] = calendarCreator.createCal(l);
 		return days;
 	}
 
