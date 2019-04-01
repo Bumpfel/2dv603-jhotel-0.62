@@ -29,12 +29,12 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 import functions.Language;
-import functions.Observer;
+import functions.ObservableThread;
 import functions.Action;
 import functions.CalendarCreator;
 import guest.Guest;
 
-public class Reservation extends Thread implements Observer {
+public class Reservation extends ObservableThread {
 	private int arrival;
 	private int departure;
 	private String name;
@@ -43,7 +43,7 @@ public class Reservation extends Thread implements Observer {
 	private String[] language;
 	private String[] oldguest;
 	private String[] newguest;
-	Guest guest = new Guest();
+	private Guest guest = new Guest();
 	private String[] emptyGuest = new String[guest.getEntries()];
 	private String arrivalS, departureS;
 
@@ -72,18 +72,11 @@ public class Reservation extends Thread implements Observer {
 		language = lang.getLanguage();
 	}
 
+
 	public void run() {
-		// rm.setThreadRunning(language[66]);
-		makeReservation(arrival, departure, name, room);
-		// rm.run();
-		// rm.setThreadEnded();
-	}
-
-
-	public void makeReservation(int arrival, int departure, String name, String room) {
 		ArrayList reservations = new ArrayList();
 		String[] availableRooms = new String[168];
-		String[] tmp = new String[100000];
+		String[] tmp;// = new String[100000];
 		int index = 0;
 
 		try {
@@ -124,7 +117,10 @@ public class Reservation extends Thread implements Observer {
 		} catch (IOException io) {
 			System.out.println(io);
 		}
+
+		notifySubscribers(null, reservations, Action.UPDATE_TABLE);
 	}
+
 
 	public void createResTable() {
 		System.out.println("debug");
@@ -469,16 +465,6 @@ public class Reservation extends Thread implements Observer {
 		}
 
 		return available;
-	}
-
-	@Override
-	public void update(Observer obs, Object args, Action action) {
-		if(action == Action.DELETE_RES) {
-
-		}
-		else if(action == Action.CHANGE_RES) {
-
-		}
 	}
 	
 	/*public static void main(String[] args) {

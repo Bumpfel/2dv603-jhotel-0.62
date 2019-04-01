@@ -45,9 +45,6 @@ public class NewResGuest extends ObservableFrame {
 	 * This is the default constructor
 	 */
 	public NewResGuest() {
-		// this.rm = rm;
-		// this.rgl = rgl;
-
 		Language lang = new Language();
 		language = lang.getLanguage();
 		initialize();
@@ -175,7 +172,7 @@ public class NewResGuest extends ObservableFrame {
 	}
 
 	/**
-	 * This method initializes jButton
+	 * This method initializes jButton "OK"
 	 * 
 	 * @return javax.swing.JButton
 	 */
@@ -194,9 +191,9 @@ public class NewResGuest extends ObservableFrame {
 		}
 		return jButton;
 	}
-
+	
 	/**
-	 * This method initializes jButton1
+	 * This method initializes jButton1 "Cancel"
 	 * 
 	 * @return javax.swing.JButton
 	 */

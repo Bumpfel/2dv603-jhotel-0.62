@@ -47,10 +47,6 @@ public class deleteResThread extends ObservableThread {
 	}
 
 	public void run() {
-		deleteReservation(reservation);
-	}
-
-	public void deleteReservation(String[] reservation) {
 		String toDelete = reservation[0] + " - " + reservation[1] + ", " + reservation[2] + ": " + reservation[3] + "; "
 				+ reservation[4];
 		String roomtoDelete = reservation[5];
@@ -62,8 +58,6 @@ public class deleteResThread extends ObservableThread {
 		String[] availableRooms = new String[168];
 		String[] tmp = new String[100000];
 		int index = 0;
-
-		// rm.setThreadRunning(language[80]);
 
 		try {
 			FileInputStream fis = new FileInputStream("./db/restable.jh");
@@ -105,8 +99,6 @@ public class deleteResThread extends ObservableThread {
 		}
 
 		notifySubscribers(null, reservations, Action.UPDATE_TABLE);
-		// rm.updateTable(reservations);
-		// rm.setThreadEnded();
 
 	}
 }

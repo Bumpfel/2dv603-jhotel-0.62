@@ -30,7 +30,6 @@ import java.util.ArrayList;
 
 import functions.Language;
 import functions.ObservableThread;
-import functions.Observer;
 import functions.Action;
 import functions.CalendarCreator;
 
