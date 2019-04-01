@@ -31,11 +31,12 @@ import javax.swing.DefaultListModel;
 
 import functions.Action;
 import functions.Language;
+import functions.ObservableFrame;
 import functions.Observer;
 import functions.checkinGuestThread;
 import reservation.ShowReservationWindow;
 
-public class CheckinWindow extends Frame implements Observer {
+public class CheckinWindow extends ObservableFrame implements Observer {
 
 	private javax.swing.JTabbedPane jTabbedPane = null;
 	private javax.swing.JScrollPane jScrollPane = null;
@@ -186,9 +187,9 @@ public class CheckinWindow extends Frame implements Observer {
 					if (e.getClickCount() == 2) {
 						int index = jList1.locationToIndex(e.getPoint());
 
-						ShowReservationWindow srw = new ShowReservationWindow(initializeLists.getCheckout(index));
-						srw.setVisible(true);
-
+						// ShowReservationWindow srw = new ShowReservationWindow(initializeLists.getCheckout(index));
+						// srw.setVisible(true);
+						notifySubscribers(null, initializeLists.getCheckout(index), Action.SHOW_RESERVATION);
 					}
 				}
 			};

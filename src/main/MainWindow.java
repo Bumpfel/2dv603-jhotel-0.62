@@ -36,6 +36,7 @@ import functions.Language;
 import functions.Observer;
 import functions.YesNoDialog;
 import reservation.ReservationManagement;
+import reservation.ShowReservationWindow;
 
 public class MainWindow extends Frame implements ActionListener, Observer {
 
@@ -313,6 +314,7 @@ public class MainWindow extends Frame implements ActionListener, Observer {
 			jButton3.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					CheckinWindow cw = new CheckinWindow();
+					cw.addSubscriber(thisWindow);
 					cw.setVisible(true);
 				}
 			});
@@ -1041,6 +1043,10 @@ public class MainWindow extends Frame implements ActionListener, Observer {
 		else if(action == Action.SHOW_WINDOW) {
 			setVisible(true);
 			setEnabled(true);
+		}
+		else if(action == Action.SHOW_RESERVATION) {
+			ShowReservationWindow srw = new ShowReservationWindow((String[]) args);
+			srw.setVisible(true);
 		}
 
 	}
