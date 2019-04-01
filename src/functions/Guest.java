@@ -19,7 +19,7 @@
  *
  *
 **/
-package guest;
+package functions;
 
 import functions.Options;
 

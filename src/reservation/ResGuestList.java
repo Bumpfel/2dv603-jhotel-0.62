@@ -29,10 +29,10 @@ import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 
 import functions.Action;
+import functions.Guest;
 import functions.Language;
 import functions.ObservableFrame;
 import functions.Observer;
-import guest.Guest;
 
 public class ResGuestList extends ObservableFrame implements Observer {
 

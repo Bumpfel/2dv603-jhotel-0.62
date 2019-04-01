@@ -28,11 +28,11 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
-import functions.Language;
-import functions.ObservableThread;
 import functions.Action;
 import functions.CalendarCreator;
-import guest.Guest;
+import functions.Guest;
+import functions.Language;
+import functions.ObservableThread;
 
 public class Reservation extends ObservableThread {
 	private int arrival;

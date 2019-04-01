@@ -29,12 +29,12 @@ import java.awt.event.ActionListener;
 import java.util.Arrays;
 
 import checkin.CheckinWindow;
-import functions.YesNoDialog;
 import functions.Action;
-import guest.Guest;
+import functions.Guest;
+import functions.GuestList;
 import functions.Language;
 import functions.Observer;
-import guest.GuestList;
+import functions.YesNoDialog;
 import reservation.ReservationManagement;
 
 public class MainWindow extends Frame implements ActionListener, Observer {

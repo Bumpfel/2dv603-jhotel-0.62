@@ -32,7 +32,7 @@ import javax.swing.DefaultListModel;
 import functions.Action;
 import functions.Language;
 import functions.Observer;
-import guest.checkinGuestThread;
+import functions.checkinGuestThread;
 import reservation.ShowReservationWindow;
 
 public class CheckinWindow extends Frame implements Observer {
