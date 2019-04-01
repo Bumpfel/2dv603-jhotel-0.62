@@ -127,6 +127,7 @@ public class Reservation extends Thread implements Observer {
 	}
 
 	public void createResTable() {
+		System.out.println("debug");
 		ArrayList al1, al2, al3, al4, al5;
 		String[] f1, f2, f3, f4, f5, f6, f7, f8;
 		ArrayList reservations = new ArrayList();

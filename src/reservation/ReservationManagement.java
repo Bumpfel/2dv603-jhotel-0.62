@@ -470,7 +470,7 @@ public class ReservationManagement extends ObservableFrame implements Runnable, 
 	}
 
 	/**
-	 * This method initializes jButton
+	 * This method initializes jButton "Choose guest"
 	 * 
 	 * @return javax.swing.JButton
 	 */
@@ -495,6 +495,7 @@ public class ReservationManagement extends ObservableFrame implements Runnable, 
 		oldguest = og;
 	}
 
+	//OK Button
 	private javax.swing.JButton getJButton1() {
 		if (jButton1 == null) {
 			jButton1 = new javax.swing.JButton();
