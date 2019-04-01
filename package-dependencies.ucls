@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.2.3" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
+  associations="true" dependencies="true" nesting-relationships="true" router="FAN">  
+  <package id="1" language="java" name="functions" project="2dv603-jhotel-0.62" file="/2dv603-jhotel-0.62/src/functions" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="56" width="117" x="357" y="360"/>    
+    <display autosize="false" stereotype="false" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="2" language="java" name="main" project="2dv603-jhotel-0.62" file="/2dv603-jhotel-0.62/src/main" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="55" width="76" x="363" y="109"/>    
+    <display autosize="false" stereotype="false" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="3" language="java" name="reservation" project="2dv603-jhotel-0.62" 
+    file="/2dv603-jhotel-0.62/src/reservation" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="55" width="120" x="458" y="232"/>    
+    <display autosize="false" stereotype="false" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="4" language="java" name="album" project="2dv603-jhotel-0.62" file="/2dv603-jhotel-0.62/src/album" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="56" width="85" x="200" y="340"/>    
+    <display autosize="false" stereotype="false" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="5" language="java" name="checkin" project="2dv603-jhotel-0.62" file="/2dv603-jhotel-0.62/src/checkin" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="55" width="90" x="274" y="230"/>    
+    <display autosize="false" stereotype="false" sort-features="false" accessors="true"/>  
+  </package>  
+  <dependency id="6">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="1"/>  
+  </dependency>  
+  <dependency id="7">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="5"/>  
+  </dependency>  
+  <dependency id="8">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="1"/>  
+  </dependency>  
+  <dependency id="9">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="1"/>  
+  </dependency>  
+  <dependency id="10">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="1"/>  
+  </dependency>  
+  <dependency id="11">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="3"/>  
+  </dependency>  
+  <classifier-display autosize="true" stereotype="false" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="false">    
+    <attributes public="false" package="false" protected="false" private="false" static="false"/>    
+    <operations public="false" package="true" protected="false" private="false" static="false"/>  
+  </classifier-display>  
+  <association-display labels="false" multiplicity="false"/>
+</class-diagram>

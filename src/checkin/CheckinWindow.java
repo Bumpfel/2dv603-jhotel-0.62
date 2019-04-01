@@ -21,7 +21,6 @@
 **/
 package checkin;
 
-import java.awt.Frame;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -34,7 +33,6 @@ import functions.Language;
 import functions.ObservableFrame;
 import functions.Observer;
 import functions.checkinGuestThread;
-import reservation.ShowReservationWindow;
 
 public class CheckinWindow extends ObservableFrame implements Observer {
 
