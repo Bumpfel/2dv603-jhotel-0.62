@@ -1,0 +1,646 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.2.3" icons="true" always-add-relationships="false" generalizations="false" realizations="true" 
+  associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
+  <package id="1" language="java" name="album" project="2dv603-jhotel-0.62" file="/2dv603-jhotel-0.62/src/album" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="208" width="343" x="41" y="80"/>    
+    <display autosize="false" stereotype="false" sort-features="false" accessors="true"/>  
+  </package>  
+  <class id="2" language="java" name="album.AlbumSearchWindow" project="2dv603-jhotel-0.62" 
+    file="/2dv603-jhotel-0.62/src/album/AlbumSearchWindow.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="139" y="144"/>    
+    <display autosize="true" stereotype="false" package="true" initial-value="false" signature="false" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="album.AlbumWindow" project="2dv603-jhotel-0.62" 
+    file="/2dv603-jhotel-0.62/src/album/AlbumWindow.java" binary="false" corner="TOP_RIGHT">    
+    <position height="-1" width="-1" x="221" y="230"/>    
+    <display autosize="true" stereotype="false" package="true" initial-value="false" signature="false" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="album.Album" project="2dv603-jhotel-0.62" 
+    file="/2dv603-jhotel-0.62/src/album/Album.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="311" y="164"/>    
+    <display autosize="true" stereotype="false" package="true" initial-value="false" signature="false" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <package id="5" language="java" name="checkin" project="2dv603-jhotel-0.62" file="/2dv603-jhotel-0.62/src/checkin" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="239" width="386" x="495" y="42"/>    
+    <display autosize="false" stereotype="false" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="6" language="java" name="functions" project="2dv603-jhotel-0.62" file="/2dv603-jhotel-0.62/src/functions" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="343" width="459" x="499" y="382"/>    
+    <display autosize="false" stereotype="false" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="7" language="java" name="main" project="2dv603-jhotel-0.62" file="/2dv603-jhotel-0.62/src/main" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="357" width="568" x="-77" y="365"/>    
+    <display autosize="false" stereotype="false" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="8" language="java" name="reservation" project="2dv603-jhotel-0.62" 
+    file="/2dv603-jhotel-0.62/src/reservation" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="373" width="558" x="1009" y="12"/>    
+    <display autosize="false" stereotype="false" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="9" language="java" name="guest" project="2dv603-jhotel-0.62" file="/2dv603-jhotel-0.62/src/guest" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="197" width="335" x="1019" y="383"/>    
+    <display autosize="false" stereotype="false" sort-features="false" accessors="true"/>  
+  </package>  
+  <class id="10" language="java" name="checkin.CheckinWindow" project="2dv603-jhotel-0.62" 
+    file="/2dv603-jhotel-0.62/src/checkin/CheckinWindow.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="611" y="113"/>    
+    <display autosize="true" stereotype="false" package="true" initial-value="false" signature="false" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="11" language="java" name="checkin.InitializeLists" project="2dv603-jhotel-0.62" 
+    file="/2dv603-jhotel-0.62/src/checkin/InitializeLists.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="645" y="192"/>    
+    <display autosize="true" stereotype="false" package="true" initial-value="false" signature="false" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <enumeration id="12" language="java" name="functions.Action" project="2dv603-jhotel-0.62" 
+    file="/2dv603-jhotel-0.62/src/functions/Action.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="572" y="611"/>    
+    <display autosize="true" stereotype="false" package="true" initial-value="false" signature="false" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </enumeration>  
+  <class id="13" language="java" name="functions.CalendarCreator" project="2dv603-jhotel-0.62" 
+    file="/2dv603-jhotel-0.62/src/functions/CalendarCreator.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="632" y="456"/>    
+    <display autosize="true" stereotype="false" package="true" initial-value="true" signature="false" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="14" language="java" name="functions.Language" project="2dv603-jhotel-0.62" 
+    file="/2dv603-jhotel-0.62/src/functions/Language.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="567" y="511"/>    
+    <display autosize="true" stereotype="false" package="true" initial-value="true" signature="false" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="15" language="java" name="functions.ObservableFrame" project="2dv603-jhotel-0.62" 
+    file="/2dv603-jhotel-0.62/src/functions/ObservableFrame.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="711" y="522"/>    
+    <display autosize="true" stereotype="false" package="true" initial-value="true" signature="false" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="16" language="java" name="functions.ObservableThread" project="2dv603-jhotel-0.62" 
+    file="/2dv603-jhotel-0.62/src/functions/ObservableThread.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="864" y="589"/>    
+    <display autosize="true" stereotype="false" package="true" initial-value="true" signature="false" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="17" language="java" name="functions.Observer" project="2dv603-jhotel-0.62" 
+    file="/2dv603-jhotel-0.62/src/functions/Observer.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="865" y="485"/>    
+    <display autosize="true" stereotype="false" package="true" initial-value="true" signature="false" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="18" language="java" name="functions.Options" project="2dv603-jhotel-0.62" 
+    file="/2dv603-jhotel-0.62/src/functions/Options.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="676" y="625"/>    
+    <display autosize="true" stereotype="false" package="true" initial-value="true" signature="false" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="19" language="java" name="functions.YesNoDialog" project="2dv603-jhotel-0.62" 
+    file="/2dv603-jhotel-0.62/src/functions/YesNoDialog.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="788" y="678"/>    
+    <display autosize="true" stereotype="false" package="true" initial-value="true" signature="false" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="20" language="java" name="guest.checkinGuestThread" project="2dv603-jhotel-0.62" 
+    file="/2dv603-jhotel-0.62/src/guest/checkinGuestThread.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1122" y="441"/>    
+    <display autosize="true" stereotype="false" package="true" initial-value="true" signature="false" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="21" language="java" name="guest.Guest" project="2dv603-jhotel-0.62" 
+    file="/2dv603-jhotel-0.62/src/guest/Guest.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1268" y="501"/>    
+    <display autosize="true" stereotype="false" package="true" initial-value="true" signature="false" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="22" language="java" name="guest.GuestList" project="2dv603-jhotel-0.62" 
+    file="/2dv603-jhotel-0.62/src/guest/GuestList.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1148" y="550"/>    
+    <display autosize="true" stereotype="false" package="true" initial-value="true" signature="false" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="23" language="java" name="main.AboutWindow" project="2dv603-jhotel-0.62" 
+    file="/2dv603-jhotel-0.62/src/main/AboutWindow.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2" y="446"/>    
+    <display autosize="true" stereotype="false" package="true" initial-value="true" signature="false" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="24" language="java" name="main.AdditionalDataWindow" project="2dv603-jhotel-0.62" 
+    file="/2dv603-jhotel-0.62/src/main/AdditionalDataWindow.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="365" y="629"/>    
+    <display autosize="true" stereotype="false" package="true" initial-value="true" signature="false" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="25" language="java" name="main.ExportWindow" project="2dv603-jhotel-0.62" 
+    file="/2dv603-jhotel-0.62/src/main/ExportWindow.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="30" y="573"/>    
+    <display autosize="true" stereotype="false" package="true" initial-value="true" signature="false" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="26" language="java" name="main.ImportWindow" project="2dv603-jhotel-0.62" 
+    file="/2dv603-jhotel-0.62/src/main/ImportWindow.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="73" y="500"/>    
+    <display autosize="true" stereotype="false" package="true" initial-value="true" signature="false" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="27" language="java" name="main.JHotel_Translator" project="2dv603-jhotel-0.62" 
+    file="/2dv603-jhotel-0.62/src/main/JHotel_Translator.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="21" y="676"/>    
+    <display autosize="true" stereotype="false" package="true" initial-value="true" signature="false" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="28" language="java" name="main.MainMenu" project="2dv603-jhotel-0.62" 
+    file="/2dv603-jhotel-0.62/src/main/MainMenu.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="262" y="458"/>    
+    <display autosize="true" stereotype="false" package="true" initial-value="true" signature="false" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="29" language="java" name="main.MainWindow" project="2dv603-jhotel-0.62" 
+    file="/2dv603-jhotel-0.62/src/main/MainWindow.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="411" y="428"/>    
+    <display autosize="true" stereotype="false" package="true" initial-value="true" signature="false" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="30" language="java" name="main.OptionsWindow" project="2dv603-jhotel-0.62" 
+    file="/2dv603-jhotel-0.62/src/main/OptionsWindow.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="377" y="683"/>    
+    <display autosize="true" stereotype="false" package="true" initial-value="true" signature="false" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="31" language="java" name="main.SearchWindow" project="2dv603-jhotel-0.62" 
+    file="/2dv603-jhotel-0.62/src/main/SearchWindow.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="229" y="569"/>    
+    <display autosize="true" stereotype="false" package="true" initial-value="true" signature="false" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="32" language="java" name="reservation.changeResThread" project="2dv603-jhotel-0.62" 
+    file="/2dv603-jhotel-0.62/src/reservation/changeResThread.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1099" y="80"/>    
+    <display autosize="true" stereotype="false" package="true" initial-value="true" signature="false" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="33" language="java" name="reservation.deleteResThread" project="2dv603-jhotel-0.62" 
+    file="/2dv603-jhotel-0.62/src/reservation/deleteResThread.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="42" width="148" x="1070" y="149"/>    
+    <display autosize="true" stereotype="false" package="true" initial-value="true" signature="false" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="34" language="java" name="reservation.NewResGuest" project="2dv603-jhotel-0.62" 
+    file="/2dv603-jhotel-0.62/src/reservation/NewResGuest.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1138" y="303"/>    
+    <display autosize="true" stereotype="false" package="true" initial-value="true" signature="false" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="35" language="java" name="reservation.Reservation" project="2dv603-jhotel-0.62" 
+    file="/2dv603-jhotel-0.62/src/reservation/Reservation.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1284" y="296"/>    
+    <display autosize="true" stereotype="false" package="true" initial-value="true" signature="false" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="36" language="java" name="reservation.ReservationManagement" project="2dv603-jhotel-0.62" 
+    file="/2dv603-jhotel-0.62/src/reservation/ReservationManagement.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1127" y="246"/>    
+    <display autosize="true" stereotype="false" package="true" initial-value="true" signature="false" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="37" language="java" name="reservation.ResGuestList" project="2dv603-jhotel-0.62" 
+    file="/2dv603-jhotel-0.62/src/reservation/ResGuestList.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1309" y="95"/>    
+    <display autosize="true" stereotype="false" package="true" initial-value="true" signature="false" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="38" language="java" name="reservation.RoomSelectWindow" project="2dv603-jhotel-0.62" 
+    file="/2dv603-jhotel-0.62/src/reservation/RoomSelectWindow.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1359" y="175"/>    
+    <display autosize="true" stereotype="false" package="true" initial-value="true" signature="false" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="39" language="java" name="reservation.RoomSelectWindow2" project="2dv603-jhotel-0.62" 
+    file="/2dv603-jhotel-0.62/src/reservation/RoomSelectWindow2.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1373" y="242"/>    
+    <display autosize="true" stereotype="false" package="true" initial-value="true" signature="false" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="40" language="java" name="reservation.ShowReservationWindow" project="2dv603-jhotel-0.62" 
+    file="/2dv603-jhotel-0.62/src/reservation/ShowReservationWindow.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1427" y="343"/>    
+    <display autosize="true" stereotype="false" package="true" initial-value="true" signature="false" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <association id="41">    
+    <end type="SOURCE" refId="39" navigable="false">      
+      <attribute id="42" name="lang"/>      
+      <multiplicity id="43" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="14" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <generalization id="44">    
+    <end type="SOURCE" refId="33"/>    
+    <end type="TARGET" refId="16"/>  
+  </generalization>  
+  <association id="45">    
+    <end type="SOURCE" refId="30" navigable="false">      
+      <attribute id="46" name="options"/>      
+      <multiplicity id="47" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="18" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="48">    
+    <end type="SOURCE" refId="38" navigable="false">      
+      <attribute id="49" name="res"/>      
+      <multiplicity id="50" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="35" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="51">    
+    <end type="SOURCE" refId="35" navigable="false">      
+      <attribute id="52" name="guest"/>      
+      <multiplicity id="53" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="21" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="54">    
+    <end type="SOURCE" refId="39" navigable="false">      
+      <attribute id="55" name="res"/>      
+      <multiplicity id="56" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="35" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <generalization id="57">    
+    <end type="SOURCE" refId="34"/>    
+    <end type="TARGET" refId="15"/>  
+  </generalization>  
+  <association id="58">    
+    <end type="SOURCE" refId="35" navigable="false">      
+      <attribute id="59" name="calendarCreator"/>      
+      <multiplicity id="60" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="13" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="61">    
+    <end type="SOURCE" refId="36" navigable="false">      
+      <attribute id="62" name="thisWindow"/>      
+      <multiplicity id="63" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="36" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="64">    
+    <end type="SOURCE" refId="31" navigable="false">      
+      <attribute id="65" name="subscribers"/>      
+      <multiplicity id="66" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="17" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="67">    
+    <end type="SOURCE" refId="29" navigable="false">      
+      <attribute id="68" name="thisWindow"/>      
+      <multiplicity id="69" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="29" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="70">    
+    <end type="SOURCE" refId="20" navigable="false">      
+      <attribute id="71" name="calendarCreator"/>      
+      <multiplicity id="72" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="13" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <dependency id="73">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="2"/>  
+  </dependency>  
+  <association id="74">    
+    <end type="SOURCE" refId="38" navigable="false">      
+      <attribute id="75" name="lang"/>      
+      <multiplicity id="76" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="14" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="77">    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="78" name="thisWindow"/>      
+      <multiplicity id="79" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="10" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <realization id="80">    
+    <end type="SOURCE" refId="35"/>    
+    <end type="TARGET" refId="17"/>  
+  </realization>  
+  <association id="81">    
+    <end type="SOURCE" refId="29" navigable="false">      
+      <attribute id="82" name="g"/>      
+      <multiplicity id="83" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="21" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="84">    
+    <end type="SOURCE" refId="40" navigable="false">      
+      <attribute id="85" name="thisWindow"/>      
+      <multiplicity id="86" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="40" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <realization id="87">    
+    <end type="SOURCE" refId="37"/>    
+    <end type="TARGET" refId="17"/>  
+  </realization>  
+  <association id="88">    
+    <end type="SOURCE" refId="29" navigable="false">      
+      <attribute id="89" name="addDataWindow"/>      
+      <multiplicity id="90" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="24" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <generalization id="91">    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="16"/>  
+  </generalization>  
+  <generalization id="92">    
+    <end type="SOURCE" refId="39"/>    
+    <end type="TARGET" refId="15"/>  
+  </generalization>  
+  <association id="93">    
+    <end type="SOURCE" refId="15" navigable="false">      
+      <attribute id="94" name="subscribers"/>      
+      <multiplicity id="95" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="17" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="96">    
+    <end type="SOURCE" refId="29" navigable="false">      
+      <attribute id="97" name="searchWindow"/>      
+      <multiplicity id="98" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="31" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <realization id="99">    
+    <end type="SOURCE" refId="40"/>    
+    <end type="TARGET" refId="17"/>  
+  </realization>  
+  <association id="100">    
+    <end type="SOURCE" refId="40" navigable="false">      
+      <attribute id="101" name="calendarCreator"/>      
+      <multiplicity id="102" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="13" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="103">    
+    <end type="SOURCE" refId="24" navigable="false">      
+      <attribute id="104" name="guest"/>      
+      <multiplicity id="105" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="21" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <realization id="106">    
+    <end type="SOURCE" refId="36"/>    
+    <end type="TARGET" refId="17"/>  
+  </realization>  
+  <generalization id="107">    
+    <end type="SOURCE" refId="37"/>    
+    <end type="TARGET" refId="15"/>  
+  </generalization>  
+  <generalization id="108">    
+    <end type="SOURCE" refId="38"/>    
+    <end type="TARGET" refId="15"/>  
+  </generalization>  
+  <realization id="109">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="17"/>  
+  </realization>  
+  <association id="110">    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="111" name="initializeLists"/>      
+      <multiplicity id="112" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="11" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <generalization id="113">    
+    <end type="SOURCE" refId="32"/>    
+    <end type="TARGET" refId="16"/>  
+  </generalization>  
+  <realization id="114">    
+    <end type="SOURCE" refId="29"/>    
+    <end type="TARGET" refId="17"/>  
+  </realization>  
+  <generalization id="115">    
+    <end type="SOURCE" refId="20"/>    
+    <end type="TARGET" refId="16"/>  
+  </generalization>  
+  <generalization id="116">    
+    <end type="SOURCE" refId="22"/>    
+    <end type="TARGET" refId="15"/>  
+  </generalization>  
+  <association id="117">    
+    <end type="SOURCE" refId="32" navigable="false">      
+      <attribute id="118" name="calendarCreator"/>      
+      <multiplicity id="119" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="13" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="120">    
+    <end type="SOURCE" refId="33" navigable="false">      
+      <attribute id="121" name="calendarCreator"/>      
+      <multiplicity id="122" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="13" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <generalization id="123">    
+    <end type="SOURCE" refId="19"/>    
+    <end type="TARGET" refId="15"/>  
+  </generalization>  
+  <generalization id="124">    
+    <end type="SOURCE" refId="36"/>    
+    <end type="TARGET" refId="15"/>  
+  </generalization>  
+  <association id="125">    
+    <end type="SOURCE" refId="11" navigable="false">      
+      <attribute id="126" name="calendarCreator"/>      
+      <multiplicity id="127" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="13" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <generalization id="128">    
+    <end type="SOURCE" refId="40"/>    
+    <end type="TARGET" refId="15"/>  
+  </generalization>  
+  <association id="129">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="130" name="album"/>      
+      <multiplicity id="131" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="132">    
+    <end type="SOURCE" refId="36" navigable="false">      
+      <attribute id="133" name="calendarCreator"/>      
+      <multiplicity id="134" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="13" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="135">    
+    <end type="SOURCE" refId="16" navigable="false">      
+      <attribute id="136" name="subscribers"/>      
+      <multiplicity id="137" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="17" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="138">    
+    <end type="SOURCE" refId="24" navigable="false">      
+      <attribute id="139" name="obs"/>      
+      <multiplicity id="140" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="17" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <association id="141">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="142" name="thisWindow"/>      
+      <multiplicity id="143" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="3" navigable="true"/>    
+    <display labels="false" multiplicity="false"/>  
+  </association>  
+  <classifier-display autosize="true" stereotype="false" package="true" initial-value="true" signature="false" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="false" package="false" protected="false" private="false" static="false"/>    
+    <operations public="false" package="false" protected="false" private="false" static="true"/>  
+  </classifier-display>  
+  <association-display labels="false" multiplicity="false"/>
+</class-diagram>

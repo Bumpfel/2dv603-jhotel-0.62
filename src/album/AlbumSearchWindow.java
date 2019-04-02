@@ -30,7 +30,7 @@ import java.util.ArrayList;
 
 import javax.swing.DefaultListModel;
 
-import guest.Guest;
+import functions.Guest;
 import functions.Language;
 import functions.Options;
 

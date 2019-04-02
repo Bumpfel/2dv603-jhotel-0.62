@@ -23,12 +23,10 @@ package main;
 
 import java.awt.Frame;
 
-import functions.YesNoDialog;
-import guest.Guest;
-import functions.Action;
+import functions.Guest;
 import functions.Language;
-import functions.ObservableFrame;
 import functions.Observer;
+import functions.YesNoDialog;
 
 public class AdditionalDataWindow extends Frame {
 

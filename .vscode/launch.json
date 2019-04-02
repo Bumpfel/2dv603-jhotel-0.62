@@ -11,7 +11,7 @@
             "type": "java",
             "name": "CodeLens (Launch) - Reservation",
             "request": "launch",
-            "mainClass": "backend.Reservation",
+            "mainClass": "reservation.Reservation",
             "projectName": "2dv603-jhotel-0.62"
         },
         {

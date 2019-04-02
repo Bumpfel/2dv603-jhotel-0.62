@@ -32,7 +32,7 @@ import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 
 import functions.Action;
-import guest.Guest;
+import functions.Guest;
 import functions.Language;
 import functions.Observer;
 import functions.Options;

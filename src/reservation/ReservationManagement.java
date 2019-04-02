@@ -470,7 +470,7 @@ public class ReservationManagement extends ObservableFrame implements Runnable, 
 	}
 
 	/**
-	 * This method initializes jButton
+	 * This method initializes jButton "Choose guest"
 	 * 
 	 * @return javax.swing.JButton
 	 */
@@ -495,6 +495,7 @@ public class ReservationManagement extends ObservableFrame implements Runnable, 
 		oldguest = og;
 	}
 
+	//OK Button
 	private javax.swing.JButton getJButton1() {
 		if (jButton1 == null) {
 			jButton1 = new javax.swing.JButton();
@@ -510,7 +511,8 @@ public class ReservationManagement extends ObservableFrame implements Runnable, 
 						Reservation res2 = new Reservation(jTextField.getText(), jTextField1.getText(),
 								jTextField3.getText(), selectedRoom, jTextField2.getText());
 						res2.start();
-						run();
+						setThreadRunning(language[66]);
+						res2.addSubscriber(thisWindow);
 						clearFields();
 					}
 				}
@@ -697,7 +699,6 @@ public class ReservationManagement extends ObservableFrame implements Runnable, 
 	}
 
 	public void run() {
-		setThreadRunning(language[66]);
 		DefaultTableModel tm = (DefaultTableModel) jTable.getModel();
 		ArrayList al = new ArrayList();
 		String[] availableRooms;
@@ -763,7 +764,6 @@ public class ReservationManagement extends ObservableFrame implements Runnable, 
 
 		tm.setColumnIdentifiers(columnid);
 		jTable.setModel(tm);
-		setThreadEnded();
 	}
 
 	public void updateTable(ArrayList al) {
@@ -1006,7 +1006,11 @@ public class ReservationManagement extends ObservableFrame implements Runnable, 
 			jButton5.setText(language[25]);
 			jButton5.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					run();
+					new Thread(() -> {
+						setThreadRunning(language[66]);
+						updateTable(restable);
+						setThreadEnded();
+					}).start();
 				}
 			});
 		}
@@ -1090,8 +1094,8 @@ public class ReservationManagement extends ObservableFrame implements Runnable, 
 			setGuest((String[]) args);
 		else if(action == Action.NEW_RES_GUEST) {
 			NewResGuest nrg = new NewResGuest();
+			nrg.addSubscriber(this);
 			nrg.setVisible(true);
-			nrg.addSubscriber(o);
 		}
 		else if(action == Action.SELECT_ROOM)
 			setSelectedRoom((String) args);
@@ -1103,8 +1107,8 @@ public class ReservationManagement extends ObservableFrame implements Runnable, 
 			setThreadRunning((String) args);
 		}
 		else if(action == Action.UPDATE_TABLE) {
-			setThreadEnded();
 			updateTable((ArrayList) args);
+			setThreadEnded();
 		}
 	}
 
